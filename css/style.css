@@ -1,0 +1,51 @@
+html,
+body {
+    background-color: #C5CAE9;
+    font-family: 'Roboto', 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.mdl-badge {
+    color: rgba(0, 0, 0, 0.24);
+}
+
+.mdl-badge.material-icons {
+    font-size: 32px;
+}
+
+.mdl-badge.material-icons:after {
+    left: 20px;
+}
+
+.demo-card-wide.mdl-card {
+    width: auto;
+}
+
+.demo-card-wide>.mdl-card__title {
+    background-color: #536DFE;
+    color: white;
+    height: auto;
+}
+
+.demo-card-wide>.mdl-card__menu {
+    color: #E8EAF6;
+}
+
+.demo-card-image.mdl-card {
+    width: auto;
+    height: auto;
+    background: url('') center / cover;
+}
+
+.demo-card-image>.mdl-card__actions {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.demo-card-image__filename {
+    color: #fff;
+}
+
+footer {
+    background-color: #3F51B5;
+}

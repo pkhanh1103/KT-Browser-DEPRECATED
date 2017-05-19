@@ -1,0 +1,49 @@
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Medium;
+    src: url(../fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+
+.bookmarks {
+    list-style: none;
+    width: 636px;
+    margin-left: -265px;
+    position: absolute;
+    top: 62%;
+    left: 50%;
+}
+
+.bookmarks a {
+    width: 172px;
+    height: 96px;
+    position: relative;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.bookmarks a .icon {
+    width: 32px;
+    height: 32px;
+    margin-top: -12px;
+    position: absolute;
+}
+
+.bookmarks a .title {
+    position: absolute;
+    color: #ffffff;
+    margin-top: 20px;
+}

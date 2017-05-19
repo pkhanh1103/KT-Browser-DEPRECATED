@@ -1,0 +1,56 @@
+{
+  "name": "KT-Browser",
+  "version": "7.0.0",
+  "description": "Một trình duyệt thuần Việt của KTTECH Team.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "rebuild": "electron-rebuild",
+    "buildlinux": "electron-packager . --platform=linux --arch=ia32 --asar --overwrite --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.ProductVersion=7.0",
+    "buildlinux64": "electron-packager . --platform=linux --arch=x64 --asar --overwrite --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.ProductVersion=7.0",
+    "buildwin": "electron-packager . --platform=win32 --arch=ia32 --asar --overwrite --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.FileDescription=\"KT Browser Alpha\" --version-string.InternalName=\"KT Browser.exe\" --version-string.OriginalFilename=\"KT Browser.exe\" --version-string.LegalCopyright=\"Copyright (C) 2017 KTTECH Team., Inc. All rights reserved.\"  --version-string.ProductVersion=7.0",
+    "buildwin64": "electron-packager . --platform=win32 --arch=x64 --asar --overwrite --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.FileDescription=\"KT Browser Alpha\" --version-string.InternalName=\"KT Browser.exe\" --version-string.OriginalFilename=\"KT Browser.exe\" --version-string.LegalCopyright=\"Copyright (C) 2017 KTTECH Team., Inc. All rights reserved.\"  --version-string.ProductVersion=7.0",
+    "buildmac": "electron-packager . --platform=darwin --arch=x64 --asar --overwrite --icon=icon.icns --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.ProductVersion=7.0"
+  },
+  "devDependencies": {
+    "asar": "latest",
+    "electron": "latest",
+    "electron-connect": "latest",
+    "electron-is-dev": "latest",
+    "electron-settings": "latest",
+    "electron-packager": "latest",
+    "electron-prebuilt": "latest",
+    "electron-rebuild": "latest",
+    "electron-window-state": "latest",
+    "get-pixels": "latest",
+    "gulp": "latest",
+    "is-there": "latest",
+    "jquery": "latest",
+    "node-dir": "latest"
+  },
+  "dependencies": {
+    "asar": "latest",
+    "electron": "latest",
+    "electron-connect": "latest",
+    "electron-is-dev": "latest",
+    "electron-packager": "latest",
+    "electron-prebuilt": "latest",
+    "electron-settings": "latest",
+    "electron-window-state": "latest",
+    "get-pixels": "latest",
+    "gulp": "latest",
+    "is-there": "latest",
+    "jquery": "^3.2.1",
+    "node-dir": "latest"
+  },
+  "build": {
+    "appId": "com.kttech.browser",
+    "app-category-type": "public.app-category.utilities",
+    "win": {
+      "iconUrl": "http://kt-browser.com/favicon.ico"
+    },
+    "mac": {
+      "category": "com.kttech.browser"
+    }
+  }
+}

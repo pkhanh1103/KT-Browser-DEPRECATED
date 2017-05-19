@@ -1,2 +1,47 @@
-# KT-Browser
-Một trình duyệt web thuần Việt của nhóm KTTECH
+<p align="center">
+  <img alt="KT Browser Logo" src="http://kt-browser.com/ktbrowserlogo.png" />
+</p>
+
+# Trình duyệt web KT Browser
+Một trình duyệt web thuần Việt của nhóm KTTECH. Trình duyệt này được viết trên Electron và Node.JS bằng ngôn ngữ Javascript, HTML và CSS.
+
+## Các tính năng
+* Đổi màu theo trang
+* Cài đặt
+* Lịch sử
+* Gợi ý tìm kiếm
+* Dấu trang `TODO`
+* Tải về `TODO`
+* Chế độ ẩn danh `TODO`
+* Tiện ích bổ sung (đang phát triển)
+* Material Design UI
+* Chế độ ban đêm
+* Trợ lí ảo Cena (đang phát triển)
+* Kích đúp để dịch từ qua LaBan API
+* Còn nhiều nữa...
+
+## Tải và sử dụng mã nguồn...
+
+Trước tiên bạn cần cài đặt Node.JS
+
+```
+git clone https://github.com/KTTECHTeam/KT-Browser.git
+cd KT-Browser
+npm install && npm start
+```
+
+Xem thêm các dòng lệnh npm được viết sẵn trong package.json.
+
+## Lưu ý
+
+Hiện tại trình duyệt này vẫn đang trong giai đoạn phát triển và cần sự giúp sức của cộng đồng nguồn mở. Xin hãy tạo một pull-request nếu bạn có thể sửa đổi hoặc phát triển thêm 1 tính năng nào khác.
+
+Hoặc bạn có thể [tạo một issues](https://github.com/KTTECHTeam/KT-Browser/issues) để có thể góp ý hoặc báo cáo lỗi cho nhóm.
+
+## Thông tin giấy phép
+KT Browser được viết lại từ dự án [WebExpress2](https://github.com/Sential/WebExpress2) thông qua giấy phép MIT và KT Browser cũng được phát hành dưới dạng mã nguồn mở thông qua [giấy phép MIT](https://github.com/KTTECHTeam/KT-Browser/blob/master/LICENSE)
+
+
+### Thông tin thêm
+Trang chủ: https://kt-browser.com.
+Facebook: fb.com/ktbrowser.

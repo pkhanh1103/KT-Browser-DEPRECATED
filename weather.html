@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.msgBox.min.css">
+    <link href="css/material-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/materialdesign/css/materialdesign.css" type="text/css" />
+    <link href="css/ripple.css" rel="stylesheet" type="text/css" />
+    <style>
+        .titlebar {
+            height: 32px;
+            width: 100%;
+            z-index: 999;
+            background-color: transparent;
+        }
+
+        .draggable {
+            -webkit-app-region: drag;
+            height: 29px;
+            width: 100%;
+            position: absolute;
+            top: 3px;
+        }
+
+        .border5 {
+            height: 1px;
+            position: relative;
+            bottom: 1px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <style>
+        @import url('http://fonts.googleapis.com/css?family=Roboto:400,300,100');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css');
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: white;
+            font-family: 'Roboto';
+            font-weight: 100;
+            line-height: 1.1;
+            letter-spacing: 0.018em;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: white;
+            opacity: 0.54;
+            text-decoration: none;
+        }
+
+        a:hover,
+        .active {
+            opacity: 1;
+        }
+
+        .wrapper {
+            width: 480px;
+            margin: 0 auto;
+        }
+
+        .searchbar,
+        .button {
+            height: 45px;
+            margin: 1em 0 4em;
+            padding: 0;
+            font: 400 1rem 'Roboto';
+            letter-spacing: 0.025em;
+            text-transform: uppercase;
+            color: white;
+            border: none;
+        }
+
+        .searchbar {
+            float: left;
+            width: 380px;
+            border-bottom: solid thin white;
+            color: #E8E8E8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .searchbar::-webkit-input-placeholder {
+            color: white;
+            opacity: 0.35;
+        }
+
+        .searchbar::-moz-placeholder {
+            color: white;
+            opacity: 0.35;
+        }
+
+        .searchbar:-ms-input-placeholder {
+            color: white;
+            opacity: 0.35;
+        }
+
+        .searchbar:-moz-placeholder {
+            color: white;
+            opacity: 0.35;
+        }
+
+        .button:focus,
+        .searchbar:focus {
+            outline: none;
+            color: white;
+        }
+
+        .searchbar:focus::-webkit-input-placeholder {
+            color: white;
+            opacity: 0.7;
+        }
+
+        .searchbar:focus::-moz-placeholder {
+            color: white;
+            opacity: 0.7;
+        }
+
+        .searchbar:focus:-ms-input-placeholder {
+            color: white;
+            opacity: 0.7;
+        }
+
+        .searchbar:focus:-moz-placeholder {
+            color: white;
+            opacity: 0.7;
+        }
+
+        .button {
+            float: right;
+            width: 100px;
+        }
+
+        .panel {
+            width: 100%;
+            display: inline-block;
+        }
+
+        .weather {
+            width: 100%;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .city {
+            text-align: left;
+            border-bottom: solid thin white;
+            text-transform: uppercase;
+            color: #E8E8E8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .group {
+            width: 165px;
+            margin-bottom: 20px;
+            text-align: right;
+            float: right;
+            clear: both;
+        }
+
+        .temp {
+            font-size: 4em;
+            font-weight: 300;
+            line-height: 0.75;
+        }
+
+        .celsius,
+        .fahrenheit,
+        .divider {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .divider {
+            margin: 0 0.05em;
+        }
+
+        .forecast {
+            display: table;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .block {
+            display: table-cell;
+            padding: 1.25em 0 0 0;
+            text-align: center;
+        }
+
+        .high {
+            font-weight: 300;
+            margin: 0.25em 0;
+        }
+
+        .secondary {
+            opacity: 0.7;
+        }
+
+        .transparent {
+            background: transparent;
+        }
+
+        .hot {
+            background: #FF5722;
+        }
+
+        .warm {
+            background: #FF6F00;
+        }
+
+        .cool {
+            background: #2196F3;
+        }
+
+        .cold {
+            background: #3F51B5;
+        }
+
+        .color404 {
+            background: #161616;
+        }
+
+        .button-hot {
+            background: #BF360C;
+        }
+
+        .button-warm {
+            background: #B34E00;
+        }
+
+        .button-cool {
+            background: #0D47A1;
+        }
+
+        .button-cold {
+            background: #1A237E;
+        }
+
+        .button404 {
+            background: black;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <div class="maindiv">
+        <div class="titlebar" id="titlebar">
+            <div class="draggable">
+            </div>
+            <div data-tooltip-text="Đóng cửa sổ" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
+            <div data-tooltip-text="Phóng to cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
+            <div data-tooltip-text="Ẩn cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
+            <div class="border5"></div>
+        </div>
+        </script>
+        <div class="instances" id="instances" style="position: relative; top: 0;">
+            <div class='wrapper'>
+
+                <search>
+                    <form>
+                        <input class='searchbar transparent' id='search' type='text' placeholder='nhập tên thành phố, tỉnh' />
+                        <input class='button transparent' id='button' type="submit" value='XEM' />
+                    </form>
+                </search>
+
+                <div class='panel'>
+                    <h2 class='city' id='city'></h2>
+                    <div class='weather' id='weather'>
+                        <div class='group secondary'>
+                            <h3 id='dt'></h3>
+                            <h3 id='description'></h3>
+                        </div>
+                        <div class='group secondary'>
+                            <h3 id='wind'></h3>
+                            <h3 id='humidity'></h3>
+                        </div>
+                        <div class='temperature' id='temperature'>
+                            <h1 class='temp' id='temp'><i id='condition'></i> <span id='num'></span><a class='fahrenheit active' id='fahrenheit' href="#">&deg;F</a>
+                                <span class='divider secondary'>|</span><a class='celsius' id='celsius' href="#">&deg;C</a></h1>
+                        </div>
+                        <div class='forecast' id='forecast'></div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                if (typeof module === 'object') {
+                    window.module = module;
+                    module = undefined;
+                }
+            </script>
+            <script src="js/jquery/jquery-3.1.0.min.js"></script>
+            <script src="js/jquery/jquery-ui.min.js"></script>
+            <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
+            <script>
+                if (window.module) module = window.module;
+            </script>
+            <script>
+                Array.prototype.forEach || (Array.prototype.forEach = function (r, t) {
+                    var o, n;
+                    if (null === this) throw new TypeError(" this is null or not defined");
+                    var e = Object(this),
+                        i = e.length >>> 0;
+                    if ("function" != typeof r) throw new TypeError(r + " is not a function");
+                    for (arguments.length > 1 && (o = t), n = 0; i > n;) {
+                        var a;
+                        n in e && (a = e[n], r.call(o, a, n, e)), n++
+                    }
+                });
+            </script>
+            <script>
+                ! function (e, n) {
+                    var t = function (e) {
+                            var n = e.data[0],
+                                t = e.data[1],
+                                a = n.buttons[t].callback;
+                            p(n), "function" == typeof a && a.call(this, e)
+                        },
+                        a = function (e) {
+                            e.blend ? e.$wrapper.fadeIn(e.blendDuration) : e.$wrapper.show()
+                        },
+                        p = function (e) {
+                            e.blend ? e.$wrapper.fadeOut(e.blendDuration, function () {
+                                e.$wrapper.remove()
+                            }) : e.$wrapper.remove()
+                        },
+                        s = function (p) {
+                            var s = e('<div class="mb-outerWrapper">'),
+                                o = e('<div class="mb-innerWrapper">').appendTo(s),
+                                d = e('<div class="mb">').appendTo(o),
+                                i = e('<div class="mb-title">').appendTo(d),
+                                c = e('<div class="mb-content">').appendTo(d),
+                                r = e('<div class="mb-typeIcon">'),
+                                l = e('<div class="mb-message">'),
+                                b = e('<div class="mb-buttons">').appendTo(d);
+                            p.$wrapper = s, p.type !== n && c.append(r.addClass("icon-" + p.type)), c.append(l), i.text(
+                                p.title), l.text(p.message), p.buttons.forEach(function (n, a) {
+                                e('<div class="mb-button">').text(n.text).on("click", [p, a], t).appendTo(b)
+                            }), s.hide(), this.append(s), a(p)
+                        };
+                    e.fn.msgBox = function (n) {
+                        s.call(this, e.extend(!0, {
+                            title: "",
+                            message: "",
+                            buttons: [],
+                            blend: !1,
+                            blendDuration: 400
+                        }, n))
+                    }
+                }(jQuery);
+            </script>
+            <script src="js/materialdesign/materialdesign.js"></script>
+            <script src="js/utils.js"></script>
+            <script>
+                $(document.body).find(".windowbutton-close").css('background-image',
+                    'url(img/WindowButtons/close-white.png)')
+                $(document.body).find(".windowbutton-minimize").css('background-image',
+                    'url(img/WindowButtons/minimize-white.png)')
+                $(document.body).find(".windowbutton-maximize").css('background-image',
+                    'url(img/WindowButtons/maximize-white.png)')
+                const {
+                    remote,
+                    ipcMain,
+                    clipboard
+                } = require('electron')
+                const {
+                    Menu,
+                    MenuItem,
+                    globalShortcut
+                } = remote
+                const {
+                    app
+                } = require('electron').remote;
+                $('.windowbutton-close').click(function () {
+                    remote.getCurrentWindow().close();
+                });
+                $('.windowbutton-maximize').click(function () {
+                    if (remote.getCurrentWindow().isMaximized()) {
+                        remote.getCurrentWindow().unmaximize();
+                    } else {
+                        remote.getCurrentWindow().maximize();
+                    }
+                });
+                $('.windowbutton-minimize').click(function () {
+                    remote.getCurrentWindow().minimize();
+                });
+            </script>
+            <script>
+                function titleCase(str) {
+                    str = str.split(' ');
+                    var length = str.length;
+                    for (var i = 0; i < length; i++) {
+                        str[i] = str[i][0].toUpperCase() + str[i].substring(1);
+                    }
+                    return str.join(' ');
+                }
+
+                function fullDay(str) {
+                    if (str === 'Tue') str = 'Thứ ba';
+                    else if (str === 'Wed') str = 'Thứ tư';
+                    else if (str === 'Thu') str = 'Thứ năm';
+                    else if (str === 'Sat') str = 'Thứ bảy';
+                    else if (str === 'Fri') str = 'Thứ sáu';
+                    else if (str === 'Mon') str = 'Thứ hai';
+                    else if (str === 'Sun') str = 'Chủ nhật';
+                    return str;
+                }
+
+                $(function () {
+
+                    var $wrapper = $('.wrapper'),
+                        $panel = $wrapper.find('.panel'),
+                        $city = $panel.find('#city'),
+                        $weather = $panel.find('.weather'),
+                        $group = $panel.find('.group'),
+                        $dt = $group.find('#dt'),
+                        $description = $group.find('#description'),
+                        $wind = $group.find('#wind'),
+                        $humidity = $group.find('#humidity'),
+                        $temperature = $weather.find('#temperature'),
+                        $temp = $temperature.find('#temp'),
+                        $icon = $temp.find('#condition'),
+                        $tempNumber = $temp.find('#num'),
+                        $celsius = $temp.find('#celsius'),
+                        $fahrenheit = $temp.find('#fahrenheit'),
+                        $forecast = $weather.find('#forecast'),
+                        $search = $wrapper.find('search'),
+                        $form = $search.find('form'),
+                        $button = $form.find('#button');
+
+                    $.ajax({
+                            dataType: 'json',
+                            url: 'http://ip-api.com/json'
+                        })
+                        .then(function (data) {
+                            var yourLocation = data.city + ',' + data.zip + ',' + data.countryCode;
+                            getWeather(yourLocation);
+                        });
+
+                    function getWeather(input) {
+
+                        var appid = '58b6f7c78582bffab3936dac99c31b25';
+                        var requestWeather = $.ajax({
+                            dataType: 'json',
+                            url: 'http://api.openweathermap.org/data/2.5/weather',
+                            data: {
+                                q: input,
+                                units: 'imperial',
+                                appid: appid
+                            }
+                        });
+                        var requestForecast = $.ajax({
+                            dataType: 'json',
+                            url: 'http://api.openweathermap.org/data/2.5/forecast/daily',
+                            data: {
+                                q: input,
+                                units: 'imperial',
+                                cnt: '6',
+                                appid: appid
+                            }
+                        });
+
+                        $fahrenheit.addClass('active').removeAttr('href');
+                        $celsius.removeClass('active').attr("href", '#');
+                        $icon.removeClass();
+                        $button.removeClass().addClass('button transparent');
+
+                        requestWeather.done(function (data) {
+
+                            var weather = document.getElementById('weather');
+                            if (data.cod === '404') {
+                                $city.html('không tìm thấy thành phố');
+                                setBackground('color404', 'button404');
+                                weather.style.display = 'none';
+                            } else weather.style.display = '';
+
+                            var dt = new Date(data.dt * 1000).toString().split(' ');
+
+                            $city.html(data.name + ', ' + data.sys.country);
+                            $tempNumber.html(Math.round(data.main.temp));
+                            $description.html(titleCase(data.weather[0].description));
+                            $wind.html('Sức gió: ' + data.wind.speed + ' mph');
+                            $humidity.html('Độ ẩm ' + data.main.humidity + '%');
+                            $dt.html(fullDay(dt[0]) + ' ' + dt[4].substring(0, 5));
+
+                            $celsius.on('click', toCelsius);
+                            $fahrenheit.on('click', toFahrenheit);
+
+                            function toCelsius() {
+                                $(this).addClass('active').removeAttr('href');
+                                $fahrenheit.removeClass('active').attr('href', '#');
+                                $tempNumber.html(Math.round((data.main.temp - 32) * (5 / 9)));
+                            }
+
+                            function toFahrenheit() {
+                                $(this).addClass('active').removeAttr('href');
+                                $celsius.removeClass('active').attr("href", '#');
+                                $tempNumber.html(Math.round(data.main.temp));
+                            }
+
+                            function setBackground(background, button) {
+                                $('body').removeClass().addClass(background);
+                                $button.off().hover(function () {
+                                    $(this).removeClass('transparent').addClass(button);
+                                }, function () {
+                                    $(this).removeClass().addClass('button transparent');
+                                });
+                            }
+
+                            if (data.main.temp >= 80) setBackground('hot', 'button-hot');
+                            else if (data.main.temp >= 70) setBackground('warm', 'button-warm');
+                            else if (data.main.temp >= 60) setBackground('cool', 'button-cool');
+                            else setBackground('cold', 'button-cold');
+
+                            switch (data.weather[0].icon) {
+                                case '01d':
+                                    $icon.addClass('wi wi-day-sunny');
+                                    break;
+                                case '02d':
+                                    $icon.addClass('wi wi-day-sunny-overcast');
+                                    break;
+                                case '01n':
+                                    $icon.addClass('wi wi-night-clear');
+                                    break;
+                                case '02n':
+                                    $icon.addClass('wi wi-night-partly-cloudy');
+                                    break;
+                            }
+
+                            switch (data.weather[0].icon.substr(0, 2)) {
+                                case '03':
+                                    $icon.addClass('wi wi-cloud');
+                                    break;
+                                case '04':
+                                    $icon.addClass('wi wi-cloudy');
+                                    break;
+                                case '09':
+                                    $icon.addClass('wi wi-showers');
+                                    break;
+                                case '10':
+                                    $icon.addClass('wi wi-rain');
+                                    break;
+                                case '11':
+                                    $icon.addClass('wi wi-thunderstorm');
+                                    break;
+                                case '13':
+                                    $icon.addClass('wi wi-snow');
+                                    break;
+                                case '50':
+                                    $icon.addClass('wi wi-fog');
+                                    break;
+                            }
+                        });
+
+                        requestForecast.done(function (data) {
+
+                            $celsius.on('click', toCelsius);
+                            $fahrenheit.on('click', toFahrenheit);
+
+                            var forecast = [];
+                            var length = data.list.length;
+                            for (var i = 1; i < length; i++) {
+                                forecast.push({
+                                    date: new Date(data.list[i].dt * 1000).toString().split(' ')[
+                                        0],
+                                    fahrenheit: {
+                                        high: Math.round(data.list[i].temp.max),
+                                        low: Math.round(data.list[i].temp.min),
+                                    },
+                                    celsius: {
+                                        high: Math.round((data.list[i].temp.max - 32) * (5 / 9)),
+                                        low: Math.round((data.list[i].temp.min - 32) * (5 / 9))
+                                    }
+                                });
+                            }
+
+                            function toCelsius() {
+                                doForecast('celsius');
+                            }
+
+                            function toFahrenheit() {
+                                doForecast('fahrenheit');
+                            }
+
+                            function doForecast(unit) {
+                                var arr = [];
+                                var length = forecast.length;
+                                for (var i = 0; i < length; i++) {
+                                    arr[i] = ("<div class='block'><h3 class='secondary'>" + forecast[i]
+                                        .date + "</h3><h2 class='high'>" + forecast[i][unit].high +
+                                        "</h2><h4 class='secondary'>" + forecast[i][unit].low +
+                                        "</h4></div>");
+                                }
+                                $forecast.html(arr.join(''));
+                            }
+
+                            doForecast('fahrenheit');
+                        });
+                    }
+
+                    $form.submit(function (event) {
+                        var input = document.getElementById('search').value;
+                        var inputLength = input.length;
+                        if (inputLength) getWeather(input);
+                        event.preventDefault();
+                    });
+
+                });
+            </script>
+
+</body>
+
+</html>
