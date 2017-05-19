@@ -20,6 +20,18 @@ Một trình duyệt web thuần Việt của nhóm KTTECH. Trình duyệt này 
 * Kích đúp để dịch từ qua LaBan API
 * Còn nhiều nữa...
 
+## Ảnh chụp màn hình
+
+<p align="center">
+  <img alt="Giao diện Material Design" src="http://kt-browser.com/tinhnang1.png" />
+</p>
+<p align="center">
+  <img alt="Chế độ ban đêm" src="http://kt-browser.com/tinhnang2.png" />
+</p>
+<p align="center">
+  <img alt="Đổi màu theo trang" src="http://kt-browser.com/tinhnang6.png" />
+</p>
+
 ## Tải và sử dụng mã nguồn...
 
 Trước tiên bạn cần cài đặt Node.JS
