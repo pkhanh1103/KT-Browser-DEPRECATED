@@ -85,9 +85,6 @@
 
         });
         t.private.click(function (e) {
-            responsiveVoice.speak("Ahihi đồ ngốc", "Vietnamese Male", {
-                rate: 0.1
-            });
             Toast_Material({
                 content: "Chưa hoàn thiện!",
                 updown: "bottom",
