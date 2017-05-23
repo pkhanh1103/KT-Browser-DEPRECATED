@@ -34,7 +34,7 @@ if (!settings.get("static") == null) {
 }
 
 if (!settings.has('settings.nvProxy')) {
-    settings.set('settings.nvProxy', 'http://sv.kt-browser.com/no-ads.pac');
+    settings.set('settings.nvProxy', 'http://kt-browser.com/no-ads.pac');
 }
 
 if (!settings.has('settings.homePage')) {
