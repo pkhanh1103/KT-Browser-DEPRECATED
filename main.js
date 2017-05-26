@@ -13,11 +13,10 @@ global.startArgs = {
     data: process.argv
 }
 
-
-//Juked
 process.env.GOOGLE_API_KEY = 'AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM'
 process.env.GOOGLE_DEFAULT_CLIENT_ID = '413772536636.apps.googleusercontent.com'
 process.env.GOOGLE_DEFAULT_CLIENT_SECRET = '0ZChLK6AxeA3Isu96MkwqDR4'
+
 if (process.platform == 'win32') {
     app.setPath("appData", path.join(process.env.LOCALAPPDATA, "KT Browser"));
     app.setPath("userData", path.join(process.env.LOCALAPPDATA, "KT Browser"));
@@ -53,25 +52,38 @@ if (!settings.has('settings.macRender')) {
     settings.set('settings.macRender', false);
 }
 
+if (!settings.has('settings.hardalc')) {
+    settings.set('settings.hardalc', true);
+}
+
 if (!settings.has('static.NightMode')) {
     settings.set('static.NightMode', false);
 }
 
-let pluginName
-switch (process.platform) {
-    case 'win32':
-        pluginName = 'pepflashplayer.dll'
-        break
-    case 'darwin':
-        pluginName = 'PepperFlashPlayer.plugin'
-        break
-    case 'linux':
-        pluginName = 'libpepflashplayer.so'
-        break
-}
-app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
+//let pluginName
+//switch (process.platform) {
+//    case 'win32':
+//        pluginName = 'pepflashplayer.dll'
+//        break
+//    case 'darwin':
+//        pluginName = 'PepperFlashPlayer.plugin'
+//        break
+//    case 'linux':
+//        pluginName = 'libpepflashplayer.so'
+//        break
+//}
+//app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
+
+// noop ( ͡° ͜ʖ ͡°)
+
 app.commandLine.appendSwitch('enable-smooth-scrolling', '')
-//app.disableHardwareAcceleration()
+
+if (!settings.get("settings.hardalc"))
+{
+    //this feature need to restart browser
+    app.disableHardwareAcceleration()
+}
+
 let mainWindow
 
 function createWindow() {

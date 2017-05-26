@@ -279,9 +279,9 @@
             </div>
             <div class="pad">
                 <h5>Nâng cao:</h5>
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
                     <span class="mdl-switch__label">Sử dụng chế độ tăng tốc phần cứng khi khả dụng</span>
-                    <input type="checkbox" id="macRender" class="mdl-switch__input">    
+                    <input type="checkbox" id="hardalc" class="mdl-switch__input">    
                 </label>
             </div>
         </div>
@@ -437,6 +437,7 @@
             if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
                 homePage.value = "kt-browser://newtab"
             }
+            hardalc.checked = settings.get("settings.hardalc")
             labanDic.checked = settings.get("settings.labanDic")
             macRender.checked = settings.get("settings.macRender")
             ChangeColorByPage.checked = settings.get("settings.colorByPage")
@@ -601,7 +602,8 @@
                     homePage: homePage.value,
                     colorByPage: ChangeColorByPage.checked,
                     labanDic: labanDic.checked,
-                    macRender: macRender.checked
+                    macRender: macRender.checked,
+                    hardalc: hardalc.checked
                 })
             }
             $(document.body).find(".windowbutton-close").css('background-image',
