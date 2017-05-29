@@ -20,10 +20,6 @@ global.isfullscreen = function () {
 	return window.isFullScreen();
 }
 
-global.openApp = function (url) {
-	window.webContents.executeJavaScript("showApp('" + url + "');", true)
-}
-
 global.setfullscreen = function (flag) {
 	return window.setFullScreen(flag);
 }
