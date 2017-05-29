@@ -445,8 +445,6 @@
             <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
             <script>
                 if (window.module) module = window.module;
-            </script>
-            <script>
                 $(document).on("click", ".toast_material", function () {
                     if ($('.toast_open').length) {
                         $('.toast_material').removeClass("fadeInUp");
@@ -530,8 +528,6 @@
                         }, 5000);
                     }
                 };
-            </script>
-            <script>
                 Array.prototype.forEach || (Array.prototype.forEach = function (r, t) {
                     var o, n;
                     if (null === this) throw new TypeError(" this is null or not defined");
@@ -543,8 +539,6 @@
                         n in e && (a = e[n], r.call(o, a, n, e)), n++
                     }
                 });
-            </script>
-            <script>
                 ! function (e, n) {
                     var t = function (e) {
                             var n = e.data[0],
@@ -599,13 +593,10 @@
             <script src="js/components/suggestions.js"></script>
             <script src="js/components/searchinput.js"></script>
             <script src="js/components/menu.js"></script>
+            <script src="js/modules/cena.js"></script>
+
             <script>
                 require(`electron-connect`).client.create()
-            </script>
-            <script>
-                $(".windowbutton").tooltip();
-                $(".material-icons").tooltip();
-                $(".closeBtn").tooltip();
 
                 function getSelectedTab() {
                     for (var i = 0; i < parent.tabCollection.length; i++) {
@@ -615,6 +606,9 @@
                     }
                 }
                 $(document).ready(function () {
+                    $(".windowbutton").tooltip();
+                    $(".material-icons").tooltip();
+                    $(".closeBtn").tooltip();
 
                     var scroll = false;
                     var launcherMaxHeight = 396;
@@ -684,7 +678,6 @@
                     });
                 });
             </script>
-            <script src="js/modules/cena.js"></script>
 
             <div class="app-launcher" style="display: none;">
                 <div class="apps">
