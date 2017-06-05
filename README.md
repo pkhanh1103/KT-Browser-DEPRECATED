@@ -2,7 +2,14 @@
   <img alt="KT Browser Logo" src="http://kt-browser.com/ktbrowserlogo.png" />
 </p>
 
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com)
+[![dependencies Status](https://david-dm.org/KTTECHTeam/KT-Browser/status.svg)](https://david-dm.org/KTTECHTeam/KT-Browser)
+[![devDependencies Status](https://david-dm.org/KTTECHTeam/KT-Browser/dev-status.svg)](https://david-dm.org/KTTECHTeam/KT-Browser?type=dev)
+
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
 # Trình duyệt web KT Browser
+
 Một trình duyệt web cho người Việt của nhóm KTTECH. Trình duyệt này được viết trên Electron và Node.JS bằng ngôn ngữ Javascript, HTML và CSS.
 
 ## Các tính năng
