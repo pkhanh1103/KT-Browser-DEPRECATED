@@ -189,7 +189,7 @@ app.on('activate', function () {
         createWindow()
     }
 })
-app.setName('KT Browser 7.0')
+app.setName('KT Browser')
 
 var client = require('electron-connect').client;
 client.create(mainWindow);

@@ -135,7 +135,7 @@
                 t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
                 lastUrl = t.webview.getURL()
             }
-            if (!t.webview.getURL().startsWith("kt-browser://newtab") && !t.webview.getURL().startsWith("kt-browser://error") && t.webview.getURL() != "about:blank") {
+            if (!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank") {
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
             if (t.webview.canGoBack()) {
