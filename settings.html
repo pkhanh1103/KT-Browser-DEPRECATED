@@ -4,13 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="material.min.js"></script>
     <link rel="stylesheet" href="material.indigo-blue.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery.msgBox.min.css">
     <link href="css/material-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="js/materialdesign/css/materialdesign.css" type="text/css" />
-    <link href="css/ripple.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery/jquery-3.1.0.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
     <style>
         .titlebar {
@@ -229,7 +225,7 @@
             <div class="border5"></div>
         </div>
         </script>
-        <div class="instances" id="instances" style="position: relative; top: 0px; left: 30px; width: 100%;">
+        <div class="instances" id="instances" style="position: static; top: 0px; margin-left: 30px; width: auto;">
             <div class="pad">
                 <h5>Khởi động:</h5>
                 <p><a>.</a></p>
@@ -288,23 +284,53 @@
         <script>
             const {
                 remote,
-                ipcMain,
-                clipboard
+                ipcRenderer
             } = require('electron')
-            const {
-                Menu,
-                MenuItem,
-                globalShortcut
-            } = remote
-            const {
-                app
-            } = require('electron').remote;
-            var getPixels = require("get-pixels")
-            var fs = require('fs');
             const settings = require('electron-settings');
-            var IsThere = require("is-there");
-            var dir = require('node-dir');
-            var os = require('os');
+
+            switch (settings.get("settings.nvProxy")) {
+                case 'http://kt-browser.com/no-ads.pac':
+                    $('#VPNSelector').val("1")
+                    break
+                case 'http://kt-browser.com/Singapore.pac':
+                    $('#VPNSelector').val("2")
+                    break
+                case 'http://kt-browser.com/Frankfurt.pac':
+                    $('#VPNSelector').val("3")
+                    break
+                case 'http://kt-browser.com/HongKong.pac':
+                    $('#VPNSelector').val("4")
+                    break
+                case 'http://kt-browser.com/LondonUK.pac':
+                    $('#VPNSelector').val("5")
+                    break
+                case 'http://kt-browser.com/LosAngelesUS.pac':
+                    $('#VPNSelector').val("6")
+                    break
+                case 'http://kt-browser.com/NewYorkUS.pac':
+                    $('#VPNSelector').val("7")
+                    break
+                case 'http://kt-browser.com/Romania.pac':
+                    $('#VPNSelector').val("8")
+                    break
+                case 'http://kt-browser.com/SanFranciscoUS.pac':
+                    $('#VPNSelector').val("9")
+                    break
+                case 'http://kt-browser.com/Sydney.pac':
+                    $('#VPNSelector').val("10")
+                    break
+                case 'http://kt-browser.com/WashingtonUS.pac':
+                    $('#VPNSelector').val("11")
+                    break
+            }
+            homePage.value = settings.get("settings.homePage")
+            if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
+                homePage.value = "kt-browser://newtab"
+            }
+            hardalc.checked = settings.get("settings.hardalc")
+            labanDic.checked = settings.get("settings.labanDic")
+            macRender.checked = settings.get("settings.macRender")
+            ChangeColorByPage.checked = settings.get("settings.colorByPage")
 
             ! function () {
                 "use strict";
@@ -397,50 +423,6 @@
                 })
             }();
             //# sourceMappingURL=mdl-selectfield.min.js.map
-
-            switch (settings.get("settings.nvProxy")) {
-                case 'http://kt-browser.com/no-ads.pac':
-                    $('#VPNSelector').val("1")
-                    break
-                case 'http://kt-browser.com/Singapore.pac':
-                    $('#VPNSelector').val("2")
-                    break
-                case 'http://kt-browser.com/Frankfurt.pac':
-                    $('#VPNSelector').val("3")
-                    break
-                case 'http://kt-browser.com/HongKong.pac':
-                    $('#VPNSelector').val("4")
-                    break
-                case 'http://kt-browser.com/LondonUK.pac':
-                    $('#VPNSelector').val("5")
-                    break
-                case 'http://kt-browser.com/LosAngelesUS.pac':
-                    $('#VPNSelector').val("6")
-                    break
-                case 'http://kt-browser.com/NewYorkUS.pac':
-                    $('#VPNSelector').val("7")
-                    break
-                case 'http://kt-browser.com/Romania.pac':
-                    $('#VPNSelector').val("8")
-                    break
-                case 'http://kt-browser.com/SanFranciscoUS.pac':
-                    $('#VPNSelector').val("9")
-                    break
-                case 'http://kt-browser.com/Sydney.pac':
-                    $('#VPNSelector').val("10")
-                    break
-                case 'http://kt-browser.com/WashingtonUS.pac':
-                    $('#VPNSelector').val("11")
-                    break
-            }
-            homePage.value = settings.get("settings.homePage")
-            if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
-                homePage.value = "kt-browser://newtab"
-            }
-            hardalc.checked = settings.get("settings.hardalc")
-            labanDic.checked = settings.get("settings.labanDic")
-            macRender.checked = settings.get("settings.macRender")
-            ChangeColorByPage.checked = settings.get("settings.colorByPage")
         </script>
         <script>
             (function ($) {
@@ -497,7 +479,6 @@
             }
         </script>
         <script src="js/jquery/jquery-ui.min.js"></script>
-        <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
         <script>
             if (window.module) module = window.module;
         </script>
@@ -554,10 +535,6 @@
                     }, n))
                 }
             }(jQuery);
-        </script>
-        <script src="js/materialdesign/materialdesign.js"></script>
-        <script src="js/utils.js"></script>
-        <script>
             window.onbeforeunload = function () {
                 if ((homePage.value == "") || (homePage.value == "undefined")) {
                     homePage.value = "kt-browser://newtab"
@@ -605,6 +582,7 @@
                     macRender: macRender.checked,
                     hardalc: hardalc.checked
                 })
+                ipcRenderer.send('refreshProxy')
             }
             $(document.body).find(".windowbutton-close").css('background-image',
                 'url(img/WindowButtons/close-white.png)')

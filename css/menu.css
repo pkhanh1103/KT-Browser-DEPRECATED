@@ -20,6 +20,9 @@
     display: inline-block;
     margin-left: 18px;
     opacity: 0.8;
+    -webkit-user-select: none;
+    user-select: none;
+    -o-user-select: none;
 }
 
 .menu-items {

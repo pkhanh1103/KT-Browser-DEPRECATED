@@ -1,13 +1,13 @@
 const electron = require('electron')
 const protocol = electron.protocol
 const app = electron.app
+const {ipcMain} = require('electron');
 const path = require('path')
 var fs = require('fs');
 const isDev = require('electron-is-dev');
 const BrowserWindow = electron.BrowserWindow
 const settings = require('electron-settings');
 var remote = require('electron').remote
-var IsThere = require("is-there");
 const windowStateKeeper = require('electron-window-state')
 global.startArgs = {
     data: process.argv
@@ -122,33 +122,23 @@ function createWindow() {
         mainWindow.webContents.executeJavaScript("titlebar.style.display='block';", true)
     });
     mainWindow.on('enter-full-screen', function () {
-        if (process.platform !== 'linux') { // Fix Linux fullscreen bug
+        if (process.platform !== 'linux') {
             mainWindow.webContents.executeJavaScript('Toast_Material({ content : "Nhấn F11 để thoát khỏi chế độ toàn màn hình", updown:"bottom", position:"center", align:"center" });', true)
         }
         mainWindow.webContents.executeJavaScript("titlebar.style.display='none';", true)
     });
     mainWindow.on('leave-full-screen', function () {
-        if (process.platform !== 'linux') { // Fix Linux fullscreen bug
+        if (process.platform !== 'linux') {
             mainWindow.webContents.executeJavaScript('Toast_Material({content:"Đã thoát khỏi chế độ toàn màn hình",updown:"bottom",position:"center",align:"center"});', true)
         }
         mainWindow.webContents.executeJavaScript("titlebar.style.display='block';", true)
-    });
-
-    mainWindow.webContents.session.setProxy({
-        pacScript: settings.get("settings.nvProxy")
-    }, function () {});
-
-    //Kiem tra khoa nvProxy va thay doi proxy neu co value moi
-    settings.watch('settings.nvProxy', function () {
-        mainWindow.webContents.session.setProxy({
-            pacScript: settings.get("settings.nvProxy")
-        }, function () {});
     });
 
     mainWindow.loadURL(`file://${__dirname}/index.html`)
     if (isDev) {
         mainWindow.webContents.openDevTools()
     }
+
     mainWindow.on('closed', function () {
         mainWindow = null
     })
@@ -165,14 +155,8 @@ app.commandLine.appendSwitch('enable-pdf-material-ui', '')
 app.commandLine.appendSwitch('enable-media-stream', '')
 app.commandLine.appendSwitch('enable-speech-input', '')
 app.commandLine.appendSwitch('enable-fast-unload', '')
-app.commandLine.appendSwitch('overlay-scrollbars', 'enabled')
 app.commandLine.appendSwitch('smooth-scrolling', 'enabled')
 app.commandLine.appendSwitch('touch-events', 'enabled')
-app.commandLine.appendSwitch('enable-experimental-canvas-features', '')
-
-//if (process.platform !== 'linux') {
-// app.commandLine.appendSwitch('proxy-pac-url', '')
-//}
 
 protocol.registerStandardSchemes(['kt-browser'])
 app.on('ready', function () {
@@ -191,7 +175,7 @@ app.on('ready', function () {
             path: path.normalize(`${__dirname}/${url}`)
         })
     }, (error) => {
-        if (error) console.error('Failed to register protocol')
+        return false
     })
     createWindow();
 });
@@ -205,7 +189,7 @@ app.on('activate', function () {
         createWindow()
     }
 })
-app.setName('KT Browser')
+app.setName('KT Browser 7.0')
 
 var client = require('electron-connect').client;
 client.create(mainWindow);

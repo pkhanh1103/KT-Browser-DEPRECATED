@@ -5,7 +5,7 @@
                 tab: null
             }, params),
             browser = $('<div class="tabWindow">').appendTo($(this)),
-            status = $('<div class="status">').appendTo(browser),
+            status = $('<div class="status" unselectable="on" style="cursor: default; -webkit-user-select: none; user-select: none; -o-user-select: none;">').appendTo(browser),
             bar = $('<div class="bar">').appendTo(browser),
             content = $('<div class="content">').appendTo(browser),
             t = this,
@@ -36,8 +36,7 @@
                             if (settings.tab.Color != data.background) {
                                 settings.tab.Color = data.background
                                 settings.tab.Tab.css('background-color', data.background)
-                                a = shadeColor2(data.background, -0.2)
-                                t.webview.webview.executeJavaScript('setTitleBarColor("' + a + '")', false);
+                                t.webview.webview.executeJavaScript('setTitleBarColor("' + shadeColor2(data.background, -0.2) + '")', false);
                                 t.bar.css('background-color', data.background)
                                 changeForeground(data.foreground, data.foreground == 'white' ? '#fff' : '#444')
                             }

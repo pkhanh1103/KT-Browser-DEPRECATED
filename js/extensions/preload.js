@@ -1,5 +1,4 @@
 var fs = require('fs');
-var os = require('os');
 const {
 	ipcRenderer
 } = require('electron')
@@ -48,7 +47,7 @@ global.setTitleBarColor = function (color) {
 global.saveHistory = function (json) {
 	fs.writeFile(historyPath, json, function (err) {
 		if (err) {
-			return console.log(err);
+			return true
 		}
 	});
 }

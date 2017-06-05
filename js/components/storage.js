@@ -53,7 +53,7 @@ class Storage {
                     json = jsonStr
                     fs.writeFile(historyPath, json, function (err) {
                         if (err) {
-                            return console.log(err)
+                            return true
                         }
                     })
                 }
@@ -87,7 +87,7 @@ class Storage {
                     json = jsonStr
                     fs.writeFile(bookmarkPath, json, function (err) {
                         if (err) {
-                            return console.log(err)
+                            return true
                         }
                     })
                 }

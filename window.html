@@ -140,19 +140,11 @@
             <script src="js/utils.js"></script>
             <script>
                 const {
-                    remote,
-                    ipcMain,
-                    clipboard
+                    remote
                 } = require('electron')
-                const {
-                    Menu,
-                    MenuItem,
-                    globalShortcut
-                } = remote
                 const {
                     app
                 } = require('electron').remote;
-                var fs = require('fs');
                 $('.windowbutton-close').click(function () {
                     remote.getCurrentWindow().close();
                 });

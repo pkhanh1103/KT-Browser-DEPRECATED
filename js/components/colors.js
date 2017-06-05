@@ -23,7 +23,6 @@ class Colors {
             }, function (image) {
                 getPixels(image.toDataURL(), function (err, pixels) {
                     if (err) {
-                        console.log("Bad image path")
                         return
                     }
                     var color = rgbToHex(pixels.data[0], pixels.data[1], pixels.data[2])

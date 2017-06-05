@@ -86,13 +86,13 @@
     margin-right: 96px;
     padding-left: 16px;
     padding-right: 16px;
-    border-radius: 0px;
+    border-radius: 1px;
 }
 
 .suggestions-ul>li:hover {}
 
 .selected {
-    background-color: #3F51B5;
+    background-color: #2196F3;
     color: #fff;
 }
 

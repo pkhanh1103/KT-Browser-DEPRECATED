@@ -192,8 +192,6 @@ class ContextMenu {
             type: 'separator'
         })
 
-        ///////////////////
-
         t.undoMenuItem = new MenuItem({
             label: 'Hoàn tác',
             accelerator: 'CmdOrCtrl+Z',
@@ -243,26 +241,24 @@ class ContextMenu {
             }
         })
 
-        ///////////////////
-
-        t.addContextMenuItem(t.undoMenuItem)
-        t.addContextMenuItem(t.redoMenuItem)
-        t.addContextMenuItem(t.openLinkInNewTabMenuItem)
-        t.addContextMenuItem(t.openImageInNewTabMenuItem)
-        t.addContextMenuItem(t.backMenuItem)
-        t.addContextMenuItem(t.forwardMenuItem)
-        t.addContextMenuItem(t.refreshMenuItem)
-        t.addContextMenuItem(t.separator1)
-        t.addContextMenuItem(t.cutMenuItem)
-        t.addContextMenuItem(t.copyMenuItem)
-        t.addContextMenuItem(t.pasteMenuItem)
-        t.addContextMenuItem(t.deleteMenuItem)
-        t.addContextMenuItem(t.selectAllMenuItem)
-        t.addContextMenuItem(t.copyLinkMenuItem)
-        t.addContextMenuItem(t.saveImageAsMenuItem)
-        t.addContextMenuItem(t.printMenuItem)
-        t.addContextMenuItem(t.separator2)
-        t.addContextMenuItem(t.inspectElementMenuItem)
+        this.menu.append(t.undoMenuItem)
+        this.menu.append(t.redoMenuItem)
+        this.menu.append(t.openLinkInNewTabMenuItem)
+        this.menu.append(t.openImageInNewTabMenuItem)
+        this.menu.append(t.backMenuItem)
+        this.menu.append(t.forwardMenuItem)
+        this.menu.append(t.refreshMenuItem)
+        this.menu.append(t.separator1)
+        this.menu.append(t.cutMenuItem)
+        this.menu.append(t.copyMenuItem)
+        this.menu.append(t.pasteMenuItem)
+        this.menu.append(t.deleteMenuItem)
+        this.menu.append(t.selectAllMenuItem)
+        this.menu.append(t.copyLinkMenuItem)
+        this.menu.append(t.saveImageAsMenuItem)
+        this.menu.append(t.printMenuItem)
+        this.menu.append(t.separator2)
+        this.menu.append(t.inspectElementMenuItem)
     }
 
     addContextMenuItem(item) {

@@ -1,5 +1,5 @@
-(function ($) {
-    $.fn.webview = function (params) {
+(function($) {
+    $.fn.webview = function(params) {
         var settings = $.extend({
                 url: "",
                 tab: null
@@ -10,12 +10,12 @@
         t.storage = new Storage()
         t.string = "Siema"
         t.contextMenu = new ContextMenu(t.webview)
-        t.fitToParent = function () {
+        t.fitToParent = function() {
             $(t.webview).css({
                 width: window.innerWidth,
                 height: window.innerHeight - 79
             })
-            t.webview.executeJavaScript('isfullscreen()', true, function (result) {
+            t.webview.executeJavaScript('isfullscreen()', true, function(result) {
                 if (result == true) {
                     $(t.webview).css({
                         width: window.innerWidth,
@@ -72,11 +72,11 @@
                     printBackground: false
                 })
         });
-        $(window).resize(function () {
+        $(window).resize(function() {
             t.fitToParent()
         })
 
-        this.webview.addEventListener('ipc-message', function (e) {
+        this.webview.addEventListener('ipc-message', function(e) {
             if (e.channel == 'clicked') {
                 settings.tab.instance.bar.suggestions.css('display', 'none')
                 settings.tab.instance.menu.hide()
@@ -96,7 +96,7 @@
         })
 
         //webview ready event
-        $(t.webview).ready(function () {
+        $(t.webview).ready(function() {
             var ses = t.webview.getWebContents().session
 
             settings.tab.instance.bar.searchInput.focus()
@@ -127,7 +127,7 @@
             }
         })
 
-        t.webview.addEventListener('did-frame-finish-load', function (isMainFrame) {
+        t.webview.addEventListener('did-frame-finish-load', function(isMainFrame) {
             settings.tab.Favicon.css('opacity', "1");
             settings.tab.Preloader.css('opacity', "0");
 
@@ -135,7 +135,7 @@
                 t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
                 lastUrl = t.webview.getURL()
             }
-            if (!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank") {
+            if (!t.webview.getURL().startsWith("kt-browser://newtab") && !t.webview.getURL().startsWith("kt-browser://error") && t.webview.getURL() != "about:blank") {
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
             if (t.webview.canGoBack()) {
@@ -153,12 +153,12 @@
                 if (t.webview.getURL().includes("facebook")) {
                     settings.tab.instance.webview.webview.executeJavaScript('MDFacebook()', false);
                 }
-                settings.tab.instance.webview.webview.executeJavaScript('isNightMode()', true, function (result) {
+                settings.tab.instance.webview.webview.executeJavaScript('isNightMode()', true, function(result) {
                     if (result == true) {
                         settings.tab.instance.webview.webview.executeJavaScript('NightMode()', false);
                     }
                 })
-                settings.tab.instance.webview.webview.executeJavaScript('LaBanDic()', true, function (result) {
+                settings.tab.instance.webview.webview.executeJavaScript('LaBanDic()', true, function(result) {
                     if (result == true) {
                         t.webview.executeJavaScript('var lbplugin_event_opt={"extension_enable":true,"dict_type":1,"dbclk_event":{"trigger":"none","enable":true,"display":1},"select_event":{"trigger":"ctrl","enable":true,"display":1}};function loadScript(t,e){var n=document.createElement("script");n.type="text/javascript",n.readyState?n.onreadystatechange=function(){("loaded"===n.readyState||"complete"===n.readyState)&&(n.onreadystatechange=null,e())}:n.onload=function(){e()},n.src=t,document.getElementsByTagName("head")[0].appendChild(n)}setTimeout(function(){null==document.getElementById("lbdictex_find_popup")&&loadScript("http://stc.laban.vn/dictionary/js/plugin/lbdictplugin.min.js?"+Date.now()%1e4,function(){lbDictPlugin.init(lbplugin_event_opt)})},1e3);', true)
                     }
@@ -169,39 +169,45 @@
                 t.webview.executeJavaScript('for(var list=document.getElementsByClassName("aCenter padB2 banner-position"),i=list.length-1;i>=0;i--)list[i]&&list[i].parentElement&&list[i].parentElement.removeChild(list[i]);', true)
                 t.webview.executeJavaScript('for(var list=document.getElementsByClassName("ad-div mastad"),i=list.length-1;i>=0;i--)list[i]&&list[i].parentElement&&list[i].parentElement.removeChild(list[i]);', true)
             }
-            t.webview.executeJavaScript('try { function a() {return $(document.body).css("background-color")} a() } catch(err) {}', true, function (result) {
+            t.webview.executeJavaScript('try { function a() {return $(document.body).css("background-color")} a() } catch(err) {}', true, function(result) {
                 if (result !== null) {
                     if ((result.replace(/^.*,(.+)\)/, '$1') == 0)) {
                         t.webview.executeJavaScript('try {$(document.body).css("background-color", "#fff")} catch(err) {}', true)
                     }
                 }
             })
-            settings.tab.instance.webview.webview.executeJavaScript('isMacRender()', true, function (result) {
+            settings.tab.instance.webview.webview.executeJavaScript('isMacRender()', true, function(result) {
                 if (result == true) {
                     settings.tab.instance.webview.webview.executeJavaScript('MacRender()', false);
                 }
             })
         });
-        t.webview.addEventListener('leave-html-full-screen', function (name, version) {
+        t.webview.addEventListener('did-fail-load', function(e) {
+            let errorCode = e.errorCode
+            let errorDescription = e.errorDescription
+
+            let dir = __dirname
+            if (!errorCode == 0)
+            settings.tab.instance.status.html(errorDescription + ": " + errorCode);
+        })
+
+        t.webview.addEventListener('leave-html-full-screen', function(name, version) {
             t.fitToParent()
         });
-        t.webview.addEventListener('enter-html-full-screen', function (name, version) {
+        t.webview.addEventListener('enter-html-full-screen', function(name, version) {
             t.fitToParent()
         });
 
-        t.webview.addEventListener('plugin-crashed', function (name, version) {
+        t.webview.addEventListener('plugin-crashed', function(name, version) {
             remote.getCurrentWindow().webContents.executeJavaScript("$('.maindiv').msgBox({title:'" + "Lỗi Plugin" + "',message:'" + "Plugin " + name + " không phản hồi!" + "',buttons:[{text:'OK',callback:function(){$('p').fadeIn()}}],blend:!0});")
         });
-        t.webview.addEventListener('did-fail-load', function (errorCode, errorDescription, validatedURL, isMainFrame) {
-            settings.tab.instance.status.html("Lỗi tải trang...");
-        });
-        t.webview.addEventListener('did-start-loading', function () {
+        t.webview.addEventListener('did-start-loading', function() {
             settings.tab.instance.bar.suggestions.css('display', 'none');
             settings.tab.Favicon.css('opacity', "0");
             settings.tab.Preloader.css('opacity', "1");
             settings.tab.instance.webview.webview.executeJavaScript('stylishMenu()', false);
         });
-        t.webview.addEventListener('page-title-updated', function (title) {
+        t.webview.addEventListener('page-title-updated', function(title) {
             settings.tab.Title.html("<p style='display: inline; width:50%;'>" + "&nbsp;&nbsp;" + t.webview.getTitle() + "</p>");
             if (lastUrl != t.webview.getURL()) {
                 t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
@@ -211,11 +217,11 @@
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
         });
-        t.webview.addEventListener('load-commit', function (url, isMain) {
+        t.webview.addEventListener('load-commit', function(url, isMain) {
             settings.tab.instance.bar.suggestions.css('display', 'none');
         });
 
-        t.webview.addEventListener('page-favicon-updated', function (favicon) {
+        t.webview.addEventListener('page-favicon-updated', function(favicon) {
             settings.tab.Favicon.html("<div class='favicon' style='background-image: url(\"" + favicon.favicons[0] + "\");'></div>");
             settings.tab.Favicon.css('opacity', "1");
             settings.tab.Preloader.css('opacity', "0");

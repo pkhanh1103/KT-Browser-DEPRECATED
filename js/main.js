@@ -1,7 +1,6 @@
 const {
     remote,
-    ipcMain,
-    clipboard
+    ipcMain
 } = require('electron')
 const {
     Menu,
@@ -24,18 +23,19 @@ var userdataPath = app.getPath('userData') + '/User Data';
 
 $(document).ready(function () {
 
-    Toast_Material({
-        content: "Chào mừng bạn đến với bản thử nghiệm KT Browser 7.0 :)",
-        updown: "bottom",
-        position: "center",
-        align: "center"
-    });
     var tab = new Tab(),
         instance = $('#instances').browser({
             tab: tab,
             url: settings.get("settings.homePage", "kt-browser://newtab")
         })
     addTab(instance, tab);
+
+    setInterval(function ()
+    { 
+        remote.getCurrentWindow().webContents.session.setProxy({
+            pacScript: settings.get("settings.nvProxy")
+        }, function () {});
+    }, 1000);
 
     $('.maindiv').msgBox({
         title: 'Thông báo',
@@ -44,17 +44,6 @@ $(document).ready(function () {
             text: 'Tôi hiểu!',
             callback: function () {
                 $('p').fadeIn()
-                $('.maindiv').msgBox({
-                    title: 'This version(Build 18.Apr.17):',
-                    message: 'Plugins(ex: Flash Player, QuickTime), Bookmarks and more are not fully working yet! MỚI: Cena, Google API, Night Mode đã hoạt động!',
-                    buttons: [{
-                        text: 'OK',
-                        callback: function () {
-                            $('p').fadeIn()
-                        }
-                    }],
-                    blend: !0
-                });
             }
         }],
         blend: !0
@@ -165,6 +154,14 @@ $(document).ready(function () {
             const menu = Menu.buildFromTemplate(template)
             menu.popup(remote.getCurrentWindow())
         }
+        if (e.target.id === "#tab") {
+            const template = [{
+                label: 'TEST'
+            }];
+            const menu = Menu.buildFromTemplate(template)
+            menu.popup(remote.getCurrentWindow())
+        }
+
     });
     setInterval(function () {
         if (colorBrightness($(document.body).css('background-color')) < 150) {
@@ -204,7 +201,7 @@ function showApp(url) {
     const BrowserWindow = remote.BrowserWindow;
 
     var mainWindow = new BrowserWindow({
-        title: 'KT Browser - Ứng dụng thử nghiệm',
+        title: 'Ứng dụng KT Browser',
         frame: false
     })
 

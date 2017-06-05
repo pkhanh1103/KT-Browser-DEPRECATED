@@ -351,7 +351,6 @@
         </script>
         <script src="js/jquery/jquery-3.1.0.min.js"></script>
         <script src="js/jquery/jquery-ui.min.js"></script>
-        <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
         <script>
             if (window.module) module = window.module;
         </script>
@@ -369,26 +368,8 @@
             });
         </script>
         <script src="js/materialdesign/materialdesign.js"></script>
-        <script src="js/utils.js"></script>
         <script>
-            const {
-                remote,
-                ipcMain,
-                clipboard
-            } = require('electron')
-            const {
-                Menu,
-                MenuItem,
-                globalShortcut
-            } = remote
-            const {
-                app
-            } = require('electron').remote;
-            var getPixels = require("get-pixels")
-            var fs = require('fs');
-            var IsThere = require("is-there");
-            var dir = require('node-dir');
-            var os = require('os');
+            const {remote} = require('electron')
             $('.windowbutton-close').click(function () {
                 remote.getCurrentWindow().close();
             });

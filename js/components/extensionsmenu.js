@@ -10,7 +10,6 @@
          this.extIndicators = $('<ul class="ext-indicators">').appendTo($(this))
 
          this.hide = function () {
-             //menu fade out animation
              $(t).css('opacity', 1).animate({
                  opacity: 0
              }, 200).css('top', 8).animate({
@@ -26,7 +25,6 @@
          }
 
          this.show = function () {
-             //menu fade in animation
              $(t).css('visibility', 'visible');
              $(t).css('opacity', 0).animate({
                  opacity: 1
@@ -114,7 +112,6 @@
 
              indicator.click(function () {
                  if (selectedPage > index) {
-                     //from left to right
                      pageCollection[selectedPage].css({
                          left: 0
                      }).animate({
@@ -126,7 +123,6 @@
                          left: 0
                      });
                  } else if (selectedPage < index) {
-                     //from right to left
                      pageCollection[selectedPage].css({
                          left: 0
                      }).animate({

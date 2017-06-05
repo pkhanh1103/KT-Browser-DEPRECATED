@@ -23,9 +23,7 @@
     "electron-rebuild": "latest",
     "electron-window-state": "latest",
     "get-pixels": "latest",
-    "gulp": "latest",
     "is-there": "latest",
-    "jquery": "latest",
     "node-dir": "latest"
   },
   "dependencies": {
@@ -38,9 +36,7 @@
     "electron-settings": "latest",
     "electron-window-state": "latest",
     "get-pixels": "latest",
-    "gulp": "latest",
     "is-there": "latest",
-    "jquery": "^3.2.1",
     "node-dir": "latest"
   },
   "build": {

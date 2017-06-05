@@ -148,12 +148,18 @@
                 title: 'Cài đặt',
                 frame: false,
                 width: 600,
-                height: 750
+                height: 750,
+                show: false
+            })
+
+            mainWindow.once('ready-to-show', () => {
+                mainWindow.show()
             })
 
             mainWindow.on('closed', () => {
                 mainWindow = null
             })
+            
             mainWindow.loadURL(`file://${__dirname}/settings.html`)
         });
         t.devTools.click(function (e) {
@@ -188,7 +194,6 @@
         }
 
         t.hide = function () {
-            //menu fade out animation
             $(t).css('opacity', 1).animate({
                 opacity: 0
             }, 60).css('top', 8).animate({
