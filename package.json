@@ -12,6 +12,11 @@
     "buildwin64": "electron-packager . --platform=win32 --arch=x64 --asar --overwrite --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.FileDescription=\"KT Browser Alpha\" --version-string.InternalName=\"KT Browser.exe\" --version-string.OriginalFilename=\"KT Browser.exe\" --version-string.LegalCopyright=\"Copyright (C) 2017 KTTECH Team., Inc. All rights reserved.\"  --version-string.ProductVersion=7.0",
     "buildmac": "electron-packager . --platform=darwin --arch=x64 --asar --overwrite --icon=icon.icns --prune=true --out=release-builds --version-string.CompanyName=\"KTTECH Team\" --version-string.ProductName=\"KT Browser\" --version-string.ProductVersion=7.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KTTECHTeam/KT-Browser.git"
+  },
+  "license": "MIT",
   "devDependencies": {
     "asar": "latest",
     "electron": "latest",
