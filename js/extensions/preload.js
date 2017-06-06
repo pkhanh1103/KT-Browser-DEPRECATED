@@ -5,7 +5,7 @@ const {
 const {
 	app
 } = require('electron').remote;
-const remote = require('electron').remote
+const remote = require('electron').remote;
 var window = remote.getCurrentWindow();
 const settings = require('electron-settings');
 var historyPath = app.getPath('userData') + '/User Data/History';
@@ -24,43 +24,47 @@ global.setfullscreen = function (flag) {
 }
 
 global.isNightMode = function () {
-	return settings.get("static.NightMode")
+	return settings.get("static.NightMode");
 }
 
 global.LaBanDic = function () {
-	return settings.get("settings.labanDic")
+	return settings.get("settings.labanDic");
 }
 
 global.isMacRender = function () {
-	return settings.get("settings.macRender")
+	return settings.get("settings.macRender");
+}
+
+global.getSearchEngine = function () {
+    return settings.get('settings.SearchEngine');
 }
 
 global.setNightMode = function (flag) {
-	window.webContents.executeJavaScript('setNightMode(' + flag + ')', true)
+	window.webContents.executeJavaScript('setNightMode(' + flag + ')', true);
 }
 
 global.setTitleBarColor = function (color) {
-	window.webContents.executeJavaScript('titlebar.style.background="' + color + '"', true)
-	window.webContents.executeJavaScript("setColor('" + color + "')", true)
+	window.webContents.executeJavaScript('titlebar.style.background="' + color + '"', true);
+	window.webContents.executeJavaScript("setColor('" + color + "')", true);
 }
 
 global.saveHistory = function (json) {
 	fs.writeFile(historyPath, json, function (err) {
 		if (err) {
-			return true
+			return true;
 		}
 	});
 }
 
 global.removeHistory = function (callback = function () {}) {
-	fs.unlink(historyPath, callback)
+	fs.unlink(historyPath, callback);
 }
 
 global.addressBarFocus = function () {
 	for (var i = 0; i < parent.tabCollection.length; i++) {
 		if (parent.tabCollection[i].selected) {
 			var itab = parent.tabCollection[i]
-			$(itab.tabWindow.find('.searchInput')).focus()
+			$(itab.tabWindow.find('.searchInput')).focus();
 		}
 	}
 }
@@ -92,11 +96,11 @@ global.MacRender = function () {
 }
 
 document.addEventListener("click", function () {
-	ipcRenderer.sendToHost("clicked")
+	ipcRenderer.sendToHost("clicked");
 })
 
 function setStatus(status) {
-	ipcRenderer.sendToHost('status', status)
+	ipcRenderer.sendToHost('status', status);
 }
 
 global.stylishMenu = function () {
@@ -154,171 +158,6 @@ global.stylishMenu = function () {
 	}
 }
 
-global.MDFacebook = function () {
-	var css = [
-		"@namespace url(http://www.w3.org/1999/xhtml);",
-		"._4f7n {",
-		"  background-image: none;",
-		"  background-color: #01579b;",
-		"   box-shadow: 3px 3px 5px #888888;",
-		"}",
-		"._4lh ._2-d1{",
-		"  background-color: #fff;",
-		"}",
-		"body.hasLeftCol.home.composerExpanded._5vb_.fbx._5p3y.gecko.win.x1.Locale_pl_PL {",
-		"   font-family: sans-serif;",
-		"}",
-		"html ._4lh, ._4lh .fbTimelineTimePeriod, ._4lh .fbTimelineSectionExpandPager .uiMorePagerLoader, ._4lh .fbTimelineCapsule li.anchorUnit:last-child, ._4lh .fbTimelineSectionLoading .loadingIndicator, ._4lh .timelineTourStarted .contextualBlind, ._4lh .lifeEventAddPhoto:hover {",
-		"  background-color: #fff;",
-		"}",
-		" html ._4lh ._2-d1 ._3rrn > a, .fwb, ._sxc, ._sxc a {",
-		"   font-weight: normal;",
-		" }",
-		"  /*.fwb {",
-		"    background-color: #fff;",
-		"  }*/",
-		"  .uiButton, .uiButtonText, .uiButton input, .ego_title {",
-		"    font-weight: normal;",
-		"  }",
-		"  li._3rrn, li.clearfix, #u_jsonp_3_4e, html ._4lh ._2-d1 li a {",
-		"    background-color: #fff;",
-		"    border-bottom: none;",
-		"    border-top: none;",
-		"    font-weight: normal;",
-		"  }",
-		"  ._6-6 {",
-		"    font-weight: normal;",
-		"  }",
-		" ",
-		"* {",
-		"  font-family: sans-serif;",
-		"  border-color: transparent;",
-		"  background-image:  none;",
-		"  font-weight: normal;",
-		"  border: none;",
-		"  border-image: none;",
-		"}",
-		"  ._355v lfloat _ohe fwb {",
-		"    font-weight: normal;",
-		"  }",
-		"",
-		"._4f7n:after {",
-		"  background-image:  none;",
-		"}",
-		"",
-		"@font-face {",
-		"    font-style: normal;",
-		"    font-weight: 400",
-		"}",
-		"",
-		"._5vb_, ._5vb_ #contentCol {",
-		"  background-color: white;",
-		"}",
-		"",
-		"._5p3y[dir=\"ltr\"], ._5p3y[dir=\"ltr\"] button, ._5p3y[dir=\"ltr\"] input, ._5p3y[dir=\"ltr\"] label, ._5p3y[dir=\"ltr\"] select, ._5p3y[dir=\"ltr\"] td, ._5p3y[dir=\"ltr\"] textarea, ._5p3y[dir=\"ltr\"] .uiMentionsInput .highlighter, ._5p3y[dir=\"ltr\"] .uiButtonText, ._5p3y[dir=\"ltr\"] .uiButton input, ._5p3y[dir=\"ltr\"] .uiLinkButton input, ._5p3y[dir=\"ltr\"] button.as_link, ._5p3y[dir=\"ltr\"] .fbChatSidebar, ._5p3y[dir=\"ltr\"] .fbDock, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory .tickerFeedMessage, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory div.tickerFeedMessage h5, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory div.tickerFeedMessage h6, ._5p3y[dir=\"ltr\"] .tickerDialogContent .uiStream .uiStreamMessage, ._5p3y[dir=\"ltr\"] .tickerDialogContent .uiStream .text_exposed_link, ._5p3y[dir=\"ltr\"] .uiTooltipX .tooltipContent, ._5p3y[dir=\"ltr\"] a[role=\"button\"], ._5p3y[dir=\"rtl\"] [dir=\"ltr\"] {",
-		" font-family: sans-serif;",
-		"}",
-		"  ._5p3y[dir=\"ltr\"], ._5p3y[dir=\"ltr\"] button, ._5p3y[dir=\"ltr\"] input, ._5p3y[dir=\"ltr\"] label, ._5p3y[dir=\"ltr\"] select, ._5p3y[dir=\"ltr\"] td, ._5p3y[dir=\"ltr\"] textarea, ._5p3y[dir=\"ltr\"] .uiMentionsInput .highlighter, ._5p3y[dir=\"ltr\"] .uiButtonText, ._5p3y[dir=\"ltr\"] .uiButton input, ._5p3y[dir=\"ltr\"] .uiLinkButton input, ._5p3y[dir=\"ltr\"] button.as_link, ._5p3y[dir=\"ltr\"] .fbChatSidebar, ._5p3y[dir=\"ltr\"] .fbDock, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory .tickerFeedMessage, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory div.tickerFeedMessage h5, ._5p3y[dir=\"ltr\"] .fbFeedTicker .fbFeedTickerStory div.tickerFeedMessage h6, ._5p3y[dir=\"ltr\"] .tickerDialogContent .uiStream .uiStreamMessage, ._5p3y[dir=\"ltr\"] .tickerDialogContent .uiStream .text_exposed_link, ._5p3y[dir=\"ltr\"] .uiTooltipX .tooltipContent, ._5p3y[dir=\"ltr\"] a[role=\"button\"], ._5p3y[dir=\"rtl\"] [dir=\"ltr\"] {",
-		"     font-family: sans-serif;",
-		"}",
-		"",
-		"._4jy2, ._4jy2._42fr:active, ._4jy2._42fr._42fs {",
-		"    background-color:  #8bc34a;",
-		"    border-color: transparent;",
-		"}",
-		"",
-		"body, button, input, label, select, td, textarea {",
-		"  font-family: sans-serif;",
-		"}",
-		"a {",
-		"    color: #01579b;",
-		"    cursor: pointer;",
-		"    text-decoration: none;",
-		"}",
-		"  ._2ims {",
-		"    background-color: transparent;",
-		"  }",
-		"  ._42g- {",
-		"    background-color: #01579b;",
-		"    background-image: none;",
-		"  }",
-		"  ._33e {",
-		"    color: #212121;",
-		"  }",
-		"  hr {",
-		"    color: transparent;",
-		"  }",
-		"  ._50f8 {",
-		"    color: #757575;",
-		"    font-weight: normal;",
-		"  }",
-		"  .UFICommentActorName {",
-		"    font-weight: normal;",
-		"    font-family: sans-serif;",
-		"    color: #01579b;",
-		"}",
-		"  ._5rzs .uiHeaderTop .uiHeaderTitle, ._5rzs .uiHeader.uiSideHeader h6 {",
-		"    font-weight: normal;",
-		"    text-transform: uppercase;",
-		"    color: #757575;",
-		"}",
-		"  ._5vb_ ._c51 a {",
-		"    color: #01579b;",
-		"}",
-		"  ._c51 a {",
-		"    font-weight: normal;",
-		"}",
-		"  ._4jy1, ._4jy2 {",
-		"    color: #757575;",
-		"    text-shadow: none;",
-		"}",
-		"  ._4jy0, ._59pe:focus, ._59pe:hover {",
-		"  background: none;",
-		"   background-color: #fafafa;",
-		"  border: none;",
-		"  border-radius: 0px;",
-		"  box-shadow: none;",
-		"  box-sizing: content-box;",
-		"  font-family: sans-serif;",
-		"  font-weight: normal;",
-		"  position: relative;",
-		"  text-align: center;",
-		"  vertical-align: middle;",
-		"    margin-top: 2px;",
-		"}",
-		"  ._3v07 .groupsJumpBarTop .groupsCleanLink {",
-		"  color: #01579b;",
-		"}",
-		"  .groupsJumpBarTop .groupsCleanLink {",
-		"    font-weight: normal;",
-		"  }",
-		"  .fbxWelcomeBoxName {",
-		"    font-weight: normal;",
-		"  }",
-		"  ._3zm- a {",
-		"    font-family: sans-serif;",
-		"    font-weight: normal;",
-		"  }"
-	].join("\n");
-	if (typeof GM_addStyle != "undefined") {
-		GM_addStyle(css);
-	} else if (typeof PRO_addStyle != "undefined") {
-		PRO_addStyle(css);
-	} else if (typeof addStyle != "undefined") {
-		addStyle(css);
-	} else {
-		var node = document.createElement("style");
-		node.type = "text/css";
-		node.appendChild(document.createTextNode(css));
-		var heads = document.getElementsByTagName("head");
-		if (heads.length > 0) {
-			heads[0].appendChild(node);
-		} else {
-			// no head yet, stick it whereever
-			document.documentElement.appendChild(node);
-		}
-	}
-}
 global.NightMode = function () {
 	var css = "";
 	css += "@charset \"utf-8\";";
@@ -1206,7 +1045,6 @@ global.NightMode = function () {
 		if (heads.length > 0) {
 			heads[0].appendChild(node);
 		} else {
-			// no head yet, stick it whereever
 			document.documentElement.appendChild(node);
 		}
 	}

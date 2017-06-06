@@ -13,7 +13,7 @@
                 height: 32px;
                 width: 100%;
                 z-index: 999;
-                background-color: #3f51b5;
+                background-color: #fff;
             }
 
             .draggable {
@@ -43,6 +43,21 @@
                 -ms-user-select: none;
                 user-select: none;
                 cursor: default;
+            }
+
+            @font-face {
+                font-family: Roboto;
+                src: url('fonts/Roboto.ttf');
+            }
+
+            @font-face {
+                font-family: Roboto-Medium;
+                src: url('fonts/Roboto-Medium.ttf');
+            }
+
+            @font-face {
+                font-family: Roboto-Light;
+                src: url('fonts/Roboto-Light.ttf');
             }
 
             ::-webkit-scrollbar {
@@ -139,7 +154,6 @@
                 border-radius: 0;
                 -webkit-appearance: none;
                 -moz-appearance: none;
-                appearance: none
             }
 
             .mdl-selectfield.is-focused .mdl-selectfield__select {
@@ -261,6 +275,7 @@
         <div class="maindiv">
             <div class="titlebar" id="titlebar">
                 <div class="draggable">
+                    <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Cài đặt KT Browser</label>
                 </div>
                 <div data-tooltip-text="Đóng cửa sổ" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
                 <div data-tooltip-text="Phóng to cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
@@ -274,6 +289,20 @@
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <label class="mdl-textfield__label" for="sample1">Địa chỉ trang chủ</label>
                         <input class="mdl-textfield__input" type="text" style="cursor: text;" id="homePage" value="">
+                    </div>
+                </div>
+                <div class="pad">
+                    <h5>Công cụ tìm kiếm:</h5>
+                    <p><a>Bạn có thể tùy chọn công cụ tìm kiếm (search engine) khi tìm kiếm từ Thanh địa chỉ.</a></p>
+                    <div class="mdl-selectfield mdl-js-selectfield">
+                        <select id="SESelector" class="mdl-selectfield__select" readonly>
+                        <option value="1">Google</option>
+                        <option value="2">Cốc cốc</option>
+                        <option value="3">DuckDuckGo</option>
+                        <option value="4">Bing</option>
+                        <option value="5">Yahoo!</option>
+                        <option value="6">Yandex</option>               
+                    </select>
                     </div>
                 </div>
                 <div class="pad">
@@ -298,29 +327,28 @@
                 <div class="pad">
                     <h5>Giao diện:</h5>
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ChangeColorByPage">
-                    <span class="mdl-switch__label">Đổi màu giao diện theo trang</span>
+                        <span class="mdl-switch__label">Đổi màu giao diện trình duyệt theo trang</span>
                         <input type="checkbox" id="ChangeColorByPage" class="mdl-switch__input">
-                        
-                </label>
+                    </label>
                 </div>
                 <div class="pad">
                     <h5>Tiện ích:</h5>
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
-                    <span class="mdl-switch__label">Nhấp đúp để tra từ điển LaBan</span>
+                        <span class="mdl-switch__label">Nhấp đúp chuột để tra từ điển (Laban Dictionary)</span>
                         <input type="checkbox" id="labanDic" class="mdl-switch__input">    
-                </label>
-                    <br></br>
+                    </label>
+                        <br></br>
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
-                    <span class="mdl-switch__label">Hiển thị web như máy Mac</span>
-                    <input type="checkbox" id="macRender" class="mdl-switch__input">    
-                </label>
+                        <span class="mdl-switch__label">Làm đậm phông chữ khi duyệt web (Mac Render)</span>
+                        <input type="checkbox" id="macRender" class="mdl-switch__input">    
+                    </label>
                 </div>
                 <div class="pad">
                     <h5>Nâng cao:</h5>
                     <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
-                    <span class="mdl-switch__label">Sử dụng chế độ tăng tốc phần cứng khi khả dụng</span>
-                    <input type="checkbox" id="hardalc" class="mdl-switch__input">    
-                </label>
+                        <span class="mdl-switch__label">Sử dụng chế độ tăng tốc phần cứng khi khả dụng</span>
+                        <input type="checkbox" id="hardalc" class="mdl-switch__input">    
+                    </label>
                 </div>
             </div>
             <script>
@@ -331,10 +359,6 @@
                 const settings = require('electron-settings');
 
                 switch (settings.get("settings.nvProxy")) {
-                case 'http://kt-browser.com/no-ads.pac':
-                    $('#VPNSelector')
-                        .val("1")
-                    break
                 case 'http://kt-browser.com/Singapore.pac':
                     $('#VPNSelector')
                         .val("2")
@@ -375,7 +399,8 @@
                     $('#VPNSelector')
                         .val("11")
                     break
-                }
+                }    
+                $('#SESelector').val(settings.get("settings.SearchEngine"))
                 homePage.value = settings.get("settings.homePage")
                 if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
                     homePage.value = "kt-browser://newtab"
@@ -652,21 +677,9 @@
                         , labanDic: labanDic.checked
                         , macRender: macRender.checked
                         , hardalc: hardalc.checked
+                        , SearchEngine: SESelector.value
                     })
-                    ipcRenderer.send('refreshProxy')
                 }
-                $(document.body)
-                    .find(".windowbutton-close")
-                    .css('background-image'
-                        , 'url(img/WindowButtons/close-white.png)')
-                $(document.body)
-                    .find(".windowbutton-minimize")
-                    .css('background-image'
-                        , 'url(img/WindowButtons/minimize-white.png)')
-                $(document.body)
-                    .find(".windowbutton-maximize")
-                    .css('background-image'
-                        , 'url(img/WindowButtons/maximize-white.png)')
                 $('.windowbutton-close')
                     .click(function () {
                         remote.getCurrentWindow()

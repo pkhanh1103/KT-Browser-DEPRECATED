@@ -26,26 +26,6 @@ $(document).ready(function () {
         var regexp = /[a-zA-Z-0-9]+\.[a-zA-Z-0-9]{2,3}/;
         return regexp.test(s);
     }
-    $('.text').keypress(function (e) {
-        if (e.which == 13) {
-            if (!$('.text').val().startsWith("kt-browser://")) {
-                if (isURL($('.text').val())) {
-                    if ($('.text').val().startsWith("http://") || $('.text').val().startsWith("https://") || $('.text').val().startsWith("file://")) {
-                        window.location.href = $('.text').val();
-                    } else {
-                        window.location.href = "http://" + $('.text').val()
-                    }
-                } else {
-                    //TODO: search engines
-                    window.location.href = "http://www.google.com.vn/search?q=" + $('.text').val();
-                }
-            } else {
-                window.location.href = $('.text').val();
-            }
-
-            return false;
-        }
-    });
 
     function makeRippleMenuItem(menuItem, e) {
         var relX = e.pageX - $(menuItem).offset().left;

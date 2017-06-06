@@ -127,14 +127,14 @@
     }
 
     blockquote,
-    q {
+    query {
       quotes: none
     }
 
     blockquote:before,
     blockquote:after,
-    q:before,
-    q:after {
+    query:before,
+    query:after {
       content: '';
       content: none
     }
@@ -464,10 +464,10 @@
 
 <body>
   <div id="containter">
-    <form method="get" action="http://www.google.com.vn/search">
+    <form id="searchForm" method="get" onSubmit="return doSearch();" action="http://www.google.com.vn/search">
       <div class="mat-div">
-        <label for="q" class="mat-label">Bạn cần tìm gì ?</label>
-        <input class="mat-input" type="text" name="q" placeholder="" onEnter="window.location.assign('https://www.google.com.vn/search?q=' + document.getElementById('valeur').value)"
+        <label for="query" class="mat-label">Bạn cần tìm gì ?</label>
+        <input class="mat-input" type="text" name="query"
           autocomplete="on" onUpdate="recupValeur()" id="valeur">
         <label for="search" class="fa fa-search"></label><input type="submit" id="search" />
       </div>
@@ -510,7 +510,33 @@
       <a onclick="color4()" class="color4"></a>
     </div>
     <script>
-
+    
+    function doSearch() {
+        switch(getSearchEngine()) {
+              case '1':
+                  document.getElementById('searchForm').action = 'https://www.google.com.vn/search'
+                  break;
+              case '2':
+                  document.getElementById('searchForm').action = 'http://coccoc.com/search'
+                  break;
+              case '3':
+                  $('#valeur').attr('name', 'q');
+                  document.getElementById('searchForm').action = 'https://duckduckgo.com'
+                  break;
+              case '4':
+                  $('#valeur').attr('name', 'q');
+                  document.getElementById('searchForm').action = 'https://www.bing.com/search'
+                  break;
+              case '5':
+                  $('#valeur').attr('name', 'p');
+                  document.getElementById('searchForm').action = 'https://vn.search.yahoo.com/search'
+                  break;
+              case '6':
+                  $('#valeur').attr('name', 'text');
+                  document.getElementById('searchForm').action = 'https://www.yandex.com/search'
+                  break;
+          }
+    }
       function color1() {
         document.body.style.backgroundColor = "#4285f4";
       }

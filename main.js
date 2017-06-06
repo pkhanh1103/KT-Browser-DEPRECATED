@@ -13,6 +13,12 @@ global.startArgs = {
     data: process.argv
 }
 
+if (!settings.get("settings.hardalc"))
+{
+    //this feature need to restart browser
+    app.disableHardwareAcceleration();
+}
+
 process.env.GOOGLE_API_KEY = 'AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM'
 process.env.GOOGLE_DEFAULT_CLIENT_ID = '413772536636.apps.googleusercontent.com'
 process.env.GOOGLE_DEFAULT_CLIENT_SECRET = '0ZChLK6AxeA3Isu96MkwqDR4'
@@ -38,6 +44,10 @@ if (!settings.has('settings.nvProxy')) {
 
 if (!settings.has('settings.homePage')) {
     settings.set('settings.homePage', 'kt-browser://newtab');
+}
+
+if (!settings.has('settings.SearchEngine')) {
+    settings.set('settings.SearchEngine', '1');
 }
 
 if (!settings.has('settings.colorByPage')) {
@@ -78,12 +88,6 @@ if (!settings.has('static.NightMode')) {
 
 app.commandLine.appendSwitch('enable-smooth-scrolling', '')
 
-if (!settings.get("settings.hardalc"))
-{
-    //this feature need to restart browser
-    app.disableHardwareAcceleration()
-}
-
 let mainWindow
 
 function createWindow() {
@@ -100,7 +104,6 @@ function createWindow() {
         'width': mainWindowState.width,
         'height': mainWindowState.height,
         backgroundColor: '#2196F3',
-        show: false,
         icon: 'file://${__dirname}/icon.ico',
         frame: false,
         fullscreen: false,
@@ -111,7 +114,6 @@ function createWindow() {
     })
     mainWindow.once('ready-to-show', () => {
         mainWindow.fullscreen = false;
-        mainWindow.show()
     })
     mainWindow.on('enter-html-full-screen', function () {
         mainWindow.webContents.executeJavaScript('Toast_Material({content:"Nhấn F11 để thoát khỏi chế độ toàn màn hình",updown:"bottom",position:"center",align:"center"});', true)

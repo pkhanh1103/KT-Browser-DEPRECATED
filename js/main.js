@@ -245,6 +245,10 @@ window.getNightMode = function () {
     return settings.get('static.NightMode');
 }
 
+window.getSearchEngine = function () {
+    return settings.get('settings.SearchEngine');
+}
+
 function setNightMode(value) {
     settings.set('static.NightMode', value);
 }
