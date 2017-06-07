@@ -1,32 +1,4 @@
 $(document).ready(function () {
-    if ($('.md-input .text').val().length > 0) {
-        $('.md-input .hint').addClass("md-input-animate-hint");
-    }
-    $('.md-input .text').focus(function () {
-
-        var textLength = $('.md-input .text').val().length;
-        if (textLength <= 0) {
-            $('.md-input .hint').addClass("md-input-animate-hint");
-            $('.md-input .hint').css('color', '#3F51B5')
-            $('.md-input .hint').css('opacity', '1')
-        }
-        $('.md-input .divider2').addClass("md-input-animate-divider");
-    });
-    $('.md-input .text').focusout(function () {
-        var textLength = $('.md-input .text').val().length;
-        if (textLength <= 0) {
-            $('.md-input .hint').removeClass("md-input-animate-hint");
-            $('.md-input .hint').css('color', '#444')
-            $('.md-input .hint').css('opacity', '0.6')
-        }
-        $('.md-input .divider2').removeClass("md-input-animate-divider");
-    });
-
-    function isURL(s) {
-        var regexp = /[a-zA-Z-0-9]+\.[a-zA-Z-0-9]{2,3}/;
-        return regexp.test(s);
-    }
-
     function makeRippleMenuItem(menuItem, e) {
         var relX = e.pageX - $(menuItem).offset().left;
         var relY = e.pageY - $(menuItem).offset().top;

@@ -69,6 +69,19 @@ global.addressBarFocus = function () {
 	}
 }
 
+global.getReaderScore = function () {
+  var paragraphs = document.querySelectorAll('p')
+  var tl = 0
+  if (!paragraphs) {
+    return
+  }
+  for (var i = 0; i < paragraphs.length; i++) {
+    tl += Math.max(paragraphs[i].textContent.length - 100, -30)
+  }
+  return tl
+}
+
+
 global.MacRender = function () {
 	var css = [
 		"@namespace url(http://www.w3.org/1999/xhtml);",

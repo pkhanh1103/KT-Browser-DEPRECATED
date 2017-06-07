@@ -1,0 +1,176 @@
+/* Code from Min Browser, thanks to author (https://github.com/minbrowser/min) */
+
+#backtoarticle {
+	padding: 0 2.5em;
+	color: #2196F3;
+	max-width: 800px;
+	margin: auto;
+	display: block;
+	box-sizing: border-box;
+	margin-top: 2em;
+	cursor: pointer;
+	font-family: "Roboto", sans-serif;
+}
+#backtoarticle i {
+	vertical-align: baseline;
+	margin-right: 0.25em;
+	font-size: 1.1em;
+}
+body,
+html {
+	padding: 0;
+	margin: 0;
+	font-size: 22px;
+}
+iframe {
+	display: none;
+}
+iframe.reader-frame {
+	display: block;
+	width: 100%;
+	border: 0;
+}
+.reader-main {
+	padding-top: 1em;
+	max-width: 800px;
+	display: block;
+	margin: auto;
+}
+* {
+	font-family: "Roboto", serif;
+}
+
+.visually-hidden {
+	display: none;
+}
+h1.article-title {
+	padding: 0.5em 1em;
+	margin-top: 0.5em;
+	margin: 0;
+	font-size: 2em;
+	font-weight: 500;
+}
+h2.article-authors {
+	padding: 0 2.5rem;
+	font-size: 1.2em;
+	font-weight: 400;
+	margin: 0;
+	font-style: italic;
+}
+
+@media all and (max-width: 600px) {
+	h1.article-title {
+		font-size: 2em;
+	}
+	h2.article-authors {
+		font-size: 1.1em;
+	}
+}
+h1,
+h2 {
+	font-weight: inherit;
+}
+h3,
+h4 {
+	padding: 0.5em 0;
+	margin-top: 0.5em;
+	margin: 0;
+	font-size: 1.4em;
+	font-weight: 500;
+}
+h4 {
+	font-size: 1.25em;
+	font-weight: 600;
+}
+.page {
+	padding: 0 2.25rem 2.25rem 2.25rem;
+}
+.article-authors + .page {
+	padding-top: 1rem;
+}
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: auto;
+}
+p {
+	line-height: 1.5em;
+}
+ul li,
+ol li {
+	padding: 0.25rem 0;
+}
+a {
+	color: inherit;
+	font-size: 1em;
+	text-decoration: none;
+	opacity: 0.6;
+}
+a:hover {
+	color: #2196F3;
+	opacity: 1.0;
+}
+figure {
+	max-width: 50%;
+	float: right;
+}
+@media all and (max-width: 600px) {
+	figure {
+		max-width: 100%;
+		float: initial;
+		margin: 0;
+	}
+}
+figure figcaption {
+	padding-top: 1em;
+}
+pre,
+pre *,
+code,
+code * {
+	font-family: monospace;
+}
+pre {
+	display: block;
+	overflow: auto;
+}
+q,
+blockquote {
+	display: block;
+	border-left: 1px currentColor solid;
+	padding-left: 0.5em;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	margin: 1.5em 0;
+}
+
+.lede-container {
+	display: none;
+}
+figure figcaption .credit {
+	display: block;
+	font-style: italic;
+	margin-top: 0.25em;
+}
+
+.mw-editsection {
+	display: none;
+}
+
+dd {
+	display: block;
+	padding: 1em 0;
+}
+
+#masthead > #primary {
+	display: none;
+}
+
+.off-screen {
+	display: none;
+}
+
+#backtoarticle:before {
+  content: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ3Ny4xNzUgNDc3LjE3NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDc3LjE3NSA0NzcuMTc1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTE0NS4xODgsMjM4LjU3NWwyMTUuNS0yMTUuNWM1LjMtNS4zLDUuMy0xMy44LDAtMTkuMXMtMTMuOC01LjMtMTkuMSwwbC0yMjUuMSwyMjUuMWMtNS4zLDUuMy01LjMsMTMuOCwwLDE5LjFsMjI1LjEsMjI1ICAgYzIuNiwyLjYsNi4xLDQsOS41LDRzNi45LTEuMyw5LjUtNGM1LjMtNS4zLDUuMy0xMy44LDAtMTkuMUwxNDUuMTg4LDIzOC41NzV6IiBmaWxsPSIjMDA2REYwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==');
+}

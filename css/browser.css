@@ -48,7 +48,7 @@
     color: #444;
     margin-left: 8px;
     margin-top: 4px;
-    width: calc(100% - 87px);
+    width: calc(100% - 110px);
     height: calc(100% - 10px);
     font-size: 15px;
     outline: none;
@@ -182,14 +182,21 @@
 .searchBox i2 {
     font-size: 18px;
     margin-top: 7px;
-    margin-right: 6px;
+    margin-right: 3px;
     float: right;
 }
 
 .micBtn {
     font-size: 18px;
+    margin-left: 3px;
     margin-top: 7px;
     margin-right: 6px;
+    float: right;
+}
+
+.rdBtn {
+    font-size: 18px;
+    margin-right: 3px;
     float: right;
 }
 

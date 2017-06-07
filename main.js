@@ -146,7 +146,15 @@ function createWindow() {
     })
     mainWindow.setMenu(null)
     mainWindow.webContents.session.on('will-download', (event, item, webContents) => {
-        //  item.setSavePath(item.getFilename()) //TODO set path to downloads folder
+        if (item.getMimeType() === 'application/pdf' && itemURL.indexOf('blob:') !== 0) {
+            event.preventDefault()
+            var tab = new Tab(),
+                instance = $('#instances').browser({
+                    tab: tab,
+                    url: 'chrome://pdf-viewer/index.html?src=' + item.getURL()
+                })
+            addTab(instance, tab);
+        }
     })
     mainWindowState.manage(mainWindow)
 }
