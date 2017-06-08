@@ -27,7 +27,7 @@
         t.info = $('<li data-ripple-color="#444" class="menu-item ripple">').appendTo(t.menuItems)
 
         t.settings.append('<i class="material-icons">settings</i>')
-        t.settings.append('<p class="menu-text">Cài đặt (đang phát triển)</p>')
+        t.settings.append('<p class="menu-text">Cài đặt</p>')
 
         t.history.append('<i class="material-icons">history</i>')
         t.history.append('<p class="menu-text">Lịch sử</p>')
@@ -51,7 +51,6 @@
         } else {
             t.nightmode.append('<p class="menu-text">Chế độ ban đêm</p>')
         }
-
 
         t.private.append('<i class="material-icons">vpn_lock</i>')
         t.private.append('<p class="menu-text">Chế độ ẩn danh (chưa ht)</p>')

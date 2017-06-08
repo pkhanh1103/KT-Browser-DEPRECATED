@@ -154,13 +154,6 @@ $(document).ready(function () {
             const menu = Menu.buildFromTemplate(template)
             menu.popup(remote.getCurrentWindow())
         }
-        if (e.target.id === "#tab") {
-            const template = [{
-                label: 'TEST'
-            }];
-            const menu = Menu.buildFromTemplate(template)
-            menu.popup(remote.getCurrentWindow())
-        }
 
     });
     setInterval(function () {
