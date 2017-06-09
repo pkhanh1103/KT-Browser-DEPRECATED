@@ -16,7 +16,7 @@
                 height: window.innerHeight - 79
             })
             t.webview.executeJavaScript('isfullscreen()', true, function(result) {
-                if (result == true) {
+                if(result == true) {
                     $(t.webview).css({
                         width: window.innerWidth,
                         height: window.innerHeight,
@@ -37,36 +37,36 @@
         t.fitToParent()
 
         globalShortcut.register('F12', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.inspectElement(0, 0)
         });
         globalShortcut.register('CmdOrCtrl+Shift+I', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.inspectElement(0, 0)
         });
         globalShortcut.register('F5', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.reload()
         });
         globalShortcut.register('CmdOrCtrl+R', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.reload()
         });
         globalShortcut.register('CmdOrCtrl+Shift+R', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.reloadIgnoringCache()
         });
         globalShortcut.register('Shift+F5', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.reloadIgnoringCache()
         });
         globalShortcut.register('Alt+Home', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.loadURL(settings.get("settings.homePage", "kt-browser://newtab"))
         });
 
         globalShortcut.register('CmdOrCtrl+P', () => {
-            if (remote.getCurrentWindow().isFocused())
+            if(remote.getCurrentWindow().isFocused())
                 t.webview.print({
                     silent: false,
                     printBackground: false
@@ -77,15 +77,15 @@
         })
 
         this.webview.addEventListener('ipc-message', function(e) {
-            if (e.channel == 'clicked') {
+            if(e.channel == 'clicked') {
                 settings.tab.instance.bar.suggestions.css('display', 'none')
                 settings.tab.instance.menu.hide()
             }
-            if (e.channel == 'status') {
-                if (typeof e.args[0] == 'undefined' || !e.args[0] || e.args[0].length === 0 || e.args[0] === "" || !/[^\s]/.test(e.args[0]) || /^\s*$/.test(e.args[0]) || e.args[0].replace(/\s/g, "") === "") {
+            if(e.channel == 'status') {
+                if(typeof e.args[0] == 'undefined' || !e.args[0] || e.args[0].length === 0 || e.args[0] === "" || !/[^\s]/.test(e.args[0]) || /^\s*$/.test(e.args[0]) || e.args[0].replace(/\s/g, "") === "") {
                     settings.tab.instance.status.css("display", "none")
                 } else {
-                    if (e.args[0].length > 60) {
+                    if(e.args[0].length > 60) {
                         settings.tab.instance.status.html(e.args[0].substring(0, 59) + "...")
                     } else {
                         settings.tab.instance.status.html(e.args[0]);
@@ -106,18 +106,18 @@
             ses.allowNTLMCredentialsForDomains('*')
             ses.on('will-download', (event, item, webContents) => {})
 
-            /*if (fileToStart != null) {
+            if (fileToStart != null) {
                 url = fileToStart;
                 fileToStart = null;
-            }*/
+            }
 
-            if (settings.url != null || settings.url != "")
+            if(settings.url != null || settings.url != "")
                 t.webview.loadURL(settings.url)
         });
         //webview newwindow event
         t.webview.addEventListener('new-window', (e) => {
             const protocol = require('url').parse(e.url).protocol
-            if (protocol === 'http:' || protocol === 'https:') {
+            if(protocol === 'http:' || protocol === 'https:') {
                 var tab = new Tab(),
                     instance = $('#instances').browser({
                         tab: tab,
@@ -131,32 +131,32 @@
             settings.tab.Favicon.css('opacity', "1");
             settings.tab.Preloader.css('opacity', "0");
 
-            if (lastUrl != t.webview.getURL()) {
+            if(lastUrl != t.webview.getURL()) {
                 t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
                 lastUrl = t.webview.getURL()
             }
-            if (!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank" && !t.webview.getURL().includes(`reader/index.html?url=`)) {
+            if(!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank" && !t.webview.getURL().includes(`reader/index.html?url=`)) {
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
-            if (t.webview.canGoBack()) {
+            if(t.webview.canGoBack()) {
                 settings.tab.instance.bar.backBtn.enabled = true
             } else {
                 settings.tab.instance.bar.backBtn.enabled = false
             }
-            if (t.webview.canGoForward()) {
+            if(t.webview.canGoForward()) {
                 settings.tab.instance.bar.forwardBtn.enabled = true
             } else {
                 settings.tab.instance.bar.forwardBtn.enabled = false
             }
-            if (isMainFrame) {
+            if(isMainFrame) {
                 settings.tab.instance.webview.webview.executeJavaScript('stylishMenu()', false);
                 settings.tab.instance.webview.webview.executeJavaScript('isNightMode()', true, function(result) {
-                    if (result == true) {
+                    if(result == true) {
                         settings.tab.instance.webview.webview.executeJavaScript('NightMode()', false);
                     }
                 })
                 settings.tab.instance.webview.webview.executeJavaScript('LaBanDic()', true, function(result) {
-                    if (result == true) {
+                    if(result == true) {
                         t.webview.executeJavaScript('var lbplugin_event_opt={"extension_enable":true,"dict_type":1,"dbclk_event":{"trigger":"none","enable":true,"display":1},"select_event":{"trigger":"ctrl","enable":true,"display":1}};function loadScript(t,e){var n=document.createElement("script");n.type="text/javascript",n.readyState?n.onreadystatechange=function(){("loaded"===n.readyState||"complete"===n.readyState)&&(n.onreadystatechange=null,e())}:n.onload=function(){e()},n.src=t,document.getElementsByTagName("head")[0].appendChild(n)}setTimeout(function(){null==document.getElementById("lbdictex_find_popup")&&loadScript("http://stc.laban.vn/dictionary/js/plugin/lbdictplugin.min.js?"+Date.now()%1e4,function(){lbDictPlugin.init(lbplugin_event_opt)})},1e3);', true)
                     }
                 })
@@ -167,14 +167,14 @@
                 t.webview.executeJavaScript('for(var list=document.getElementsByClassName("ad-div mastad"),i=list.length-1;i>=0;i--)list[i]&&list[i].parentElement&&list[i].parentElement.removeChild(list[i]);', true)
             }
             t.webview.executeJavaScript('try { function a() {return $(document.body).css("background-color")} a() } catch(err) {}', true, function(result) {
-                if (result !== null) {
-                    if ((result.replace(/^.*,(.+)\)/, '$1') == 0)) {
+                if(result !== null) {
+                    if((result.replace(/^.*,(.+)\)/, '$1') == 0)) {
                         t.webview.executeJavaScript('try {$(document.body).css("background-color", "#fff")} catch(err) {}', true)
                     }
                 }
             })
             settings.tab.instance.webview.webview.executeJavaScript('isMacRender()', true, function(result) {
-                if (result == true) {
+                if(result == true) {
                     settings.tab.instance.webview.webview.executeJavaScript('MacRender()', false);
                 }
             })
@@ -184,8 +184,8 @@
             let errorDescription = e.errorDescription
 
             let dir = __dirname
-            if (!errorCode == 0)
-            settings.tab.instance.status.html(errorDescription + ": " + errorCode);
+            if(!errorCode == 0)
+                settings.tab.instance.status.html(errorDescription + ": " + errorCode);
         })
 
         t.webview.addEventListener('leave-html-full-screen', function(name, version) {
@@ -206,11 +206,11 @@
         });
         t.webview.addEventListener('page-title-updated', function(title) {
             settings.tab.Title.html("<p style='display: inline; width:50%;'>" + "&nbsp;&nbsp;" + t.webview.getTitle() + "</p>");
-            if (lastUrl != t.webview.getURL()) {
+            if(lastUrl != t.webview.getURL()) {
                 t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
                 lastUrl = t.webview.getURL()
             }
-            if (!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank" && !t.webview.getURL().includes(`reader/index.html?url=`)) {
+            if(!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank" && !t.webview.getURL().includes(`reader/index.html?url=`)) {
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
         });

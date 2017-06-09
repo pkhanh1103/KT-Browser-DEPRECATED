@@ -29,14 +29,14 @@ function shadeColor(color, percent) {
 
 function shadeColor2(hex, lum) {
     hex = String(hex).replace(/[^0-9a-f]/gi, '');
-    if (hex.length < 6) {
+    if(hex.length < 6) {
         hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
     }
     lum = lum || 0;
     var rgb = "#",
         c,
         i;
-    for (i = 0; i < 3; i++) {
+    for(i = 0; i < 3; i++) {
         c = parseInt(hex.substr(i * 2, 2), 16);
         c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
         rgb += ("00" + c).substr(c.length);
@@ -73,17 +73,17 @@ function endsWith(str, suffix) {
 function colorBrightness(color) {
     var r, g, b, brightness,
         colour = color;
-    if (colour.match(/^rgb/)) {
+    if(colour.match(/^rgb/)) {
         colour = colour.match(/rgba?\(([^)]+)\)/)[1];
         colour = colour.split(/ *, */).map(Number);
         r = colour[0];
         g = colour[1];
         b = colour[2];
-    } else if ('#' == colour[0] && 7 == colour.length) {
+    } else if('#' == colour[0] && 7 == colour.length) {
         r = parseInt(colour.slice(1, 3), 16);
         g = parseInt(colour.slice(3, 5), 16);
         b = parseInt(colour.slice(5, 7), 16);
-    } else if ('#' == colour[0] && 4 == colour.length) {
+    } else if('#' == colour[0] && 4 == colour.length) {
         r = parseInt(colour[1] + colour[1], 16);
         g = parseInt(colour[2] + colour[2], 16);
         b = parseInt(colour[3] + colour[3], 16);
@@ -95,8 +95,8 @@ function colorBrightness(color) {
 
 function autocomplete(input, text) {
     var text1 = input.val();
-    if (text != null || text != "") {
-        if (text.toLowerCase().startsWith(text1.toLowerCase())) {
+    if(text != null || text != "") {
+        if(text.toLowerCase().startsWith(text1.toLowerCase())) {
             input.val(text);
             input[0].setSelectionRange(text1.length, text.length);
         }
@@ -105,9 +105,9 @@ function autocomplete(input, text) {
 
 function getSelectionText() {
     var text = "";
-    if (window.getSelection) {
+    if(window.getSelection) {
         text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") {
+    } else if(document.selection && document.selection.type != "Control") {
         text = document.selection.createRange().text;
     }
     return text;
@@ -125,7 +125,7 @@ function makeRippleIconButton(item) {
 
 function hexToRgb(hex) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
         return r + r + g + g + b + b;
     });
 

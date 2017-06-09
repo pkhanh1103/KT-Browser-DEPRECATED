@@ -198,12 +198,15 @@ function removeTab(tab) {
         }
     })
     if(tabCollection.length == 0) {
-        try {
-            const remote = require('electron').remote;
-            var window = remote.getCurrentWindow();
-        } catch(err) {} finally {
-            window.close();
+        if(settings.get("settings.closeOnLastTab", true)) {
+            try {
+                const remote = require('electron').remote;
+                var window = remote.getCurrentWindow();
+            } catch(err) {} finally {
+                window.close();
+            }
         }
+
     }
     calcSizes(true, true);
 }
@@ -289,6 +292,13 @@ function calcSizes(animation, addButtonAnimation) {
                 left: tabCollection.length * tabCollection[0].Tab.width()
             });
         }
+    } else {
+        $('#addTab').animate({
+            left: '0px'
+        }, {
+            duration: 175,
+            queue: false
+        });
     }
 }
 

@@ -1,315 +1,314 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/main.css" />
-        <script src="material.min.js"></script>
-        <link rel="stylesheet" href="material.indigo-blue.min.css" />
-        <link href="css/material-icons.css" rel="stylesheet">
-        <script src="js/jquery/jquery-3.1.0.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-        <style>
-            .titlebar {
-                height: 32px;
-                width: 100%;
-                z-index: 999;
-                background-color: #fff;
-            }
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="material.min.js"></script>
+    <link rel="stylesheet" href="material.indigo-blue.min.css" />
+    <link href="css/material-icons.css" rel="stylesheet">
+    <script src="js/jquery/jquery-3.1.0.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+    <style>
+        .titlebar {
+            height: 32px;
+            width: 100%;
+            z-index: 999;
+            background-color: #fff;
+        }
 
-            .draggable {
-                -webkit-app-region: drag;
-                height: 29px;
-                width: 100%;
-                position: absolute;
-                top: 3px;
-            }
+        .draggable {
+            -webkit-app-region: drag;
+            height: 29px;
+            width: 100%;
+            position: absolute;
+            top: 3px;
+        }
 
-            .instances {
-                overflow-y: scroll;
-            }
+        .instances {
+            overflow-y: scroll;
+        }
 
-            .border5 {
-                height: 1px;
-                position: relative;
-                bottom: 1px;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.1);
-            }
+        .border5 {
+            height: 1px;
+            position: relative;
+            bottom: 1px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
 
-            * {
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                cursor: default;
-            }
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: default;
+        }
 
-            @font-face {
-                font-family: Roboto;
-                src: url('fonts/Roboto.ttf');
-            }
+        @font-face {
+            font-family: Roboto;
+            src: url('fonts/Roboto.ttf');
+        }
 
-            @font-face {
-                font-family: Roboto-Medium;
-                src: url('fonts/Roboto-Medium.ttf');
-            }
+        @font-face {
+            font-family: Roboto-Medium;
+            src: url('fonts/Roboto-Medium.ttf');
+        }
 
-            @font-face {
-                font-family: Roboto-Light;
-                src: url('fonts/Roboto-Light.ttf');
-            }
+        @font-face {
+            font-family: Roboto-Light;
+            src: url('fonts/Roboto-Light.ttf');
+        }
 
-            ::-webkit-scrollbar {
-                width: 9px;
-                background-color: #f1f1f1;
-            }
+         ::-webkit-scrollbar {
+            width: 9px;
+            background-color: #f1f1f1;
+        }
 
-            body::-webkit-scrollbar {
-                width: 10px!important;
-                background-color: #EEEEEE;
-            }
+        body::-webkit-scrollbar {
+            width: 10px!important;
+            background-color: #EEEEEE;
+        }
 
-            ::-webkit-scrollbar-track {
-                border: 9px;
-            }
+         ::-webkit-scrollbar-track {
+            border: 9px;
+        }
 
-            body::-webkit-scrollbar-track {
+        body::-webkit-scrollbar-track {
 
-                border: none;
-            }
+            border: none;
+        }
 
-            ::-webkit-scrollbar-thumb {
-                background-color: #424242!important;
-                border-radius: 0px!important;
-                border: none;
-            }
+         ::-webkit-scrollbar-thumb {
+            background-color: #424242!important;
+            border-radius: 0px!important;
+            border: none;
+        }
 
-            ::-webkit-scrollbar-thumb:hover {
-                background-color: #333!important;
-            }
+         ::-webkit-scrollbar-thumb:hover {
+            background-color: #333!important;
+        }
 
-            ::-webkit-scrollbar-thumb:active {
-                background-color: #616161!important;
-            }
+         ::-webkit-scrollbar-thumb:active {
+            background-color: #616161!important;
+        }
 
-            .mdl-selectfield {
-                position: relative;
-                font-size: 16px;
-                display: inline-block;
-                box-sizing: border-box;
-                width: 300px;
-                max-width: 100%;
-                margin: 0;
-                padding: 20px 0
-            }
+        .mdl-selectfield {
+            position: relative;
+            font-size: 16px;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 300px;
+            max-width: 100%;
+            margin: 0;
+            padding: 20px 0
+        }
 
-            .mdl-selectfield .mdl-menu__container {
-                max-height: 256px;
-                min-width: 100%;
-                top: 12px !important
-            }
+        .mdl-selectfield .mdl-menu__container {
+            max-height: 256px;
+            min-width: 100%;
+            top: 12px !important
+        }
 
-            .mdl-selectfield.mdl-selectfield--floating-label .mdl-menu__container {
-                top: 24px !important
-            }
+        .mdl-selectfield.mdl-selectfield--floating-label .mdl-menu__container {
+            top: 24px !important
+        }
 
-            .mdl-selectfield .mdl-menu__outline {
-                max-height: 256px;
-                transform-origin: 50% 0
-            }
+        .mdl-selectfield .mdl-menu__outline {
+            max-height: 256px;
+            transform-origin: 50% 0
+        }
 
-            .mdl-selectfield .mdl-menu {
-                min-width: 100%;
-                max-height: 240px;
-                outline: 0;
-                overflow-y: auto;
-                width: auto !important
-            }
+        .mdl-selectfield .mdl-menu {
+            min-width: 100%;
+            max-height: 240px;
+            outline: 0;
+            overflow-y: auto;
+            width: auto !important
+        }
 
-            .mdl-selectfield .mdl-menu.is-animating {
-                overflow: hidden
-            }
+        .mdl-selectfield .mdl-menu.is-animating {
+            overflow: hidden
+        }
 
-            .mdl-selectfield--align-right {
-                text-align: right
-            }
+        .mdl-selectfield--align-right {
+            text-align: right
+        }
 
-            .mdl-selectfield--full-width {
-                width: 100%
-            }
+        .mdl-selectfield--full-width {
+            width: 100%
+        }
 
-            .mdl-selectfield__select {
-                display: block;
-                width: 100%;
-                padding: 4px 0;
-                margin: 0;
-                color: inherit;
-                background: transparent;
-                font-size: 16px;
-                text-align: left;
-                color: inherit;
-                border: none;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-                border-radius: 0;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-            }
+        .mdl-selectfield__select {
+            display: block;
+            width: 100%;
+            padding: 4px 0;
+            margin: 0;
+            color: inherit;
+            background: transparent;
+            font-size: 16px;
+            text-align: left;
+            color: inherit;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
 
-            .mdl-selectfield.is-focused .mdl-selectfield__select {
-                outline: none
-            }
+        .mdl-selectfield.is-focused .mdl-selectfield__select {
+            outline: none
+        }
 
-            .mdl-selectfield.is-invalid .mdl-selectfield__select {
-                border-color: rgb(222, 50, 38);
-                box-shadow: none
-            }
+        .mdl-selectfield.is-invalid .mdl-selectfield__select {
+            border-color: rgb(222, 50, 38);
+            box-shadow: none
+        }
 
-            fieldset[disabled] .mdl-selectfield .mdl-selectfield__select,
-            .mdl-selectfield.is-disabled .mdl-selectfield__select {
-                background-color: transparent;
-                border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
-                color: rgba(0, 0, 0, 0.26)
-            }
+        fieldset[disabled] .mdl-selectfield .mdl-selectfield__select,
+        .mdl-selectfield.is-disabled .mdl-selectfield__select {
+            background-color: transparent;
+            border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+            color: rgba(0, 0, 0, 0.26)
+        }
 
-            .mdl-selectfield__label {
-                bottom: 0;
-                color: rgba(0, 0, 0, 0.26);
-                font-size: 16px;
-                left: 0;
-                right: 0;
-                pointer-events: none;
-                position: absolute;
-                display: block;
-                top: 24px;
-                width: 100%;
-                overflow: hidden;
-                white-space: nowrap;
-                text-align: left
-            }
+        .mdl-selectfield__label {
+            bottom: 0;
+            color: rgba(0, 0, 0, 0.26);
+            font-size: 16px;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            position: absolute;
+            display: block;
+            top: 24px;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-align: left
+        }
 
-            .mdl-selectfield.is-dirty .mdl-selectfield__label {
-                visibility: hidden
-            }
+        .mdl-selectfield.is-dirty .mdl-selectfield__label {
+            visibility: hidden
+        }
 
-            .mdl-selectfield--floating-label .mdl-selectfield__label {
-                transition-duration: 0.2s;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
-            }
+        .mdl-selectfield--floating-label .mdl-selectfield__label {
+            transition-duration: 0.2s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+        }
 
-            fieldset[disabled] .mdl-selectfield .mdl-selectfield__label,
-            .mdl-selectfield.is-disabled.is-disabled .mdl-selectfield__label {
-                color: rgba(0, 0, 0, 0.26)
-            }
+        fieldset[disabled] .mdl-selectfield .mdl-selectfield__label,
+        .mdl-selectfield.is-disabled.is-disabled .mdl-selectfield__label {
+            color: rgba(0, 0, 0, 0.26)
+        }
 
-            .mdl-selectfield--floating-label.is-focused .mdl-selectfield__label,
-            .mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label {
-                color: rgb(63, 81, 181);
-                font-size: 12px;
-                top: 4px;
-                visibility: visible
-            }
+        .mdl-selectfield--floating-label.is-focused .mdl-selectfield__label,
+        .mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label {
+            color: rgb(63, 81, 181);
+            font-size: 12px;
+            top: 4px;
+            visibility: visible
+        }
 
-            .mdl-selectfield--floating-label.is-invalid .mdl-selectfield__label {
-                color: rgb(222, 50, 38);
-                font-size: 12px
-            }
+        .mdl-selectfield--floating-label.is-invalid .mdl-selectfield__label {
+            color: rgb(222, 50, 38);
+            font-size: 12px
+        }
 
-            .mdl-selectfield__label:after {
-                background-color: rgb(63, 81, 181);
-                bottom: 20px;
-                content: '';
-                height: 2px;
-                left: 45%;
-                position: absolute;
-                transition-duration: 0.2s;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                visibility: hidden;
-                width: 10px
-            }
+        .mdl-selectfield__label:after {
+            background-color: rgb(63, 81, 181);
+            bottom: 20px;
+            content: '';
+            height: 2px;
+            left: 45%;
+            position: absolute;
+            transition-duration: 0.2s;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+            width: 10px
+        }
 
-            .mdl-selectfield.is-focused .mdl-selectfield__label:after {
-                left: 0;
-                visibility: visible;
-                width: 100%
-            }
+        .mdl-selectfield.is-focused .mdl-selectfield__label:after {
+            left: 0;
+            visibility: visible;
+            width: 100%
+        }
 
-            .mdl-selectfield.is-invalid .mdl-selectfield__label:after {
-                background-color: rgb(222, 50, 38)
-            }
+        .mdl-selectfield.is-invalid .mdl-selectfield__label:after {
+            background-color: rgb(222, 50, 38)
+        }
 
-            .mdl-selectfield__error {
-                color: rgb(222, 50, 38);
-                position: absolute;
-                font-size: 12px;
-                margin-top: 3px;
-                visibility: hidden;
-                display: block
-            }
+        .mdl-selectfield__error {
+            color: rgb(222, 50, 38);
+            position: absolute;
+            font-size: 12px;
+            margin-top: 3px;
+            visibility: hidden;
+            display: block
+        }
 
-            .mdl-selectfield.is-invalid .mdl-selectfield__error {
-                visibility: visible
-            }
+        .mdl-selectfield.is-invalid .mdl-selectfield__error {
+            visibility: visible
+        }
 
-            .mdl-selectfield__placeholder {
-                bottom: 20px;
-                cursor: pointer;
-                color: rgba(0, 0, 0, 0.26);
-                left: 0;
-                padding: 2px 0;
-                position: absolute;
-                text-align: right;
-                top: 20px;
-                width: 100%
-            }
+        .mdl-selectfield__placeholder {
+            bottom: 20px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.26);
+            left: 0;
+            padding: 2px 0;
+            position: absolute;
+            text-align: right;
+            top: 20px;
+            width: 100%
+        }
 
-            .mdl-selectfield__placeholder>i {
-                outline: 0
-            }
-            /*# sourceMappingURL=mdl-selectfield.min.css.map */
+        .mdl-selectfield__placeholder>i {
+            outline: 0
+        }
+        /*# sourceMappingURL=mdl-selectfield.min.css.map */
+    </style>
+</head>
 
-        </style>
-    </head>
-
-    <body>
-        <div class="maindiv">
-            <div class="titlebar" id="titlebar">
-                <div class="draggable">
-                    <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Cài đặt</label>
-                </div>
-                <div data-tooltip-text="Đóng cửa sổ" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
-                <div data-tooltip-text="Phóng to cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
-                <div data-tooltip-text="Ẩn cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
-                <div class="border5"></div>
+<body>
+    <div class="maindiv">
+        <div class="titlebar" id="titlebar">
+            <div class="draggable">
+                <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Cài đặt</label>
             </div>
-            </script>
-            <div class="instances" id="instances" style="position: static; top: 0px; margin-left: 30px; width: auto;">
-                <div class="pad">
-                    <h5>Khởi động:</h5>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <label class="mdl-textfield__label" for="sample1">Địa chỉ trang chủ</label>
-                        <input class="mdl-textfield__input" type="text" style="cursor: text;" id="homePage" value="">
-                    </div>
+            <div data-tooltip-text="Đóng cửa sổ" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
+            <div data-tooltip-text="Phóng to cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
+            <div data-tooltip-text="Ẩn cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
+            <div class="border5"></div>
+        </div>
+        </script>
+        <div class="instances" id="instances" style="position: static; top: 0px; margin-left: 30px; width: auto;">
+            <div class="pad">
+                <h5>Khởi động:</h5>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label class="mdl-textfield__label" for="sample1">Địa chỉ trang chủ</label>
+                    <input class="mdl-textfield__input" type="text" style="cursor: text;" id="homePage" value="">
                 </div>
-                <div class="pad">
-                    <h5>Công cụ tìm kiếm:</h5>
-                    <p><a>Bạn có thể tùy chọn công cụ tìm kiếm (search engine) khi tìm kiếm từ Thanh địa chỉ.</a></p>
-                    <div class="mdl-selectfield mdl-js-selectfield">
-                        <select id="SESelector" class="mdl-selectfield__select" readonly>
-                        <option value="1">Google</option>
+            </div>
+            <div class="pad">
+                <h5>Công cụ tìm kiếm:</h5>
+                <p><a>Bạn có thể tùy chọn công cụ tìm kiếm (search engine) khi tìm kiếm từ Thanh địa chỉ.</a></p>
+                <div class="mdl-selectfield mdl-js-selectfield">
+                    <select id="SESelector" class="mdl-selectfield__select" readonly>
+                        <option value="1" selected>Google</option>
                         <option value="2">Cốc cốc</option>
                         <option value="3">DuckDuckGo</option>
                         <option value="4">Bing</option>
                         <option value="5">Yahoo!</option>
                         <option value="6">Yandex</option>               
                     </select>
-                    </div>
                 </div>
-                <div class="pad">
-                    <h5>VPN:</h5>
-                    <p><a>VPN miễn phí được cung cấp cho người dùng chỉ có trên KT Browser.</a></p>
-                    <div class="mdl-selectfield mdl-js-selectfield">
-                        <select id="VPNSelector" class="mdl-selectfield__select" readonly>
+            </div>
+            <div class="pad">
+                <h5>VPN:</h5>
+                <p><a>VPN miễn phí được cung cấp cho người dùng chỉ có trên KT Browser.</a></p>
+                <div class="mdl-selectfield mdl-js-selectfield">
+                    <select id="VPNSelector" class="mdl-selectfield__select" readonly>
                         <option value="1" selected>Không sử dụng VPN</option>
                         <option value="2">Singapore</option>
                         <option value="3">Frankfurt</option>
@@ -322,50 +321,50 @@
                         <option value="10">Sydney</option>
                         <option value="11">Washington - US</option>                    
                     </select>
-                    </div>
                 </div>
-                <div class="pad">
-                    <h5>Giao diện:</h5>
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ChangeColorByPage">
+            </div>
+            <div class="pad">
+                <h5>Giao diện:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ChangeColorByPage">
                         <span class="mdl-switch__label">Đổi màu giao diện trình duyệt theo trang</span>
                         <input type="checkbox" id="ChangeColorByPage" class="mdl-switch__input">
                     </label>
-                </div>
-                <div class="pad">
-                    <h5>Tiện ích:</h5>
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
+            </div>
+            <div class="pad">
+                <h5>Tiện ích:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
                         <span class="mdl-switch__label">Nhấp đúp chuột để tra từ điển (Laban Dictionary)</span>
                         <input type="checkbox" id="labanDic" class="mdl-switch__input">    
                     </label>
-                        <br></br>
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
+                <br></br>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
                         <span class="mdl-switch__label">Làm đậm phông chữ khi duyệt web (Mac Render)</span>
                         <input type="checkbox" id="macRender" class="mdl-switch__input">    
                     </label>
-                </div>
-                <div class="pad">
-                    <h5>Quản lí thẻ:</h5>
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
+            </div>
+            <div class="pad">
+                <h5>Quản lí thẻ:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="closeOnLastTab">
                         <span class="mdl-switch__label">Thoát cửa sổ trình duyệt khi đóng thẻ cuối cùng</span>
-                        <input type="checkbox" id="hardalc" class="mdl-switch__input">    
+                        <input type="checkbox" id="closeOnLastTab" class="mdl-switch__input" checked>    
                     </label>
-                </div>
-                <div class="pad">
-                    <h5>Nâng cao:</h5>
-                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
+            </div>
+            <div class="pad">
+                <h5>Nâng cao:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
                         <span class="mdl-switch__label">Sử dụng chế độ tăng tốc phần cứng khi khả dụng</span>
                         <input type="checkbox" id="hardalc" class="mdl-switch__input">    
                     </label>
-                </div>
             </div>
-            <script>
-                const {
-                    remote
-                    , ipcRenderer
-                } = require('electron')
-                const settings = require('electron-settings');
+        </div>
+        <script>
+            const {
+                remote,
+                ipcRenderer
+            } = require('electron')
+            const settings = require('electron-settings');
 
-                switch (settings.get("settings.nvProxy")) {
+            switch(settings.get("settings.nvProxy")) {
                 case 'http://kt-browser.com/Singapore.pac':
                     $('#VPNSelector')
                         .val("2")
@@ -406,243 +405,233 @@
                     $('#VPNSelector')
                         .val("11")
                     break
-                }    
-                $('#SESelector').val(settings.get("settings.SearchEngine"))
-                homePage.value = settings.get("settings.homePage")
-                if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
+            }
+            $('#SESelector').val(settings.get("settings.SearchEngine"))
+            homePage.value = settings.get("settings.homePage")
+            if((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
+                homePage.value = "kt-browser://newtab"
+            }
+            hardalc.checked = settings.get("settings.hardalc")
+            labanDic.checked = settings.get("settings.labanDic")
+            macRender.checked = settings.get("settings.macRender")
+            ChangeColorByPage.checked = settings.get("settings.colorByPage")
+            closeOnLastTab.checked = settings.get("settings.closeOnLastTab")
+
+                ! function() {
+                    "use strict";
+                    var e = function(e) {
+                        this.element_ = e, this.init()
+                    };
+                    window.MaterialSelectfield = e, e.prototype.Constant_ = {}, e.prototype.CssClasses_ = {
+                        LABEL: "mdl-selectield__label",
+                        SELECT: "mdl-selectfield__select",
+                        IS_DIRTY: "is-dirty",
+                        IS_FOCUSED: "is-focused",
+                        IS_DISABLED: "is-disabled",
+                        IS_INVALID: "is-invalid",
+                        IS_UPGRADED: "is-upgraded"
+                    }, e.prototype.onFocus_ = function(e) {
+                        this.element_.classList.add(this.CssClasses_.IS_FOCUSED)
+                    }, e.prototype.onBlur_ = function(e) {
+                        this.element_.classList.remove(this.CssClasses_.IS_FOCUSED)
+                    }, e.prototype.onReset_ = function(e) {
+                        this.updateClasses_()
+                    }, e.prototype.updateClasses_ = function() {
+                        this.checkDisabled(), this.checkValidity(), this.checkDirty()
+                    }, e.prototype.checkDisabled = function() {
+                        this.select_.disabled ? this.element_.classList.add(this.CssClasses_.IS_DISABLED) : this.element_
+                            .classList.remove(this.CssClasses_.IS_DISABLED)
+                    }, e.prototype.checkDisabled = e.prototype.checkDisabled, e.prototype.checkValidity = function() {
+                        this.select_.validity.valid ? this.element_.classList.remove(this.CssClasses_.IS_INVALID) :
+                            this.element_.classList.add(this.CssClasses_.IS_INVALID)
+                    }, e.prototype.checkValidity = e.prototype.checkValidity, e.prototype.checkDirty = function() {
+                        this.select_.value && this.select_.value.length > 0 ? this.element_.classList.add(this.CssClasses_
+                            .IS_DIRTY) : this.element_.classList.remove(this.CssClasses_.IS_DIRTY)
+                    }, e.prototype.checkDirty = e.prototype.checkDirty, e.prototype.disable = function() {
+                        this.select_.disabled = !0, this.updateClasses_()
+                    }, e.prototype.disable = e.prototype.disable, e.prototype.enable = function() {
+                        this.select_.disabled = !1, this.updateClasses_()
+                    }, e.prototype.enable = e.prototype.enable, e.prototype.change = function(e) {
+                        e && (this.select_.value = e), this.updateClasses_()
+                    }, e.prototype.change = e.prototype.change, e.prototype.init = function() {
+                        if(this.element_ && (this.label_ = this.element_.querySelector("." + this.CssClasses_.LABEL), this.select_ = this.element_.querySelector("." + this.CssClasses_.SELECT), this.select_)) {
+                            if(this.boundUpdateClassesHandler = this.updateClasses_.bind(this), this.boundFocusHandler =
+                                this.onFocus_.bind(this), this.boundBlurHandler = this.onBlur_.bind(this), this.boundResetHandler =
+                                this.onReset_.bind(this), this.select_.addEventListener("change", this.boundUpdateClassesHandler), this.select_.addEventListener("focus", this.boundFocusHandler), this.select_.addEventListener(
+                                    "blur", this.boundBlurHandler), this.select_.addEventListener("reset", this.boundResetHandler), "function" == typeof MaterialMenu) {
+                                var e = this,
+                                    t = "plc-" + (new Date)
+                                    .getTime(),
+                                    s = document.createElement("div");
+                                if(s.id = t, s.classList.add("mdl-selectfield__placeholder"), s.innerHTML =
+                                    '<i class="material-icons" tabindex="-1">arrow_drop_down</i>', s.addEventListener(
+                                        "click",
+                                        function() {
+                                            e.select_.focus()
+                                        }), this.element_.appendChild(s), this.options_ = this.select_.querySelectorAll(
+                                        "option"), this.options_.length) {
+                                    var i = document.createElement("ul");
+                                    i.classList.add("mdl-menu"), i.classList.add("mdl-js-menu"), i.classList.add(
+                                        "mdl-js-ripple-effect"), i.tabIndex = "-1", i.setAttribute("for", t), i.addEventListener(
+                                        "mousewheel",
+                                        function(e) {
+                                            (this.scrollTop === this.scrollHeight - this.offsetHeight && e.wheelDelta <
+                                                0 || 0 === this.scrollTop && e.wheelDelta > 0) && e.preventDefault()
+                                        });
+                                    for(var l = 0; l < this.options_.length; l++) {
+                                        var n = this.options_[l],
+                                            a = ((n.textContent || "")
+                                                .toUpperCase()
+                                                .replace(/( )|(\n)/g, ""), document
+                                                .createElement("li"));
+                                        a.textContent = n.textContent, a.classList.add("mdl-menu__item"), a.setAttribute(
+                                            "data-value", l), a.tabIndex = "-1", a.addEventListener("mousedown", function() {
+                                            e.select_.selectedIndex = this.getAttribute("data-value"), e.updateClasses_()
+                                        }), i.appendChild(a), this.element_.appendChild(i)
+                                    }
+                                }
+                                componentHandler.upgradeDom("MaterialMenu")
+                            }
+                            this.updateClasses_(), this.element_.classList.add(this.CssClasses_.IS_UPGRADED)
+                        }
+                    }, e.prototype.mdlDowngrade_ = function() {
+                        this.select_.removeEventListener("change", this.boundUpdateClassesHandler), this.select_.removeEventListener(
+                            "focus", this.boundFocusHandler), this.select_.removeEventListener("blur", this.boundBlurHandler), this.select_.removeEventListener("reset", this.boundResetHandler)
+                    }, componentHandler.register({
+                        constructor: e,
+                        classAsString: "MaterialSelectfield",
+                        cssClass: "mdl-js-selectfield",
+                        widget: !0
+                    })
+                }();
+            //# sourceMappingURL=mdl-selectfield.min.js.map
+        </script>
+        <script>
+            (function($) {
+
+                $.fn.visible = function(partial) {
+
+                    var $t = $(this),
+                        $w = $(window),
+                        viewTop = $w.scrollTop(),
+                        viewBottom = viewTop + $w.height(),
+                        _top = $t.offset()
+                        .top,
+                        _bottom = _top + $t.height(),
+                        compareTop = partial === true ? _bottom : _top,
+                        compareBottom = partial === true ? _top : _bottom;
+
+                    return((compareBottom <= viewBottom) && (compareTop >= viewTop));
+
+                };
+
+            })(jQuery);
+
+            var win = $(window);
+
+            var allMods = $(".module");
+
+            allMods.each(function(i, el) {
+                var el = $(el);
+                if(el.visible(true)) {
+                    el.addClass("already-visible");
+                }
+            });
+
+            var poz = $(window)
+                .scrollTop();
+
+            win.scroll(function(event) {
+
+                allMods.each(function(i, el) {
+                    var el = $(el);
+                    if(el.visible(true)) {
+
+                        el.addClass("come-in");
+
+                    }
+                });
+
+            });
+        </script>
+    </div>
+    <div>
+        <script>
+            if(typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+        <script src="js/jquery/jquery-ui.min.js"></script>
+        <script>
+            if(window.module) module = window.module;
+        </script>
+        <script>
+            Array.prototype.forEach || (Array.prototype.forEach = function(r, t) {
+                var o, n;
+                if(null === this) throw new TypeError(" this is null or not defined");
+                var e = Object(this),
+                    i = e.length >>> 0;
+                if("function" != typeof r) throw new TypeError(r + " is not a function");
+                for(arguments.length > 1 && (o = t), n = 0; i > n;) {
+                    var a;
+                    n in e && (a = e[n], r.call(o, a, n, e)), n++
+                }
+            });
+        </script>
+        <script>
+            ! function(e, n) {
+                var t = function(e) {
+                        var n = e.data[0],
+                            t = e.data[1],
+                            a = n.buttons[t].callback;
+                        p(n), "function" == typeof a && a.call(this, e)
+                    },
+                    a = function(e) {
+                        e.blend ? e.$wrapper.fadeIn(e.blendDuration) : e.$wrapper.show()
+                    },
+                    p = function(e) {
+                        e.blend ? e.$wrapper.fadeOut(e.blendDuration, function() {
+                            e.$wrapper.remove()
+                        }) : e.$wrapper.remove()
+                    },
+                    s = function(p) {
+                        var s = e('<div class="mb-outerWrapper">'),
+                            o = e('<div class="mb-innerWrapper">')
+                            .appendTo(s),
+                            d = e('<div class="mb">')
+                            .appendTo(o),
+                            i = e('<div class="mb-title">')
+                            .appendTo(d),
+                            c = e('<div class="mb-content">')
+                            .appendTo(d),
+                            r = e('<div class="mb-typeIcon">'),
+                            l = e('<div class="mb-message">'),
+                            b = e('<div class="mb-buttons">')
+                            .appendTo(d);
+                        p.$wrapper = s, p.type !== n && c.append(r.addClass("icon-" + p.type)), c.append(l), i.text(
+                            p.title), l.text(p.message), p.buttons.forEach(function(n, a) {
+                            e('<div class="mb-button">')
+                                .text(n.text)
+                                .on("click", [p, a], t)
+                                .appendTo(b)
+                        }), s.hide(), this.append(s), a(p)
+                    };
+                e.fn.msgBox = function(n) {
+                    s.call(this, e.extend(!0, {
+                        title: "",
+                        message: "",
+                        buttons: [],
+                        blend: !1,
+                        blendDuration: 400
+                    }, n))
+                }
+            }(jQuery);
+            window.onbeforeunload = function() {
+                if((homePage.value == "") || (homePage.value == "undefined")) {
                     homePage.value = "kt-browser://newtab"
                 }
-                hardalc.checked = settings.get("settings.hardalc")
-                labanDic.checked = settings.get("settings.labanDic")
-                macRender.checked = settings.get("settings.macRender")
-                ChangeColorByPage.checked = settings.get("settings.colorByPage")
-
-                    ! function () {
-                        "use strict";
-                        var e = function (e) {
-                            this.element_ = e, this.init()
-                        };
-                        window.MaterialSelectfield = e, e.prototype.Constant_ = {}, e.prototype.CssClasses_ = {
-                            LABEL: "mdl-selectield__label"
-                            , SELECT: "mdl-selectfield__select"
-                            , IS_DIRTY: "is-dirty"
-                            , IS_FOCUSED: "is-focused"
-                            , IS_DISABLED: "is-disabled"
-                            , IS_INVALID: "is-invalid"
-                            , IS_UPGRADED: "is-upgraded"
-                        }, e.prototype.onFocus_ = function (e) {
-                            this.element_.classList.add(this.CssClasses_.IS_FOCUSED)
-                        }, e.prototype.onBlur_ = function (e) {
-                            this.element_.classList.remove(this.CssClasses_.IS_FOCUSED)
-                        }, e.prototype.onReset_ = function (e) {
-                            this.updateClasses_()
-                        }, e.prototype.updateClasses_ = function () {
-                            this.checkDisabled(), this.checkValidity(), this.checkDirty()
-                        }, e.prototype.checkDisabled = function () {
-                            this.select_.disabled ? this.element_.classList.add(this.CssClasses_.IS_DISABLED) : this.element_
-                                .classList.remove(this.CssClasses_.IS_DISABLED)
-                        }, e.prototype.checkDisabled = e.prototype.checkDisabled, e.prototype.checkValidity = function () {
-                            this.select_.validity.valid ? this.element_.classList.remove(this.CssClasses_.IS_INVALID) :
-                                this.element_.classList.add(this.CssClasses_.IS_INVALID)
-                        }, e.prototype.checkValidity = e.prototype.checkValidity, e.prototype.checkDirty = function () {
-                            this.select_.value && this.select_.value.length > 0 ? this.element_.classList.add(this.CssClasses_
-                                .IS_DIRTY) : this.element_.classList.remove(this.CssClasses_.IS_DIRTY)
-                        }, e.prototype.checkDirty = e.prototype.checkDirty, e.prototype.disable = function () {
-                            this.select_.disabled = !0, this.updateClasses_()
-                        }, e.prototype.disable = e.prototype.disable, e.prototype.enable = function () {
-                            this.select_.disabled = !1, this.updateClasses_()
-                        }, e.prototype.enable = e.prototype.enable, e.prototype.change = function (e) {
-                            e && (this.select_.value = e), this.updateClasses_()
-                        }, e.prototype.change = e.prototype.change, e.prototype.init = function () {
-                            if (this.element_ && (this.label_ = this.element_.querySelector("." + this.CssClasses_.LABEL)
-                                    , this.select_ = this.element_.querySelector("." + this.CssClasses_.SELECT), this.select_
-                                )) {
-                                if (this.boundUpdateClassesHandler = this.updateClasses_.bind(this), this.boundFocusHandler =
-                                    this.onFocus_.bind(this), this.boundBlurHandler = this.onBlur_.bind(this), this.boundResetHandler =
-                                    this.onReset_.bind(this), this.select_.addEventListener("change", this.boundUpdateClassesHandler)
-                                    , this.select_.addEventListener("focus", this.boundFocusHandler), this.select_.addEventListener(
-                                        "blur", this.boundBlurHandler), this.select_.addEventListener("reset", this.boundResetHandler)
-                                    , "function" == typeof MaterialMenu) {
-                                    var e = this
-                                        , t = "plc-" + (new Date)
-                                        .getTime()
-                                        , s = document.createElement("div");
-                                    if (s.id = t, s.classList.add("mdl-selectfield__placeholder"), s.innerHTML =
-                                        '<i class="material-icons" tabindex="-1">arrow_drop_down</i>', s.addEventListener(
-                                            "click"
-                                            , function () {
-                                                e.select_.focus()
-                                            }), this.element_.appendChild(s), this.options_ = this.select_.querySelectorAll(
-                                            "option"), this.options_.length) {
-                                        var i = document.createElement("ul");
-                                        i.classList.add("mdl-menu"), i.classList.add("mdl-js-menu"), i.classList.add(
-                                            "mdl-js-ripple-effect"), i.tabIndex = "-1", i.setAttribute("for", t), i.addEventListener(
-                                            "mousewheel"
-                                            , function (e) {
-                                                (this.scrollTop === this.scrollHeight - this.offsetHeight && e.wheelDelta <
-                                                    0 || 0 === this.scrollTop && e.wheelDelta > 0) && e.preventDefault()
-                                            });
-                                        for (var l = 0; l < this.options_.length; l++) {
-                                            var n = this.options_[l]
-                                                , a = ((n.textContent || "")
-                                                    .toUpperCase()
-                                                    .replace(/( )|(\n)/g, ""), document
-                                                    .createElement("li"));
-                                            a.textContent = n.textContent, a.classList.add("mdl-menu__item"), a.setAttribute(
-                                                "data-value", l), a.tabIndex = "-1", a.addEventListener("mousedown"
-                                                , function () {
-                                                    e.select_.selectedIndex = this.getAttribute("data-value"), e.updateClasses_()
-                                                }), i.appendChild(a), this.element_.appendChild(i)
-                                        }
-                                    }
-                                    componentHandler.upgradeDom("MaterialMenu")
-                                }
-                                this.updateClasses_(), this.element_.classList.add(this.CssClasses_.IS_UPGRADED)
-                            }
-                        }, e.prototype.mdlDowngrade_ = function () {
-                            this.select_.removeEventListener("change", this.boundUpdateClassesHandler), this.select_.removeEventListener(
-                                    "focus", this.boundFocusHandler), this.select_.removeEventListener("blur", this.boundBlurHandler)
-                                , this.select_.removeEventListener("reset", this.boundResetHandler)
-                        }, componentHandler.register({
-                            constructor: e
-                            , classAsString: "MaterialSelectfield"
-                            , cssClass: "mdl-js-selectfield"
-                            , widget: !0
-                        })
-                    }();
-                //# sourceMappingURL=mdl-selectfield.min.js.map
-
-            </script>
-            <script>
-                (function ($) {
-
-                    $.fn.visible = function (partial) {
-
-                        var $t = $(this)
-                            , $w = $(window)
-                            , viewTop = $w.scrollTop()
-                            , viewBottom = viewTop + $w.height()
-                            , _top = $t.offset()
-                            .top
-                            , _bottom = _top + $t.height()
-                            , compareTop = partial === true ? _bottom : _top
-                            , compareBottom = partial === true ? _top : _bottom;
-
-                        return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
-
-                    };
-
-                })(jQuery);
-
-                var win = $(window);
-
-                var allMods = $(".module");
-
-                allMods.each(function (i, el) {
-                    var el = $(el);
-                    if (el.visible(true)) {
-                        el.addClass("already-visible");
-                    }
-                });
-
-                var poz = $(window)
-                    .scrollTop();
-
-                win.scroll(function (event) {
-
-                    allMods.each(function (i, el) {
-                        var el = $(el);
-                        if (el.visible(true)) {
-
-                            el.addClass("come-in");
-
-                        }
-                    });
-
-                });
-
-            </script>
-        </div>
-        <div>
-            <script>
-                if (typeof module === 'object') {
-                    window.module = module;
-                    module = undefined;
-                }
-
-            </script>
-            <script src="js/jquery/jquery-ui.min.js"></script>
-            <script>
-                if (window.module) module = window.module;
-
-            </script>
-            <script>
-                Array.prototype.forEach || (Array.prototype.forEach = function (r, t) {
-                    var o, n;
-                    if (null === this) throw new TypeError(" this is null or not defined");
-                    var e = Object(this)
-                        , i = e.length >>> 0;
-                    if ("function" != typeof r) throw new TypeError(r + " is not a function");
-                    for (arguments.length > 1 && (o = t), n = 0; i > n;) {
-                        var a;
-                        n in e && (a = e[n], r.call(o, a, n, e)), n++
-                    }
-                });
-
-            </script>
-            <script>
-                ! function (e, n) {
-                    var t = function (e) {
-                            var n = e.data[0]
-                                , t = e.data[1]
-                                , a = n.buttons[t].callback;
-                            p(n), "function" == typeof a && a.call(this, e)
-                        }
-                        , a = function (e) {
-                            e.blend ? e.$wrapper.fadeIn(e.blendDuration) : e.$wrapper.show()
-                        }
-                        , p = function (e) {
-                            e.blend ? e.$wrapper.fadeOut(e.blendDuration, function () {
-                                e.$wrapper.remove()
-                            }) : e.$wrapper.remove()
-                        }
-                        , s = function (p) {
-                            var s = e('<div class="mb-outerWrapper">')
-                                , o = e('<div class="mb-innerWrapper">')
-                                .appendTo(s)
-                                , d = e('<div class="mb">')
-                                .appendTo(o)
-                                , i = e('<div class="mb-title">')
-                                .appendTo(d)
-                                , c = e('<div class="mb-content">')
-                                .appendTo(d)
-                                , r = e('<div class="mb-typeIcon">')
-                                , l = e('<div class="mb-message">')
-                                , b = e('<div class="mb-buttons">')
-                                .appendTo(d);
-                            p.$wrapper = s, p.type !== n && c.append(r.addClass("icon-" + p.type)), c.append(l), i.text(
-                                p.title), l.text(p.message), p.buttons.forEach(function (n, a) {
-                                e('<div class="mb-button">')
-                                    .text(n.text)
-                                    .on("click", [p, a], t)
-                                    .appendTo(b)
-                            }), s.hide(), this.append(s), a(p)
-                        };
-                    e.fn.msgBox = function (n) {
-                        s.call(this, e.extend(!0, {
-                            title: ""
-                            , message: ""
-                            , buttons: []
-                            , blend: !1
-                            , blendDuration: 400
-                        }, n))
-                    }
-                }(jQuery);
-                window.onbeforeunload = function () {
-                    if ((homePage.value == "") || (homePage.value == "undefined")) {
-                        homePage.value = "kt-browser://newtab"
-                    }
-                    switch (VPNSelector.value) {
+                switch(VPNSelector.value) {
                     case "1":
                         proxyValue = 'http://kt-browser.com/no-ads.pac'
                         break
@@ -676,40 +665,40 @@
                     case "11":
                         proxyValue = 'http://kt-browser.com/WashingtonUS.pac'
                         break
-                    }
-                    settings.set('settings', {
-                        nvProxy: proxyValue
-                        , homePage: homePage.value
-                        , colorByPage: ChangeColorByPage.checked
-                        , labanDic: labanDic.checked
-                        , macRender: macRender.checked
-                        , hardalc: hardalc.checked
-                        , SearchEngine: SESelector.value
-                    })
                 }
-                $('.windowbutton-close')
-                    .click(function () {
+                settings.set('settings', {
+                    nvProxy: proxyValue,
+                    homePage: homePage.value,
+                    colorByPage: ChangeColorByPage.checked,
+                    labanDic: labanDic.checked,
+                    macRender: macRender.checked,
+                    hardalc: hardalc.checked,
+                    SearchEngine: SESelector.value,
+                    closeOnLastTab: closeOnLastTab.checked
+                })
+            }
+            $('.windowbutton-close')
+                .click(function() {
+                    remote.getCurrentWindow()
+                        .close();
+                });
+            $('.windowbutton-maximize')
+                .click(function() {
+                    if(remote.getCurrentWindow()
+                        .isMaximized()) {
                         remote.getCurrentWindow()
-                            .close();
-                    });
-                $('.windowbutton-maximize')
-                    .click(function () {
-                        if (remote.getCurrentWindow()
-                            .isMaximized()) {
-                            remote.getCurrentWindow()
-                                .unmaximize();
-                        } else {
-                            remote.getCurrentWindow()
-                                .maximize();
-                        }
-                    });
-                $('.windowbutton-minimize')
-                    .click(function () {
+                            .unmaximize();
+                    } else {
                         remote.getCurrentWindow()
-                            .minimize();
-                    });
-
-            </script>
-    </body>
+                            .maximize();
+                    }
+                });
+            $('.windowbutton-minimize')
+                .click(function() {
+                    remote.getCurrentWindow()
+                        .minimize();
+                });
+        </script>
+</body>
 
 </html>
