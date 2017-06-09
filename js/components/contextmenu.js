@@ -22,14 +22,14 @@ class ContextMenu {
                     t.selectAllMenuItem.visible = false
                     t.imageToSave = ''
                     t.linkToOpen = ''
+
                     if (params.mediaType == 'image') {
                         t.imageToSave = params.srcURL
-                    } else {
-                        t.imageToSave = ''
                     }
+
                     t.linkToOpen = params.linkURL
 
-                    if (t.linkToOpen == "") {
+                    if (t.linkToOpen == '') {
                         t.openLinkInNewTabMenuItem.visible = false
                         t.copyLinkMenuItem.visible = false
                     } else {
@@ -37,7 +37,7 @@ class ContextMenu {
                         t.copyLinkMenuItem.visible = true
                     }
 
-                    if (t.imageToSave == "") {
+                    if (t.imageToSave == '') {
                         t.saveImageAsMenuItem.visible = false
                         t.openImageInNewTabMenuItem.visible = false
                     } else {
@@ -144,7 +144,7 @@ class ContextMenu {
         t.openImageInNewTabMenuItem = new MenuItem({
             label: 'Mở ảnh trong thẻ mới',
             click() {
-                if (t.linkToOpen != "") {
+                if (t.imageToSave != "") {
                     var tab = new Tab(),
                         instance = $('#instances').browser({
                             tab: tab,
@@ -165,7 +165,7 @@ class ContextMenu {
         t.saveImageAsMenuItem = new MenuItem({
             label: 'Lưu ảnh như...',
             click() {
-                t.webview.getWebContents().downloadURL(imageToSave)
+                t.webview.getWebContents().downloadURL(t.imageToSave)
             }
         })
         t.printMenuItem = new MenuItem({

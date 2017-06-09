@@ -21,7 +21,7 @@ class Colors {
                 width: 2,
                 height: 2
             }, function (image) {
-                getPixels(image.toDataURL(), function (err, pixels) {
+                require("get-pixels")(image.toDataURL(), function (err, pixels) {
                     if (err) {
                         return
                     }

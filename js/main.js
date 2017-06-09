@@ -10,13 +10,10 @@ const {
 const {
     app
 } = require('electron').remote;
-var getPixels = require("get-pixels")
 var fs = require('fs');
 const settings = require('electron-settings');
 const isDev = require('electron-is-dev');
 var IsThere = require("is-there");
-var dir = require('node-dir');
-var os = require('os');
 var fileToStart = remote.getGlobal("startArgs").data[2]
 var historyPath = app.getPath('userData') + '/User Data/History';
 var userdataPath = app.getPath('userData') + '/User Data';
@@ -125,35 +122,51 @@ $(document).ready(function() {
     });
 
 
-    document.addEventListener("contextmenu", function(e) {
-        if(e.target.localName.trim() === "input") {
-            const template = [{
-                label: 'Hoàn tác',
-                role: 'undo'
-            }, {
-                label: 'Làm lại',
-                role: 'redo'
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Cắt',
-                role: 'cut'
-            }, {
-                label: 'Sao chép',
-                role: 'copy'
-            }, {
-                label: 'Dán',
-                role: 'paste'
-            }, {
-                type: 'separator'
-            }, {
-                label: 'Chọn tất cả',
-                role: 'selectall'
-            }];
-            const menu = Menu.buildFromTemplate(template)
-            menu.popup(remote.getCurrentWindow())
-        }
+    document.addEventListener("contextmenu", function(e, params) {
+        e.preventDefault();
+        e.stopPropagation();
+        //TODO: can...
+        let node = e.target;
+        while(node) {
+            console.log(node)
+            if(node.nodeName.match(/^(input|textarea)$/i) || node.isContentEditable) {
+                const menu = new Menu()
+                menu.append(new MenuItem({
+                    label: 'Hoàn tác',
+                    role: 'undo'
+                }))
+                menu.append(new MenuItem({
+                    label: 'Làm lại',
+                    role: 'redo'
+                }))
+                menu.append(new MenuItem({
+                    type: 'separator'
+                }))
+                menu.append(new MenuItem({
+                    label: 'Cắt',
+                    role: 'cut'
+                }))
+                menu.append(new MenuItem({
+                    label: 'Sao chép',
+                    role: 'copy'
+                }))
+                menu.append(new MenuItem({
+                    label: 'Dán',
+                    role: 'paste'
+                }))
+                menu.append(new MenuItem({
+                    type: 'separator'
+                }))
+                menu.append(new MenuItem({
+                    label: 'Chọn tất cả',
+                    role: 'selectall'
+                }))
 
+                menu.popup(remote.getCurrentWindow())
+                break;
+            }
+            node = node.parentNode;
+        }
     });
     setInterval(function() {
         if(colorBrightness($(document.body).css('background-color')) < 150) {

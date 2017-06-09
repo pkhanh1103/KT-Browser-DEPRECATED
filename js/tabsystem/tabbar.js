@@ -199,12 +199,7 @@ function removeTab(tab) {
     })
     if(tabCollection.length == 0) {
         if(settings.get("settings.closeOnLastTab", true)) {
-            try {
-                const remote = require('electron').remote;
-                var window = remote.getCurrentWindow();
-            } catch(err) {} finally {
-                window.close();
-            }
+            require('electron').remote.getCurrentWindow().close();
         }
 
     }
@@ -367,12 +362,7 @@ function selectTab(tab) {
             select(tabCollection[i])
         }
     }
-    try {
-        const remote = require('electron').remote;
-        var window = remote.getCurrentWindow();
-    } catch(err) {} finally {
-        window.webContents.executeJavaScript('updateColor()');
-    }
+    require('electron').remote.getCurrentWindow().webContents.executeJavaScript('updateColor()');
 }
 
 function Tab() {}
