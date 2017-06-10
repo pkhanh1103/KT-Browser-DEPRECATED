@@ -37,14 +37,17 @@ function startReaderView(article) {
 
 	}
 
-
 	window.rframe = document.createElement("iframe");
 	rframe.classList.add("reader-frame");
 	rframe.sandbox = "allow-same-origin allow-popups";
 	rframe.srcdoc = readerContent;
 
 	rframe.onload = function () {
-
+	if (window.isNightMode()) {
+		document.body.style.backgroundColor = "rgb(33, 37, 43)";
+		document.getElementById("backtoarticle").style.backgroundColor = "rgb(33, 37, 43)";
+		rframe.contentDocument.body.classList.add("dark-mode");
+	}
 		requestAnimationFrame(function () {
 			rframe.height = rframe.contentDocument.body.querySelector(".reader-main").scrollHeight + "px";
 			requestAnimationFrame(function () {
@@ -80,7 +83,6 @@ function processArticle(data) {
 		var doc = parserframe.contentDocument;
 
 		var location = new URL(url);
-
 
 		var links = doc.querySelectorAll("a");
 

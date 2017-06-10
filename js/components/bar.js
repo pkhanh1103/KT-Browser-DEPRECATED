@@ -35,8 +35,8 @@
             micIcon = $('<i3 id="micicon" class="material-icons" style="font-size: 18px;">mic_none</i3>').appendTo(this.micBtn),
             extIcon = $('<i class="material-icons btn-icon" style="font-size: 22px;">more_vert</i>').appendTo(this.extBtn)
 
-        this.searchIcon = $('<i class="material-icons" id="searchImage">search</i>').appendTo(this.searchBox)
-        
+        this.searchIcon = $('<i class="material-icons">search</i>').appendTo(this.searchBox)
+
         $('.ripple-icon').mousedown(function() {
             makeRippleIconButton($(this))
         })
