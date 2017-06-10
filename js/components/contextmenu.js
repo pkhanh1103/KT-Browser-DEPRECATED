@@ -4,6 +4,7 @@ class ContextMenu {
         this.webview = webview
         this.linkToOpen = ''
         this.imageToSave = ''
+        this.selectionText = ''
         this.xToInspect = null
         this.yToInspect = null
         this.menu = new Menu()
@@ -12,6 +13,7 @@ class ContextMenu {
         $(webview).ready(function () {
             webview.getWebContents().on('context-menu', (e, params) => {
                 e.preventDefault()
+
                 if (!params.isEditable) {
                     t.undoMenuItem.visible = false
                     t.redoMenuItem.visible = false
@@ -22,7 +24,7 @@ class ContextMenu {
                     t.selectAllMenuItem.visible = false
                     t.imageToSave = ''
                     t.linkToOpen = ''
-
+                    
                     if (params.mediaType == 'image') {
                         t.imageToSave = params.srcURL
                     }
@@ -99,8 +101,19 @@ class ContextMenu {
                     t.refreshMenuItem.visible = false
                     t.printMenuItem.visible = false
                 }
+                
+                if (!params.selectionText == "" && params.selectionText.length < 100)
+                {
+                    t.TTSMenuItem.visible = true
+                } else {
+                    t.TTSMenuItem.visible = false
+                }
+
+                t.selectionText = params.selectionText
+
                 t.xToInspect = params.x
                 t.yToInspect = params.y
+                                    
                 t.menu.popup(remote.getCurrentWindow())
             }, true)
         })
@@ -109,6 +122,20 @@ class ContextMenu {
 
     prepareContextMenu() {
         var t = this
+        t.TTSMenuItem = new MenuItem({
+            label: 'Đọc văn bản này...',
+            click() {
+                require('google-tts-api')(t.selectionText, 'vi', 1).then(function (url) {
+                    console.log(url);
+                    var audio = new Audio();
+                    audio.src = url;
+                    audio.play();
+                })
+                .catch(function (err) {
+                    console.error(err.stack);
+                });
+            }
+        })
         t.backMenuItem = new MenuItem({
             label: 'Lùi về',
             click() {
@@ -241,6 +268,7 @@ class ContextMenu {
             }
         })
 
+        this.menu.append(t.TTSMenuItem)
         this.menu.append(t.undoMenuItem)
         this.menu.append(t.redoMenuItem)
         this.menu.append(t.openLinkInNewTabMenuItem)
@@ -259,9 +287,5 @@ class ContextMenu {
         this.menu.append(t.printMenuItem)
         this.menu.append(t.separator2)
         this.menu.append(t.inspectElementMenuItem)
-    }
-
-    addContextMenuItem(item) {
-        this.menu.append(item)
     }
 }
