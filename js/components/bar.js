@@ -30,12 +30,13 @@
         var backIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">arrow_back</i>').appendTo(this.backBtn),
             forwardIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">arrow_forward</i>').appendTo(this.forwardBtn),
             refreshIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">refresh</i>').appendTo(this.refreshBtn),
-            searchIcon = $('<i class="material-icons">search</i>').appendTo(this.searchBox), //vpn_lock
             rdIcon = $('<i class="material-icons">chrome_reader_mode</i>').appendTo(this.rdBtn),
             favIcon = $('<i2 class="material-icons">favorite_border</i2>').appendTo(this.searchBox),
             micIcon = $('<i3 id="micicon" class="material-icons" style="font-size: 18px;">mic_none</i3>').appendTo(this.micBtn),
             extIcon = $('<i class="material-icons btn-icon" style="font-size: 22px;">more_vert</i>').appendTo(this.extBtn)
 
+        this.searchIcon = $('<i class="material-icons" id="searchImage">search</i>').appendTo(this.searchBox)
+        
         $('.ripple-icon').mousedown(function() {
             makeRippleIconButton($(this))
         })
@@ -79,6 +80,7 @@
                                     text: 'Không',
                                     callback: function() {
                                         $('p').fadeIn()
+
                                     }
                                 }, {
                                     text: 'Có, tôi muốn chạy chế độ đọc tin!',

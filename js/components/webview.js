@@ -7,18 +7,20 @@
             t = this,
             lastUrl = ''
             pref = ''
-        if (!require('electron-settings').get("settings.allowScript"))
+        var settingmng = require('electron-settings')
+        if (!settingmng.get("settings.allowScript"))
         {
             pref = 'javascript=0, plugins=1'
         }
-        if (!require('electron-settings').get("settings.allowImage"))
+        if (!settingmng.get("settings.allowImage"))
         {
             pref = 'images=0, plugins=1'
         }
-       if (!require('electron-settings').get("settings.allowScript") && !require('electron-settings').get("settings.allowImage"))
+       if (!settingmng.get("settings.allowScript") && !settingmng.get("settings.allowImage"))
         {
             pref = 'javascript=0, images=0, plugins=1'
         }
+        t.isPrivacy = false
         t.webview = $('<webview class="webview" preload="js/extensions/preload.js" webpreferences="' + pref + '" useragent="Mozilla/5.0 (Windows NT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 KT-Browser/7.0.0.0" autosize="on" blinkfeatures="CSSOMSmoothScroll, CSSCompositing, BackgroundSync, ApplicationCache, AudioVideoTracks, FastMobileScrolling, Media, Notifications, MediaStreamSpeech, ScriptedSpeech, Touch, ScrollCustomization" src="about:blank" plugins>').appendTo($(this))[0]
         t.storage = new Storage()
         t.string = "Siema"
@@ -138,19 +140,30 @@
                     })
                 addTab(instance, tab);
             }
-        })
+        });
+
+        t.webview.addEventListener('destroyed', function() {
+            if (t.isPrivacy)
+            {
+                //TODO
+            }
+        });
 
         t.webview.addEventListener('did-frame-finish-load', function(isMainFrame) {
             settings.tab.Favicon.css('opacity', "1");
             settings.tab.Preloader.css('opacity', "0");
 
             if(lastUrl != t.webview.getURL()) {
-                t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
+                if (!t.isPrivacy)
+                {
+                    t.storage.saveHistory(t.webview.getTitle(), t.webview.getURL())
+                }
                 lastUrl = t.webview.getURL()
             }
             if(!t.webview.getURL().startsWith("kt-browser://newtab") && t.webview.getURL() != "about:blank" && !t.webview.getURL().includes(`reader/index.html?url=`)) {
                 settings.tab.instance.bar.searchInput.val(t.webview.getURL());
             }
+
             if(t.webview.canGoBack()) {
                 settings.tab.instance.bar.backBtn.enabled = true
             } else {
@@ -161,6 +174,32 @@
             } else {
                 settings.tab.instance.bar.forwardBtn.enabled = false
             }
+
+            if(t.webview.getURL().startsWith("http://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">http</i>')
+            }
+            if(t.webview.getURL().startsWith("https://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">https</i>')
+            }
+            if(t.webview.getURL().startsWith("kt-browser://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">search</i>')
+            }
+            if(t.webview.getURL().startsWith("file://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">storage</i>')
+            }
+            if(t.webview.getURL().startsWith("data:text"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">description</i>')
+            }
+            if(t.webview.getURL().startsWith("data:image"))
+            {
+                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">image</i>')
+            }
+
             if(isMainFrame) {
                 settings.tab.instance.webview.webview.executeJavaScript('stylishMenu()', false);
                 settings.tab.instance.webview.webview.executeJavaScript('isNightMode()', true, function(result) {

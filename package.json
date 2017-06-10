@@ -39,17 +39,10 @@
     "electron-settings": "latest",
     "electron-window-state": "latest",
     "get-pixels": "latest",
+    "google-tts-api": "latest",
     "is-there": "latest",
     "node-dir": "latest"
   },
   "build": {
-    "appId": "com.kttech.browser",
-    "app-category-type": "public.app-category.utilities",
-    "win": {
-      "iconUrl": "http://kt-browser.com/favicon.ico"
-    },
-    "mac": {
-      "category": "com.kttech.browser"
-    }
   }
 }
