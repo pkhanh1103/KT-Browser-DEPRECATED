@@ -29,6 +29,7 @@ function addTab(instance, tab) {
         const menu = new Menu()
         menu.append(new MenuItem({
             label: 'Tab mới',
+            accelerator: 'CmdOrCtrl+N',
             click() {
                 var tab = new Tab(),
                     instance = $('#instances').browser({
@@ -43,12 +44,14 @@ function addTab(instance, tab) {
         }))
         menu.append(new MenuItem({
             label: 'Tải lại',
+            accelerator: 'CmdOrCtrl+R',
             click() {
                 tab.instance.webview.webview.reload()
             }
         }))
         menu.append(new MenuItem({
             label: 'Tải lại (bỏ qua cache)',
+            accelerator: 'CmdOrCtrl+Shift+R',
             click() {
                 tab.instance.webview.webview.reloadIgnoringCache()
             }
@@ -79,6 +82,7 @@ function addTab(instance, tab) {
 
         menu.append(new MenuItem({
             label: 'Đóng tab',
+            accelerator: 'CmdOrCtrl+W',
             click() {
                 removeTab(tab);
             }
@@ -180,6 +184,15 @@ function addTab(instance, tab) {
 }
 
 function removeTab(tab) {
+    if (tab.instance.webview.isPrivacy)
+    {
+        tab.instance.webview.getWebContents().clearHistory()
+        tab.instance.webview.getWebContents().session.clearCache()
+        tab.instance.webview.getWebContents().session.clearStorageData()
+        tab.instance.webview.getWebContents().session.flushStorageData()
+        tab.instance.webview.getWebContents().session.cookies.flushStore()
+        console.log('clear data...')
+    }
     tab.tabWindow.remove();
     if(tabCollection.indexOf(tab) - 1 != -1) {
         selectTab(tabCollection[tabCollection.indexOf(tab) - 1].Tab);

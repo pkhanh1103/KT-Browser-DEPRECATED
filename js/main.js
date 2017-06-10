@@ -132,10 +132,12 @@ $(document).ready(function() {
                 const menu = new Menu()
                 menu.append(new MenuItem({
                     label: 'Hoàn tác',
+                    accelerator: 'CmdOrCtrl+Z',
                     role: 'undo'
                 }))
                 menu.append(new MenuItem({
                     label: 'Làm lại',
+                    accelerator: 'CmdOrCtrl+Shift+Z',
                     role: 'redo'
                 }))
                 menu.append(new MenuItem({
@@ -143,14 +145,17 @@ $(document).ready(function() {
                 }))
                 menu.append(new MenuItem({
                     label: 'Cắt',
+                    accelerator: 'CmdOrCtrl+X',
                     role: 'cut'
                 }))
                 menu.append(new MenuItem({
                     label: 'Sao chép',
+                    accelerator: 'CmdOrCtrl+C',
                     role: 'copy'
                 }))
                 menu.append(new MenuItem({
                     label: 'Dán',
+                    accelerator: 'CmdOrCtrl+V',
                     role: 'paste'
                 }))
                 menu.append(new MenuItem({
@@ -158,6 +163,7 @@ $(document).ready(function() {
                 }))
                 menu.append(new MenuItem({
                     label: 'Chọn tất cả',
+                    accelerator: 'CmdOrCtrl+A',
                     role: 'selectall'
                 }))
 

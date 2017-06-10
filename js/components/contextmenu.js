@@ -228,6 +228,7 @@ class ContextMenu {
         })
         t.redoMenuItem = new MenuItem({
             label: 'Làm lại',
+            accelerator: 'CmdOrCtrl+Shift+Z',
             click() {
                 t.webview.redo()
             }

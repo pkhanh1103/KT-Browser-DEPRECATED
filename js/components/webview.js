@@ -142,13 +142,6 @@
             }
         });
 
-        t.webview.addEventListener('destroyed', function() {
-            if (t.isPrivacy)
-            {
-                //TODO
-            }
-        });
-
         t.webview.addEventListener('did-frame-finish-load', function(isMainFrame) {
             settings.tab.Favicon.css('opacity', "1");
             settings.tab.Preloader.css('opacity', "0");
