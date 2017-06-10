@@ -6,7 +6,20 @@
             }, params),
             t = this,
             lastUrl = ''
-        t.webview = $('<webview class="webview" preload="js/extensions/preload.js" useragent="Mozilla/5.0 (Windows NT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 KT-Browser/7.0.0.0" autosize="on" blinkfeatures="CSSOMSmoothScroll, CSSCompositing, BackgroundSync, ApplicationCache, AudioVideoTracks, FastMobileScrolling, Media, Notifications, MediaStreamSpeech, ScriptedSpeech, Touch, ScrollCustomization" webpreferences="experimentalCanvasFeatures=1, scrollBounce=1, plugins=1, experimentalFeatures=1, allowDisplayingInsecureContent=1, allowRunningInsecureContent=1" src="about:blank" plugins>').appendTo($(this))[0]
+            pref = ''
+        if (!require('electron-settings').get("settings.allowScript"))
+        {
+            pref = 'javascript=0, plugins=1'
+        }
+        if (!require('electron-settings').get("settings.allowImage"))
+        {
+            pref = 'images=0, plugins=1'
+        }
+       if (!require('electron-settings').get("settings.allowScript") && !require('electron-settings').get("settings.allowImage"))
+        {
+            pref = 'javascript=0, images=0, plugins=1'
+        }
+        t.webview = $('<webview class="webview" preload="js/extensions/preload.js" webpreferences="' + pref + '" useragent="Mozilla/5.0 (Windows NT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 KT-Browser/7.0.0.0" autosize="on" blinkfeatures="CSSOMSmoothScroll, CSSCompositing, BackgroundSync, ApplicationCache, AudioVideoTracks, FastMobileScrolling, Media, Notifications, MediaStreamSpeech, ScriptedSpeech, Touch, ScrollCustomization" src="about:blank" plugins>').appendTo($(this))[0]
         t.storage = new Storage()
         t.string = "Siema"
         t.contextMenu = new ContextMenu(t.webview)

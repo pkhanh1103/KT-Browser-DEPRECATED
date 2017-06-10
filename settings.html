@@ -331,6 +331,18 @@
                     </label>
             </div>
             <div class="pad">
+                <h5>Nội dung:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="allowScript">
+                        <span class="mdl-switch__label">Cho phép chạy Javascript</span>
+                        <input type="checkbox" id="allowScript" class="mdl-switch__input" checked>    
+                </label>
+                <br></br>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="allowImage">
+                        <span class="mdl-switch__label">Cho phép tải ảnh</span>
+                        <input type="checkbox" id="allowImage" class="mdl-switch__input" checked>    
+                </label>
+            </div>
+            <div class="pad">
                 <h5>Tiện ích:</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockads">
                         <span class="mdl-switch__label">Chặn quảng cáo</span>
@@ -423,6 +435,8 @@
             ChangeColorByPage.checked = settings.get("settings.colorByPage")
             closeOnLastTab.checked = settings.get("settings.closeOnLastTab")
             blockads.checked = settings.get("settings.blockads")
+            allowScript.checked = settings.get("settings.allowScript")
+            allowImage.checked = settings.get("settings.allowImage")
 
                 ! function() {
                     "use strict";
@@ -635,9 +649,12 @@
                     hardalc: hardalc.checked,
                     SearchEngine: SESelector.value,
                     closeOnLastTab: closeOnLastTab.checked,
-                    blockads: blockads.checked
+                    blockads: blockads.checked,
+                    allowScript: allowScript.checked,
+                    allowImage: allowImage.checked
                 })
-            }
+    }
+    
             $('.windowbutton-close')
                 .click(function() {
                     remote.getCurrentWindow()

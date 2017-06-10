@@ -44,6 +44,14 @@ if(settings.get('settings.colorByPage') == null) {
     settings.set('settings.colorByPage', true);
 }
 
+if(settings.get('settings.allowScript') == null) {
+    settings.set('settings.allowScript', true);
+}
+
+if(settings.get('settings.allowImage') == null) {
+    settings.set('settings.allowImage', true);
+}
+
 if(settings.get('settings.blockads') == null) {
     settings.set('settings.blockads', true);
 }
