@@ -128,7 +128,6 @@ $(document).ready(function() {
         //TODO: can...
         let node = e.target;
         while(node) {
-            console.log(node)
             if(node.nodeName.match(/^(input|textarea)$/i) || node.isContentEditable) {
                 const menu = new Menu()
                 menu.append(new MenuItem({
