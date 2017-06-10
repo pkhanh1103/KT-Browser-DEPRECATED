@@ -332,6 +332,11 @@
             </div>
             <div class="pad">
                 <h5>Tiện ích:</h5>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockads">
+                        <span class="mdl-switch__label">Chặn quảng cáo</span>
+                        <input type="checkbox" id="blockads" class="mdl-switch__input">    
+                    </label>
+                <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
                         <span class="mdl-switch__label">Nhấp đúp chuột để tra từ điển (Laban Dictionary)</span>
                         <input type="checkbox" id="labanDic" class="mdl-switch__input">    
@@ -340,7 +345,7 @@
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
                         <span class="mdl-switch__label">Làm đậm phông chữ khi duyệt web (Mac Render)</span>
                         <input type="checkbox" id="macRender" class="mdl-switch__input">    
-                    </label>
+                </label>
             </div>
             <div class="pad">
                 <h5>Quản lí thẻ:</h5>
@@ -416,6 +421,7 @@
             macRender.checked = settings.get("settings.macRender")
             ChangeColorByPage.checked = settings.get("settings.colorByPage")
             closeOnLastTab.checked = settings.get("settings.closeOnLastTab")
+            blockads.checked = settings.get("settings.blockads")
 
                 ! function() {
                     "use strict";
@@ -633,7 +639,7 @@
                 }
                 switch(VPNSelector.value) {
                     case "1":
-                        proxyValue = 'http://kt-browser.com/no-ads.pac'
+                        proxyValue = ''
                         break
                     case "2":
                         proxyValue = 'http://kt-browser.com/Singapore.pac'
@@ -674,7 +680,8 @@
                     macRender: macRender.checked,
                     hardalc: hardalc.checked,
                     SearchEngine: SESelector.value,
-                    closeOnLastTab: closeOnLastTab.checked
+                    closeOnLastTab: closeOnLastTab.checked,
+                    blockads: blockads.checked
                 })
             }
             $('.windowbutton-close')

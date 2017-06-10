@@ -29,7 +29,7 @@ if(!settings.get("static") == null) {
 }
 
 if(settings.get('settings.nvProxy') == null) {
-    settings.set('settings.nvProxy', 'http://kt-browser.com/no-ads.pac');
+    settings.set('settings.nvProxy', '');
 }
 
 if(settings.get('settings.homePage') == null) {
@@ -42,6 +42,10 @@ if(settings.get('settings.SearchEngine') == null) {
 
 if(settings.get('settings.colorByPage') == null) {
     settings.set('settings.colorByPage', true);
+}
+
+if(settings.get('settings.blockads') == null) {
+    settings.set('settings.blockads', true);
 }
 
 if(settings.get('settings.labanDic') == null) {
