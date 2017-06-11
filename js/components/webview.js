@@ -91,6 +91,45 @@
             t.fitToParent()
         })
 
+        t.updateURLBarIcon = function() {
+            if(t.webview.getURL().startsWith("http://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('http')
+            }
+            if(t.webview.getURL().startsWith("https://"))
+            {
+                 settings.tab.instance.bar.searchIcon.html('https')
+            }
+            if(t.webview.getURL().startsWith("kt-browser://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('public')
+            }
+            if(t.webview.getURL().startsWith("kt-browser://newtab"))
+            {
+                settings.tab.instance.bar.searchIcon.html('search')
+            }
+            if(t.webview.getURL().startsWith("file://"))
+            {
+                settings.tab.instance.bar.searchIcon.html('storage')
+            }
+            if(t.webview.getURL().includes(`reader/index.html?url=`))
+            {
+                settings.tab.instance.bar.searchIcon.html('remove_red_eye')
+            }
+            if(t.webview.getURL().startsWith("data:text"))
+            {
+                settings.tab.instance.bar.searchIcon.html('description')
+            }
+            if(t.webview.getURL().startsWith("data:image"))
+            {
+                settings.tab.instance.bar.searchIcon.html('image')
+            }
+            if(t.isPrivacy)
+            {
+                settings.tab.instance.bar.searchIcon.html('vpn_lock')
+            }
+        }
+
         this.webview.addEventListener('ipc-message', function(e) {
             if(e.channel == 'clicked') {
                 settings.tab.instance.bar.suggestions.css('display', 'none')
@@ -168,30 +207,7 @@
                 settings.tab.instance.bar.forwardBtn.enabled = false
             }
 
-            if(t.webview.getURL().startsWith("http://"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">http</i>')
-            }
-            if(t.webview.getURL().startsWith("https://"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">https</i>')
-            }
-            if(t.webview.getURL().startsWith("kt-browser://"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">search</i>')
-            }
-            if(t.webview.getURL().startsWith("file://"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">storage</i>')
-            }
-            if(t.webview.getURL().startsWith("data:text"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">description</i>')
-            }
-            if(t.webview.getURL().startsWith("data:image"))
-            {
-                settings.tab.instance.bar.searchIcon.html('<i class="material-icons" id="searchImage" style="margin-top: 0px; margin-left: 0px;">image</i>')
-            }
+            t.updateURLBarIcon()
 
             if(isMainFrame) {
                 settings.tab.instance.webview.webview.executeJavaScript('stylishMenu()', false);

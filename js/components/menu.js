@@ -46,14 +46,11 @@
 
         t.nightmode.append('<i class="material-icons">brightness_4</i>')
 
-        if(getNightMode() == true) {
+        if(getNightMode()) {
             t.nightmode.append('<p class="menu-text">Tắt chế độ ban đêm</p>')
         } else {
             t.nightmode.append('<p class="menu-text">Chế độ ban đêm</p>')
         }
-
-        t.private.append('<i class="material-icons">vpn_lock</i>')
-        t.private.append('<p class="menu-text">Chế độ ẩn danh (chưa ht)</p>')
 
         t.info.append('<i class="material-icons">info</i>')
         t.info.append('<p class="menu-text">Thông tin KT Browser</p>')
@@ -84,12 +81,25 @@
 
         });
         t.private.click(function(e) {
-            Toast_Material({
-                content: "Chưa hoàn thiện!",
-                updown: "bottom",
-                position: "center",
-                align: "center"
-            });
+            if (settings.tab.instance.webview.isPrivacy)
+            {
+                Toast_Material({
+                    content: "Đã tắt chế độ ẩn danh cho thẻ hiện tại",
+                    updown: "bottom",
+                    position: "center",
+                    align: "center"
+                });
+                settings.tab.instance.webview.isPrivacy = false;
+            } else {
+                Toast_Material({
+                    content: "Đã bật chế độ ẩn danh cho thẻ hiện tại, mọi dấu vết trên web của bạn sẽ bị xóa sau khi đóng thẻ này!",
+                    updown: "bottom",
+                    position: "center",
+                    align: "center"
+                });
+                settings.tab.instance.webview.isPrivacy = true;
+            }
+            settings.tab.instance.webview.updateURLBarIcon()
         });
         t.fullscreen.click(function(e) {
             settings.tab.instance.webview.webview.executeJavaScript('isfullscreen()', true, function(result) {
@@ -169,7 +179,7 @@
 
 
         t.show = function() {
-            if(getNightMode() == true) {
+            if(getNightMode()) {
                 t.nightmode.html('')
                 t.nightmode.append('<i class="material-icons">wb_sunny</i>')
                 t.nightmode.append('<p class="menu-text">Tắt chế độ ban đêm</p>')
@@ -197,6 +207,13 @@
                 $(".menu-text").css("color", "");
                 $(".menu-item>i").css("color", "");
                 $(".ripple").attr("data-ripple-color", "#444");     
+            }
+            t.private.html('')
+            t.private.append('<i class="material-icons">vpn_lock</i>')
+            if(!settings.tab.instance.webview.isPrivacy) {
+                t.private.append('<p class="menu-text">Chế độ ẩn danh</p>')
+            } else {
+                t.private.append('<p class="menu-text">Tắt chế độ ẩn danh</p>')
             }
             //menu fade in animation
             $(t).css('display', 'block');

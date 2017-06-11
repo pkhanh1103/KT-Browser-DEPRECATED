@@ -186,12 +186,12 @@ function addTab(instance, tab) {
 function removeTab(tab) {
     if (tab.instance.webview.isPrivacy)
     {
-        tab.instance.webview.getWebContents().clearHistory()
-        tab.instance.webview.getWebContents().session.clearCache()
-        tab.instance.webview.getWebContents().session.clearStorageData()
-        tab.instance.webview.getWebContents().session.flushStorageData()
-        tab.instance.webview.getWebContents().session.cookies.flushStore()
+        tab.instance.webview.webview.getWebContents().clearHistory()
+        tab.instance.webview.webview.getWebContents().session.clearCache(function() {console.log('cleaned cache...')})
+        tab.instance.webview.webview.getWebContents().session.clearStorageData()
+        tab.instance.webview.webview.getWebContents().session.flushStorageData()
         console.log('clear data...')
+        tab.instance.webview.webview.getWebContents().session.cookies.flushStore(function() {console.log('cleaned cookies...')})
     }
     tab.tabWindow.remove();
     if(tabCollection.indexOf(tab) - 1 != -1) {
