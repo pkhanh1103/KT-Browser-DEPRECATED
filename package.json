@@ -1,7 +1,7 @@
 {
   "name": "KT-Browser",
-  "version": "7.0.0",
-  "description": "Một trình duyệt thuần Việt của KTTECH Team.",
+  "version": "7.0.1",
+  "description": "An open-source web browser of KTTECH Team.",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

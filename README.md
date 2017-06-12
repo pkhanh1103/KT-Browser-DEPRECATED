@@ -10,7 +10,7 @@
 
 # Trình duyệt web KT Browser
 
-Một trình duyệt web cho người Việt của nhóm KTTECH. Trình duyệt này được viết trên Electron và Node.JS bằng ngôn ngữ Javascript, HTML và CSS.
+Một trình duyệt web của nhóm KTTECH. Trình duyệt này được viết trên Electron và Node.JS bằng ngôn ngữ Javascript, HTML và CSS.
 
 ## Các tính năng
 * Đổi màu theo trang
