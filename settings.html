@@ -341,6 +341,11 @@
                         <span class="mdl-switch__label">Cho phép tải ảnh</span>
                         <input type="checkbox" id="allowImage" class="mdl-switch__input" checked>    
                 </label>
+                <br></br>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="DNT">
+                        <span class="mdl-switch__label">Gửi yêu cầu 'Không theo dõi' khi truy cập</span>
+                        <input type="checkbox" id="DNT" class="mdl-switch__input" checked>    
+                </label>
             </div>
             <div class="pad">
                 <h5>Tiện ích:</h5>
@@ -437,6 +442,7 @@
             blockads.checked = settings.get("settings.blockads")
             allowScript.checked = settings.get("settings.allowScript")
             allowImage.checked = settings.get("settings.allowImage")
+            DNT.checked = settings.get("settings.DNT")
 
                 ! function() {
                     "use strict";
@@ -651,7 +657,8 @@
                     closeOnLastTab: closeOnLastTab.checked,
                     blockads: blockads.checked,
                     allowScript: allowScript.checked,
-                    allowImage: allowImage.checked
+                    allowImage: allowImage.checked,
+                    DNT: DNT.checked
                 })
     }
     

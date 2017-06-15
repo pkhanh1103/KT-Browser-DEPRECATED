@@ -44,6 +44,10 @@ if(settings.get('settings.colorByPage') == null) {
     settings.set('settings.colorByPage', true);
 }
 
+if(settings.get('settings.DNT') == null) {
+    settings.set('settings.DNT', true);
+}
+
 if(settings.get('settings.allowScript') == null) {
     settings.set('settings.allowScript', true);
 }
@@ -174,6 +178,18 @@ function createWindow() {
             addTab(instance, tab);
         }
     })
+    if(settings.get('settings.DNT')) {
+        const filter = {
+            urls: ["http://*/*", "https://*/*"]
+        }
+        mainWindow.webContents.session.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
+            details.requestHeaders['DNT'] = "1";
+            callback({
+                cancel: false,
+                requestHeaders: details.requestHeaders
+            })
+        })
+    }
     mainWindowState.manage(mainWindow)
 }
 process.on('uncaughtException', function(error) {
