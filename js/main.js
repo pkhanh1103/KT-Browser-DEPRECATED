@@ -191,7 +191,7 @@ $(document).ready(function() {
     if(settings.get('settings.blockads')) {
         registerFiltering(remote.getCurrentWindow().webContents.session)
     }
-});
+})
 window.onresize = function(event) {
     calcSizes(false, false);
 };

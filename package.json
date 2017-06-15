@@ -41,6 +41,7 @@
     "get-pixels": "latest",
     "google-tts-api": "latest",
     "is-there": "latest",
-    "node-dir": "latest"
+    "node-dir": "latest",
+    "request": "^2.81.0"
   }
 }

@@ -354,6 +354,11 @@
                         <input type="checkbox" id="blockads" class="mdl-switch__input">    
                     </label>
                 <br></br>
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockUnsafeWeb">
+                        <span class="mdl-switch__label">Lọc các trang web lừa đảo, nguy hiểm (Cyradar)</span>
+                        <input type="checkbox" id="blockUnsafeWeb" class="mdl-switch__input">    
+                    </label>
+                <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
                         <span class="mdl-switch__label">Nhấp đúp chuột để tra từ điển (Laban Dictionary)</span>
                         <input type="checkbox" id="labanDic" class="mdl-switch__input">    
@@ -443,6 +448,7 @@
             allowScript.checked = settings.get("settings.allowScript")
             allowImage.checked = settings.get("settings.allowImage")
             DNT.checked = settings.get("settings.DNT")
+            blockUnsafeWeb.checked = settings.get("settings.blockUnsafeWeb")
 
                 ! function() {
                     "use strict";
@@ -658,31 +664,24 @@
                     blockads: blockads.checked,
                     allowScript: allowScript.checked,
                     allowImage: allowImage.checked,
-                    DNT: DNT.checked
+                    DNT: DNT.checked,
+                    blockUnsafeWeb: blockUnsafeWeb.checked
                 })
     }
     
-            $('.windowbutton-close')
-                .click(function() {
-                    remote.getCurrentWindow()
-                        .close();
-                });
-            $('.windowbutton-maximize')
-                .click(function() {
-                    if(remote.getCurrentWindow()
-                        .isMaximized()) {
-                        remote.getCurrentWindow()
-                            .unmaximize();
-                    } else {
-                        remote.getCurrentWindow()
-                            .maximize();
-                    }
-                });
-            $('.windowbutton-minimize')
-                .click(function() {
-                    remote.getCurrentWindow()
-                        .minimize();
-                });
+            $('.windowbutton-close').click(function() {
+                remote.getCurrentWindow().close();
+            });
+            $('.windowbutton-maximize').click(function() {
+                if(remote.getCurrentWindow().isMaximized()) {
+                    remote.getCurrentWindow().unmaximize();
+                } else {
+                    remote.getCurrentWindow().maximize();
+                }
+            });
+            $('.windowbutton-minimize').click(function() {
+                remote.getCurrentWindow().minimize();
+            });
         </script>
 </body>
 

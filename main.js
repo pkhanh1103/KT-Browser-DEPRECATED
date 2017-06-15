@@ -44,6 +44,10 @@ if(settings.get('settings.colorByPage') == null) {
     settings.set('settings.colorByPage', true);
 }
 
+if(settings.get('settings.blockUnsafeWeb') == null) {
+    settings.set('settings.blockUnsafeWeb', true);
+}
+
 if(settings.get('settings.DNT') == null) {
     settings.set('settings.DNT', true);
 }
