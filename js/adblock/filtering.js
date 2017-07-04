@@ -3,7 +3,7 @@ const electron = require('electron')
 var session = electron.session
 
 var thingsToFilter = {
-  trackers: false,
+  trackers: true,
   contentTypes: [] // script, image
 }
 
