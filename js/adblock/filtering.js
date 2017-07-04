@@ -13,9 +13,9 @@ var parser
 var parsedFilterData = {}
 
 function initFilterList () {
-  parser = require('./abp-filter-parser-modified/abp-filter-parser.js')
+  parser = require('abp-filter-parser')
 
-  var data = require('fs').readFile(__dirname + '/data/adblock/easylist+easyprivacy+abplistvn.txt', 'utf8', function (err, data) {
+  var data = require('fs').readFile(__dirname + '/data/adblock/blocklist.txt', 'utf8', function (err, data) {
     if (err) {
       return
     }
@@ -44,7 +44,6 @@ function handleRequest (details, callback) {
           cancel: true,
           requestHeaders: details.requestHeaders
         })
-        console.log("Blocked ADS!")
         return
       }
     }
@@ -59,6 +58,7 @@ function handleRequest (details, callback) {
         cancel: true,
         requestHeaders: details.requestHeaders
       })
+      console.log("Blocked ADS!")
       return
     }
   }
@@ -69,22 +69,11 @@ function handleRequest (details, callback) {
   })
 }
 
-global.setFilteringSettings = function (settings) {
-  if (!settings) {
-    settings = {}
-  }
-
-  if (settings.trackers && !thingsToFilter.trackers) { // we're enabling tracker filtering
-    initFilterList()
-  }
-
-  thingsToFilter.contentTypes = settings.contentTypes || []
-  thingsToFilter.trackers = settings.trackers || false
+global.registerFiltering = function (ses) {
+  initFilterList()  
 
   filterContentTypes = thingsToFilter.contentTypes.length !== 0
-}
 
-global.registerFiltering = function (ses) {
   ses.webRequest.onBeforeRequest(handleRequest)
   console.log("ADBlock Started")
 }

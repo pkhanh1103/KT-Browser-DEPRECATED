@@ -142,23 +142,19 @@ function createWindow() {
         mainWindow.fullscreen = false;
     })
     mainWindow.on('enter-html-full-screen', function() {
-        mainWindow.webContents.executeJavaScript('Toast_Material({content:"Nhấn F11 để thoát khỏi chế độ toàn màn hình",updown:"bottom",position:"center",align:"center"});', true)
+        mainWindow.webContents.executeJavaScript('Toast_Material({content:"Press F11 to exit fullscreen",updown:"bottom",position:"center",align:"center"});', true)
         mainWindow.webContents.executeJavaScript("titlebar.style.display='none';", true)
     });
     mainWindow.on('leave-html-full-screen', function() {
-        mainWindow.webContents.executeJavaScript('Toast_Material({ content : "Đã thoát khỏi chế độ toàn màn hình", updown:"bottom", position:"center", align:"center" });', true)
         mainWindow.webContents.executeJavaScript("titlebar.style.display='block';", true)
     });
     mainWindow.on('enter-full-screen', function() {
         if(process.platform !== 'linux') {
-            mainWindow.webContents.executeJavaScript('Toast_Material({ content : "Nhấn F11 để thoát khỏi chế độ toàn màn hình", updown:"bottom", position:"center", align:"center" });', true)
+            mainWindow.webContents.executeJavaScript('Toast_Material({ content : "Press F11 to exit fullscreen", updown:"bottom", position:"center", align:"center" });', true)
         }
         mainWindow.webContents.executeJavaScript("titlebar.style.display='none';", true)
     });
     mainWindow.on('leave-full-screen', function() {
-        if(process.platform !== 'linux') {
-            mainWindow.webContents.executeJavaScript('Toast_Material({content:"Đã thoát khỏi chế độ toàn màn hình",updown:"bottom",position:"center",align:"center"});', true)
-        }
         mainWindow.webContents.executeJavaScript("titlebar.style.display='block';", true)
     });
 

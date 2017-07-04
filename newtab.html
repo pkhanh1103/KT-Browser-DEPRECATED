@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Thẻ mới</title>
+    <title>New tab</title>
 
     <link href="css/ripple.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -464,9 +464,9 @@
 
 <body>
     <div id="containter">
-        <form id="searchForm" method="get" onSubmit="return doSearch();" action="http://www.google.com.vn/search">
+        <form id="searchForm" method="get" onSubmit="return doSearch();" action="http://www.google.com/search">
             <div class="mat-div">
-                <label for="query" class="mat-label">Bạn cần tìm gì ?</label>
+                <label for="query" class="mat-label">What are you looking for?</label>
                 <input class="mat-input" type="text" name="query" autocomplete="on" id="valeur">
                 <label for="search" class="fa fa-search"></label><input type="submit" id="search" />
             </div>
@@ -512,7 +512,7 @@
             function doSearch() {
                 switch(getSearchEngine()) {
                     case '1':
-                        document.getElementById('searchForm').action = 'https://www.google.com.vn/search'
+                        document.getElementById('searchForm').action = 'https://www.google.com/search'
                         break;
                     case '2':
                         document.getElementById('searchForm').action = 'http://coccoc.com/search'
@@ -527,7 +527,7 @@
                         break;
                     case '5':
                         $('#valeur').attr('name', 'p');
-                        document.getElementById('searchForm').action = 'https://vn.search.yahoo.com/search'
+                        document.getElementById('searchForm').action = 'https://search.yahoo.com/search'
                         break;
                     case '6':
                         $('#valeur').attr('name', 'text');

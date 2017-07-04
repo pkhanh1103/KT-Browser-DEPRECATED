@@ -190,7 +190,7 @@
                          if (inputText != "" || inputText != null || typeof inputText !== "undefined") {
                              $.ajax({
                                  type: "GET"
-                                 , url: "http://google.com.vn/complete/search?client=firefox&q=" + inputText
+                                 , url: "http://google.com/complete/search?client=firefox&q=" + inputText
                                  , success: function (data) {
                                      var obj = JSON.parse(data);
                                      var links = [];
@@ -243,7 +243,7 @@
                                                      .attr('link'));
                                                  break;
                                              case "5":
-                                                 webview.loadURL("https://vn.search.yahoo.com/search?p=" + $(this)
+                                                 webview.loadURL("https://search.yahoo.com/search?p=" + $(this)
                                                      .attr('link'));
                                                  break;
                                              case "6":

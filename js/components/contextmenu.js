@@ -123,7 +123,7 @@ class ContextMenu {
     prepareContextMenu() {
         var t = this
         t.TTSMenuItem = new MenuItem({
-            label: 'Đọc văn bản này...',
+            label: 'Read text...',
             click() {
                 require('google-tts-api')(t.selectionText, 'vi', 1).then(function (url) {
                     console.log(url);
@@ -137,26 +137,26 @@ class ContextMenu {
             }
         })
         t.backMenuItem = new MenuItem({
-            label: 'Lùi về',
+            label: 'Back',
             click() {
                 t.webview.goBack()
             }
         })
         t.forwardMenuItem = new MenuItem({
-            label: 'Tiến tới',
+            label: 'Forward',
             click() {
                 t.webview.goForward()
             }
         })
         t.refreshMenuItem = new MenuItem({
-            label: 'Làm mới',
+            label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
             click() {
                 t.webview.reload()
             }
         })
         t.openLinkInNewTabMenuItem = new MenuItem({
-            label: 'Mở địa chỉ trong thẻ mới',
+            label: 'Open link in new tab',
             click() {
                 if (t.linkToOpen != "") {
                     var tab = new Tab(),
@@ -169,7 +169,7 @@ class ContextMenu {
             }
         })
         t.openImageInNewTabMenuItem = new MenuItem({
-            label: 'Mở ảnh trong thẻ mới',
+            label: 'Open image in new tab',
             click() {
                 if (t.imageToSave != "") {
                     var tab = new Tab(),
@@ -182,7 +182,7 @@ class ContextMenu {
             }
         })
         t.copyLinkMenuItem = new MenuItem({
-            label: 'Sao chép địa chỉ',
+            label: 'Copy link address',
             click() {
                 if (t.linkToOpen != "") {
                     clipboard.writeText(t.linkToOpen)
@@ -190,13 +190,13 @@ class ContextMenu {
             }
         })
         t.saveImageAsMenuItem = new MenuItem({
-            label: 'Lưu ảnh như...',
+            label: 'Save image as...',
             click() {
                 t.webview.getWebContents().downloadURL(t.imageToSave)
             }
         })
         t.printMenuItem = new MenuItem({
-            label: 'In trang này',
+            label: 'Print',
             accelerator: 'CmdOrCtrl+P',
             click() {
                 t.webview.print({
@@ -206,7 +206,7 @@ class ContextMenu {
             }
         })
         t.inspectElementMenuItem = new MenuItem({
-            label: 'Kiểm tra phần tử',
+            label: 'Inspect',
             accelerator: 'CmdOrCtrl+Shift+I',
             click() {
                 t.webview.inspectElement(t.xToInspect, t.yToInspect)
@@ -220,49 +220,49 @@ class ContextMenu {
         })
 
         t.undoMenuItem = new MenuItem({
-            label: 'Hoàn tác',
+            label: 'Undo',
             accelerator: 'CmdOrCtrl+Z',
             click() {
                 t.webview.undo()
             }
         })
         t.redoMenuItem = new MenuItem({
-            label: 'Làm lại',
+            label: 'Redo',
             accelerator: 'CmdOrCtrl+Shift+Z',
             click() {
                 t.webview.redo()
             }
         })
         t.cutMenuItem = new MenuItem({
-            label: 'Cắt',
+            label: 'Cut',
             accelerator: 'CmdOrCtrl+X',
             click() {
                 t.webview.cut()
             }
         })
         t.copyMenuItem = new MenuItem({
-            label: 'Sao chép',
+            label: 'Copy',
             accelerator: 'CmdOrCtrl+C',
             click() {
                 t.webview.copy()
             }
         })
         t.pasteMenuItem = new MenuItem({
-            label: 'Dán',
+            label: 'Paste',
             accelerator: 'CmdOrCtrl+V',
             click() {
                 t.webview.paste()
             }
         })
         t.deleteMenuItem = new MenuItem({
-            label: 'Xoá',
+            label: 'Delete',
             accelerator: 'Delete',
             click() {
                 t.webview.delete()
             }
         })
         t.selectAllMenuItem = new MenuItem({
-            label: 'Chọn tất cả',
+            label: 'Select All',
             accelerator: 'CmdOrCtrl+A',
             click() {
                 t.webview.selectAll()

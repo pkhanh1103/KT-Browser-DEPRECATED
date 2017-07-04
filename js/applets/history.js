@@ -56,7 +56,7 @@ $('.flat-button').mousedown(function (e) {
 
 function verifyCheckboxes() {
     if (checkedCount > 0) {
-        $('.selected-items-text').html('Đang chọn: ' + checkedCount)
+        $('.selected-items-text').html('Selected items: ' + checkedCount)
         $('.selected').css({
             display: 'block'
         }).animate({
@@ -117,49 +117,60 @@ function loadHistory(search = "") {
         var items = $('<div class="items">').appendTo(body)
 
         if (month == "Jan") {
-            month = "Tháng một"
+            month = "January"
         }
         if (month == "Feb") {
-            month = "Tháng hai"
+            month = "February"
         }
         if (month == "Mar") {
-            month = "Tháng ba"
+            month = "March"
         }
         if (month == "Apr") {
-            month = "Tháng tư"
+            month = "April"
         }
-        if (month == "Apr") {
-            month = "Tháng tư"
-        }
-        if (month == "May") {
-            month = "Tháng năm"
+        if (month == "Jun") {
+            month = "June"
         }
         if (month == "Jul") {
-            month = "Tháng bảy"
+            month = "July"
         }
         if (month == "Aug") {
-            month = "Tháng tám"
+            month = "August"
         }
         if (month == "Sep") {
-            month = "Tháng chín"
+            month = "September"
         }
         if (month == "Oct") {
-            month = "Tháng mười"
+            month = "October"
         }
         if (month == "Nov") {
-            month = "Tháng mười một"
+            month = "November"
         }
         if (month == "Dec") {
-            month = "Tháng mười hai"
+            month = "December"
+        }
+
+        if (dayOfMonth.slice(-1) == "1") {
+            dayOfMonth += "st"
+        } else {
+            if (dayOfMonth.slice(-1) == "2") {
+                dayOfMonth += "nd"
+            } else {
+                if (dayOfMonth.slice(-1) == "3") {
+                    dayOfMonth += "rd"
+                } else {
+                    dayOfMonth += "th"
+                }
+            }
         }
 
         var d1 = Date()
         var todayDate = d1.toString()
 
         if (todayDate.split(" ")[1] == date.split(" ")[1] && todayDate.split(" ")[2] == date.split(" ")[2]) {
-            header.html("Hôm nay: ngày " + dayOfMonth + " - " + month)
+            header.html("Today - " + dayOfMonth + " of " + month)
         } else {
-            header.html("Ngày " + dayOfMonth + " - " + month)
+            header.html(dayOfMonth + " of " + month)
         }
         card[0].list = {
             card: card,

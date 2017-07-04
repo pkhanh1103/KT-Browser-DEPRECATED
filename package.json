@@ -31,6 +31,7 @@
     "node-dir": "latest"
   },
   "dependencies": {
+    "abp-filter-parser": "latest",
     "asar": "latest",
     "electron": "latest",
     "electron-connect": "latest",
@@ -42,6 +43,6 @@
     "google-tts-api": "latest",
     "is-there": "latest",
     "node-dir": "latest",
-    "request": "^2.81.0"
+    "request": "latest"
   }
 }

@@ -16,7 +16,7 @@
         if(process.platform == 'win32') {
             t.fullscreen = $('<li class="menu-item ripple">').appendTo(t.menuItems)
             t.fullscreen.append('<i class="material-icons">fullscreen</i>')
-            t.fullscreen.append('<p class="menu-text">Toàn màn hình</p>')
+            t.fullscreen.append('<p class="menu-text">Fullscreen</p>')
         }
         t.history = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         t.bookmarks = $('<li class="menu-item ripple">').appendTo(t.menuItems)
@@ -27,33 +27,33 @@
         t.info = $('<li class="menu-item ripple">').appendTo(t.menuItems)
 
         t.settings.append('<i class="material-icons">settings</i>')
-        t.settings.append('<p class="menu-text">Cài đặt</p>')
+        t.settings.append('<p class="menu-text">Settings</p>')
 
         t.history.append('<i class="material-icons">history</i>')
-        t.history.append('<p class="menu-text">Lịch sử</p>')
+        t.history.append('<p class="menu-text">History</p>')
 
         t.bookmarks.append('<i class="material-icons">collections_bookmark</i>')
-        t.bookmarks.append('<p class="menu-text">Dấu trang (chưa h.thiện)</p>')
+        t.bookmarks.append('<p class="menu-text">Bookmarks</p>')
 
         t.downloads.append('<i class="material-icons">file_download</i>')
-        t.downloads.append('<p class="menu-text">Tải về (chưa hoàn thiện)</p>')
+        t.downloads.append('<p class="menu-text">Downloads</p>')
 
         t.newWindow.append('<i class="material-icons">desktop_windows</i>')
-        t.newWindow.append('<p class="menu-text">Cửa sổ mới</p>')
+        t.newWindow.append('<p class="menu-text">New window</p>')
 
         t.devTools.append('<i class="material-icons">code</i>')
-        t.devTools.append('<p class="menu-text">Chế độ nhà phát triển</p>')
+        t.devTools.append('<p class="menu-text">Developer Tools</p>')
 
         t.nightmode.append('<i class="material-icons">brightness_4</i>')
 
         if(getNightMode()) {
-            t.nightmode.append('<p class="menu-text">Tắt chế độ ban đêm</p>')
+            t.nightmode.append('<p class="menu-text">Exit night mode</p>')
         } else {
-            t.nightmode.append('<p class="menu-text">Chế độ ban đêm</p>')
+            t.nightmode.append('<p class="menu-text">Night mode</p>')
         }
 
         t.info.append('<i class="material-icons">info</i>')
-        t.info.append('<p class="menu-text">Thông tin KT Browser</p>')
+        t.info.append('<p class="menu-text">About KT Browser</p>')
 
         $(t).find('.menu-item').mousedown(function(e) {
             makeRippleMenuItem(this, e);
@@ -84,7 +84,7 @@
             if (settings.tab.instance.webview.isPrivacy)
             {
                 Toast_Material({
-                    content: "Đã tắt chế độ ẩn danh cho thẻ hiện tại",
+                    content: "Incognito mode is now off for this tab",
                     updown: "bottom",
                     position: "center",
                     align: "center"
@@ -92,7 +92,7 @@
                 settings.tab.instance.webview.isPrivacy = false;
             } else {
                 Toast_Material({
-                    content: "Đã bật chế độ ẩn danh cho thẻ hiện tại, mọi dấu vết trên web của bạn sẽ bị xóa sau khi đóng thẻ này!",
+                    content: "Incognito mode is now on for this tab, your browsing trace will be wiped when this tab is closed",
                     updown: "bottom",
                     position: "center",
                     align: "center"
@@ -134,7 +134,7 @@
         });
         t.bookmarks.click(function(e) {
             Toast_Material({
-                content: "Chưa hoàn thiện!",
+                content: "Not yet complete!",
                 updown: "bottom",
                 position: "center",
                 align: "center"
@@ -144,7 +144,7 @@
             const BrowserWindow = remote.BrowserWindow;
 
             var mainWindow = new BrowserWindow({
-                title: 'Tải về',
+                title: 'Downloads',
                 frame: false
             })
             mainWindow.loadURL(`file://${__dirname}/downloads.html`)
@@ -154,7 +154,7 @@
             const BrowserWindow = remote.BrowserWindow;
 
             var mainWindow = new BrowserWindow({
-                title: 'Cài đặt',
+                title: 'Settings',
                 frame: false,
                 width: 600,
                 height: 750,
@@ -182,7 +182,7 @@
             if(getNightMode()) {
                 t.nightmode.html('')
                 t.nightmode.append('<i class="material-icons">wb_sunny</i>')
-                t.nightmode.append('<p class="menu-text">Tắt chế độ ban đêm</p>')
+                t.nightmode.append('<p class="menu-text">Exit night mode</p>')
 
                 $(".menu-item").css("background-color", "#212121");
                 $('.menu-item').hover(function() {
@@ -196,7 +196,7 @@
             } else {
                 t.nightmode.html('')
                 t.nightmode.append('<i class="material-icons">brightness_4</i>')
-                t.nightmode.append('<p class="menu-text">Chế độ ban đêm</p>')
+                t.nightmode.append('<p class="menu-text">Night mode</p>')
 
                 $(".menu-item").css("background-color", "#fff");
                 $('.menu-item').hover(function() {
@@ -211,9 +211,9 @@
             t.private.html('')
             t.private.append('<i class="material-icons">vpn_lock</i>')
             if(!settings.tab.instance.webview.isPrivacy) {
-                t.private.append('<p class="menu-text">Chế độ ẩn danh</p>')
+                t.private.append('<p class="menu-text">Private mode</p>')
             } else {
-                t.private.append('<p class="menu-text">Tắt chế độ ẩn danh</p>')
+                t.private.append('<p class="menu-text">Exit private mode</p>')
             }
             //menu fade in animation
             $(t).css('display', 'block');

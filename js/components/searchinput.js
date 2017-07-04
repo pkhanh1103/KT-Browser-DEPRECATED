@@ -40,7 +40,7 @@
                          } else {
                              switch (getSearchEngine()) {
                              case "1":
-                                 webview.loadURL("http://www.google.com.vn/search?q=" + $(t)
+                                 webview.loadURL("http://www.google.com/search?q=" + $(t)
                                      .val());
                                  break;
                              case "2":
@@ -56,7 +56,7 @@
                                      .val());
                                  break;
                              case "5":
-                                 webview.loadURL("https://vn.search.yahoo.com/search?p=" + $(t)
+                                 webview.loadURL("https://search.yahoo.com/search?p=" + $(t)
                                      .val());
                                  break;
                              case "6":

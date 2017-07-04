@@ -13,16 +13,16 @@
         var settingmng = require('electron-settings')
 
         if(!settingmng.get("settings.allowScript")) {
-            pref = 'javascript=0, plugins=1'
+            pref = 'javascript=0'
         }
         if(!settingmng.get("settings.allowImage")) {
-            pref = 'images=0, plugins=1'
+            pref = 'images=0'
         }
         if(!settingmng.get("settings.allowScript") && !settingmng.get("settings.allowImage")) {
-            pref = 'javascript=0, images=0, plugins=1'
+            pref = 'javascript=0, images=0'
         }
         t.isPrivacy = false
-        t.webview = $('<webview class="webview" preload="js/extensions/preload.js" webpreferences="' + pref + '" useragent="Mozilla/5.0 (Windows NT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 KT-Browser/7.0.0.0" autosize="on" blinkfeatures="CSSOMSmoothScroll, CSSCompositing, BackgroundSync, ApplicationCache, AudioVideoTracks, FastMobileScrolling, Media, Notifications, MediaStreamSpeech, ScriptedSpeech, Touch, ScrollCustomization" src="about:blank" plugins>').appendTo($(this))[0]
+        t.webview = $('<webview class="webview" preload="js/extensions/preload.js" webpreferences="' + pref + '" useragent="Mozilla/5.0 (Windows NT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 KT-Browser/7.0.1" autosize="on" src="about:blank" plugins>').appendTo($(this))[0]
         t.storage = new Storage()
         t.string = "Siema"
         t.contextMenu = new ContextMenu(t.webview)
@@ -249,7 +249,7 @@
         });
 
         t.webview.addEventListener('plugin-crashed', function(e) {
-            remote.getCurrentWindow().webContents.executeJavaScript("$('.maindiv').msgBox({title:'" + "Lỗi Plugin" + "',message:'" + "Plugin " + e.name + " không phản hồi!" + "',buttons:[{text:'OK',callback:function(){$('p').fadeIn()}}],blend:!0});")
+            remote.getCurrentWindow().webContents.executeJavaScript("$('.maindiv').msgBox({title:'" + "Plugin Error" + "',message:'" + "Plugin " + e.name + " is not responding." + "',buttons:[{text:'OK',callback:function(){$('p').fadeIn()}}],blend:!0});")
         });
         t.webview.addEventListener('did-start-loading', function() {
             settings.tab.instance.bar.suggestions.css('display', 'none');
@@ -269,9 +269,9 @@
         });
         t.webview.addEventListener('load-commit', function(e) {
             if(e.url.length > 65 && !e.url.startsWith("about:")) {
-                settings.tab.instance.status.html("Đang tải: " + e.url.substring(0, 64) + "...")
+                settings.tab.instance.status.html("Loading: " + e.url.substring(0, 64) + "...")
             } else {
-                settings.tab.instance.status.html("Đang tải: " + e.url + "...")
+                settings.tab.instance.status.html("Loading: " + e.url + "...")
             }
             settings.tab.instance.status.css("display", "inline")
             settings.tab.instance.bar.suggestions.css('display', 'none');

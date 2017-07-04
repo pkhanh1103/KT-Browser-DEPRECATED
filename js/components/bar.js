@@ -30,9 +30,9 @@
         var backIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">arrow_back</i>').appendTo(this.backBtn),
             forwardIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">arrow_forward</i>').appendTo(this.forwardBtn),
             refreshIcon = $('<i class="material-icons btn-icon" style="font-size: 22px">refresh</i>').appendTo(this.refreshBtn),
-            rdIcon = $('<i class="material-icons" data-tooltip-text="Chế độ đọc tin" data-tooltip-position="bottom">chrome_reader_mode</i>').appendTo(this.rdBtn),
-            favIcon = $('<i2 class="material-icons" data-tooltip-text="Đánh dấu trang này" data-tooltip-position="bottom">favorite_border</i2>').appendTo(this.searchBox),
-            micIcon = $('<i3 id="micicon" class="material-icons" data-tooltip-text="Tìm kiếm bằng giọng nói" data-tooltip-position="bottom" style="font-size: 18px;">mic_none</i3>').appendTo(this.micBtn),
+            rdIcon = $('<i class="material-icons" data-tooltip-text="Reader View" data-tooltip-position="bottom">chrome_reader_mode</i>').appendTo(this.rdBtn),
+            favIcon = $('<i2 class="material-icons" data-tooltip-text="Bookmark this page" data-tooltip-position="bottom">favorite_border</i2>').appendTo(this.searchBox),
+            micIcon = $('<i3 id="micicon" class="material-icons" data-tooltip-text="Search by voice" data-tooltip-position="bottom" style="font-size: 18px;">mic_none</i3>').appendTo(this.micBtn),
             extIcon = $('<i class="material-icons btn-icon" style="font-size: 22px;">more_vert</i>').appendTo(this.extBtn)
 
         this.searchIcon = $('<i class="material-icons">search</i>').appendTo(this.searchBox)
@@ -77,16 +77,16 @@
                             webview.loadURL(`file://${__dirname}/reader/index.html?url=` + webview.getURL())
                         } else {
                             $('.maindiv').msgBox({
-                                title: 'Thông báo',
-                                message: "Trang web có thể không tương thích với chế độ đọc tin, bạn có muốn chạy chế độ đọc tin không?",
+                                title: 'Warning',
+                                message: "This page might not be compatible with Reader view. Do you want to proceed?",
                                 buttons: [{
-                                    text: 'Không',
+                                    text: 'No',
                                     callback: function() {
                                         $('p').fadeIn()
 
                                     }
                                 }, {
-                                    text: 'Có, tôi muốn chạy chế độ đọc tin!',
+                                    text: 'Yes, I want to use Reader view',
                                     callback: function() {
                                         $('p').fadeIn()
                                         webview.loadURL(`file://${__dirname}/reader/index.html?url=` + webview.getURL())

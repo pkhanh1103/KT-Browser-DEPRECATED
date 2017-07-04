@@ -8,57 +8,53 @@
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-# Trình duyệt web KT Browser
+# KT Browser
 
-Một trình duyệt web của nhóm KTTECH. Trình duyệt này được viết trên Electron và Node.JS bằng ngôn ngữ Javascript, HTML và CSS.
+A Desktop Web Browser of KTTECH Team made with Electron.
 
-## Các tính năng
-* Đổi màu theo trang
-* Cài đặt
-* Lịch sử
-* Gợi ý tìm kiếm
-* Dấu trang `TODO`
-* Tải về `TODO`
-* Chế độ ẩn danh `TODO`
-* Tiện ích bổ sung (đang phát triển)
+## Features
+* Colored tabs
+* Settings
+* History
+* Search suggestions
+* Bookmarks `TODO`
+* Downloads `TODO`
+* Private Mode
+* Extensions (developing)
 * Material Design UI
-* Chế độ ban đêm
-* Trợ lí ảo Cena (đang phát triển)
-* Kích đúp để dịch từ qua LaBan API
-* Còn nhiều nữa...
+* Night Mode
+* Cena Visual Assistant (developing)
+* Tu dien Anh Viet - Laban Dictionary
+* And more...
 
-## Ảnh chụp màn hình
+## Screenshots
 
 <p align="center">
-  <img alt="Giao diện Material Design" src="http://kt-browser.com/tinhnang1.png" />
+  <img alt="Material Design UI" src="http://kt-browser.com/tinhnang1.png" />
 </p>
 <p align="center">
-  <img alt="Chế độ ban đêm" src="http://kt-browser.com/tinhnang2.png" />
+  <img alt="Night Mode" src="http://kt-browser.com/tinhnang2.png" />
 </p>
 <p align="center">
-  <img alt="Đổi màu theo trang" src="http://kt-browser.com/tinhnang6.png" />
+  <img alt="Colored tabs" src="http://kt-browser.com/tinhnang6.png" />
 </p>
 
-## Tải và sử dụng mã nguồn...
+## Installing
+If you just want to run KT Browser, you can download binaries [here](https://github.com/KTTECHTeam/KT-Browser/releases).
 
-Trước tiên bạn cần cài đặt Node.JS
+If you want to develop KT Browser:
+* Install [Node](https://nodejs.org).
+* Run `npm install` to install dependencies.
+* Run `npm start` to debug.
 
-```
-git clone https://github.com/KTTECHTeam/KT-Browser.git
-cd KT-Browser
-npm install && npm start
-```
+See `package.json` for more compile commands.
 
-Xem thêm các dòng lệnh npm được viết sẵn trong package.json.
+## Contributing
 
-## Lưu ý
+* Contributions are always welcome
+* If you want a feature and can code, feel free to fork and add the change yourself and make a pull request
 
-Hiện tại trình duyệt này vẫn đang trong giai đoạn phát triển và cần sự giúp sức của cộng đồng nguồn mở. Xin hãy tạo một pull-request nếu bạn có thể sửa đổi hoặc phát triển thêm 1 tính năng nào khác.
-
-Hoặc bạn có thể [tạo một issues](https://github.com/KTTECHTeam/KT-Browser/issues) để có thể góp ý hoặc báo cáo lỗi cho nhóm.
-
-## Thông tin giấy phép
-KT Browser được viết lại từ dự án [WebExpress2](https://github.com/Sential/WebExpress2) thông qua giấy phép MIT và KT Browser cũng được phát hành dưới dạng mã nguồn mở thông qua [giấy phép MIT](https://github.com/KTTECHTeam/KT-Browser/blob/master/LICENSE).
+## License
 
 ```
 MIT License
@@ -83,7 +79,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-### Thông tin thêm
-Trang chủ: https://kt-browser.com.
-Facebook: fb.com/ktbrowser.

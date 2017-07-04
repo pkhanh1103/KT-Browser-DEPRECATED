@@ -274,29 +274,36 @@
     <div class="maindiv">
         <div class="titlebar" id="titlebar">
             <div class="draggable">
-                <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Cài đặt</label>
+                <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Settings</label>
             </div>
-            <div data-tooltip-text="Đóng cửa sổ" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
-            <div data-tooltip-text="Phóng to cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
-            <div data-tooltip-text="Ẩn cửa sổ" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
+            <div data-tooltip-text="Close" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
+            <div data-tooltip-text="Maximize" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
+            <div data-tooltip-text="Minimize" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
             <div class="border5"></div>
         </div>
         </script>
         <div class="instances" id="instances" style="position: static; top: 0px; margin-left: 30px; width: auto;">
             <div class="pad">
-                <h5>Khởi động:</h5>
+                <h5>On startup</h5>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <label class="mdl-textfield__label" for="sample1">Địa chỉ trang chủ</label>
+                    <label class="mdl-textfield__label" for="sample1">Home Page Address</label>
                     <input class="mdl-textfield__input" type="text" style="cursor: text;" id="homePage" value="">
                 </div>
+                <h4 style="margin-top: 0px; margin-bottom: 0px;"></h4>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick='homePage.value = "kt-browser://newtab"'>
+                    Default Start Page
+                 </button>
+                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick='homePage.value = ""'>
+                    Blank Page
+                 </button>
             </div>
             <div class="pad">
-                <h5>Công cụ tìm kiếm:</h5>
-                <p><a>Bạn có thể tùy chọn công cụ tìm kiếm (search engine) khi tìm kiếm từ Thanh địa chỉ.</a></p>
+                <h5>Search Engines</h5>
+                <p><a>Search engine used when searching from the address box.</a></p>
                 <div class="mdl-selectfield mdl-js-selectfield">
                     <select id="SESelector" class="mdl-selectfield__select" readonly>
                         <option value="1" selected>Google</option>
-                        <option value="2">Cốc cốc</option>
+                        <option value="2">Cốc Cốc</option>
                         <option value="3">DuckDuckGo</option>
                         <option value="4">Bing</option>
                         <option value="5">Yahoo!</option>
@@ -305,11 +312,11 @@
                 </div>
             </div>
             <div class="pad">
-                <h5>VPN:</h5>
-                <p><a>VPN miễn phí được cung cấp cho người dùng chỉ có trên KT Browser.</a></p>
+                <h5>VPN</h5>
+                <p><a>Free VPN, available exclusively on KT Browser.</a></p>
                 <div class="mdl-selectfield mdl-js-selectfield">
                     <select id="VPNSelector" class="mdl-selectfield__select" readonly>
-                        <option value="1" selected>Không sử dụng VPN</option>
+                        <option value="1" selected>Don't use VPN</option>
                         <option value="2">Singapore</option>
                         <option value="3">Frankfurt</option>
                         <option value="4">Hồng Kông</option>
@@ -324,62 +331,67 @@
                 </div>
             </div>
             <div class="pad">
-                <h5>Giao diện:</h5>
+                <h5>Appearance</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ChangeColorByPage">
-                        <span class="mdl-switch__label">Đổi màu giao diện trình duyệt theo trang</span>
+                        <span class="mdl-switch__label">Colored tabs</span>
                         <input type="checkbox" id="ChangeColorByPage" class="mdl-switch__input">
                     </label>
             </div>
             <div class="pad">
-                <h5>Nội dung:</h5>
+                <h5>Contents</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="allowScript">
-                        <span class="mdl-switch__label">Cho phép chạy Javascript</span>
+                        <span class="mdl-switch__label">Allow Javascript</span>
                         <input type="checkbox" id="allowScript" class="mdl-switch__input" checked>    
                 </label>
                 <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="allowImage">
-                        <span class="mdl-switch__label">Cho phép tải ảnh</span>
+                        <span class="mdl-switch__label">Allow Images</span>
                         <input type="checkbox" id="allowImage" class="mdl-switch__input" checked>    
                 </label>
                 <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="DNT">
-                        <span class="mdl-switch__label">Gửi yêu cầu 'Không theo dõi' khi truy cập</span>
+                        <span class="mdl-switch__label">Send a "Do Not Track" request with your browsing traffic</span>
                         <input type="checkbox" id="DNT" class="mdl-switch__input" checked>    
                 </label>
             </div>
             <div class="pad">
-                <h5>Tiện ích:</h5>
+                <h5>Utilities</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockads">
-                        <span class="mdl-switch__label">Chặn quảng cáo</span>
+                        <span class="mdl-switch__label">Block Ads</span>
                         <input type="checkbox" id="blockads" class="mdl-switch__input">    
-                    </label>
+
+                </label>
                 <br></br>
+                <button class="mdl-button mdl-js-button">
+                    Edit Ad Blocking Filter Lists
+                 </button>
+                 <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockUnsafeWeb">
-                        <span class="mdl-switch__label">Lọc các trang web lừa đảo, nguy hiểm (Cyradar)</span>
+                        <span class="mdl-switch__label">Block phishing and dangerous sites (Cyradar)</span>
                         <input type="checkbox" id="blockUnsafeWeb" class="mdl-switch__input">    
                     </label>
                 <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="labanDic">
-                        <span class="mdl-switch__label">Nhấp đúp chuột để tra từ điển (Laban Dictionary)</span>
+                        <span class="mdl-switch__label">Double-click to look up meaning in dictionary (Laban Dictionary)</span>
                         <input type="checkbox" id="labanDic" class="mdl-switch__input">    
                     </label>
                 <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="macRender">
-                        <span class="mdl-switch__label">Làm đậm phông chữ khi duyệt web (Mac Render)</span>
+                        <span class="mdl-switch__label">Use Mac Rendering on web page</span>
                         <input type="checkbox" id="macRender" class="mdl-switch__input">    
                 </label>
             </div>
             <div class="pad">
-                <h5>Quản lí thẻ:</h5>
+                <h5>Tabs</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="closeOnLastTab">
-                        <span class="mdl-switch__label">Thoát cửa sổ trình duyệt khi đóng thẻ cuối cùng</span>
+                        <span class="mdl-switch__label">Close browser window when the last tab is closed</span>
                         <input type="checkbox" id="closeOnLastTab" class="mdl-switch__input" checked>    
                     </label>
             </div>
             <div class="pad">
-                <h5>Nâng cao:</h5>
+                <h5>Advanced</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
-                        <span class="mdl-switch__label">Sử dụng chế độ tăng tốc phần cứng khi khả dụng</span>
+                        <span class="mdl-switch__label">Use hardware acceleration when available</span>
                         <input type="checkbox" id="hardalc" class="mdl-switch__input">    
                 </label>
             </div>

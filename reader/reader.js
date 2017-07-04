@@ -23,7 +23,7 @@ function startReaderView(article) {
 	var readerContent = "<link rel='stylesheet' href='readerView.css'>";
 
 	if (!article) {
-		readerContent += "<div class='reader-main'><em>Không tìm thấy bài viết nào.</em></div>";
+		readerContent += "<div class='reader-main'><em>No article found.</em></div>";
 	} else {
 		document.title = article.title;
 
@@ -66,7 +66,7 @@ function startReaderView(article) {
 
 var url = getQueryVariable("url");
 
-document.title = "Chế độ đọc | " + url
+document.title = "Reader View | " + url
 
 var parserframe = document.createElement("iframe");
 parserframe.className = "temporary-iframe";

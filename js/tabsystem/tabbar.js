@@ -11,8 +11,8 @@ var borderColor = 'rgba(0,0,0,0.1)';
 
 function addTab(instance, tab) {
     tab.Tab = $('<div class="tab" id="#tab"></div>').appendTo('#tabbar');
-    tab.closeBtn = $("<div class='closeBtn' data-tooltip-text='Đóng thẻ này (Ctrl + W)' data-tooltip-position='bottom' ><i class='material-icons' style='font-size: 18px;'>close</i></div>").appendTo(tab.Tab);
-    tab.Title = $("<div class='tabTitle'>Thẻ mới</div>").appendTo(tab.Tab);
+    tab.closeBtn = $("<div class='closeBtn' data-tooltip-text='Close tab (Ctrl + W)' data-tooltip-position='bottom' ><i class='material-icons' style='font-size: 18px;'>close</i></div>").appendTo(tab.Tab);
+    tab.Title = $("<div class='tabTitle'>New tab</div>").appendTo(tab.Tab);
     tab.Favicon = $("<div></div>").appendTo(tab.Tab);
     tab.Foreground = 'black';
     tab.Color = selectedTabColor;
@@ -28,7 +28,7 @@ function addTab(instance, tab) {
     tab.Tab.contextmenu(function(e) {
         const menu = new Menu()
         menu.append(new MenuItem({
-            label: 'Tab mới',
+            label: 'New tab',
             accelerator: 'CmdOrCtrl+N',
             click() {
                 var tab = new Tab(),
@@ -43,34 +43,34 @@ function addTab(instance, tab) {
             type: 'separator'
         }))
         menu.append(new MenuItem({
-            label: 'Tải lại',
+            label: 'Reload',
             accelerator: 'CmdOrCtrl+R',
             click() {
                 tab.instance.webview.webview.reload()
             }
         }))
         menu.append(new MenuItem({
-            label: 'Tải lại (bỏ qua cache)',
+            label: 'Reload (ignore cache)',
             accelerator: 'CmdOrCtrl+Shift+R',
             click() {
                 tab.instance.webview.webview.reloadIgnoringCache()
             }
         }))
         menu.append(new MenuItem({
-            label: 'Ghim tab',
+            label: 'Pin tab',
             enabled: false,
             click() {}
         }))
         if(tab.instance.webview.webview.isAudioMuted()) {
             menu.append(new MenuItem({
-                label: 'Bật âm thanh tab',
+                label: 'Unmute tab',
                 click() {
                     tab.instance.webview.webview.setAudioMuted(false)
                 }
             }))
         } else {
             menu.append(new MenuItem({
-                label: 'Tắt tiếng tab',
+                label: 'Mute tab',
                 click() {
                     tab.instance.webview.webview.setAudioMuted(true)
                 }
@@ -81,7 +81,7 @@ function addTab(instance, tab) {
         }))
 
         menu.append(new MenuItem({
-            label: 'Đóng tab',
+            label: 'Close tab',
             accelerator: 'CmdOrCtrl+W',
             click() {
                 removeTab(tab);
