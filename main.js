@@ -30,7 +30,7 @@ if(!settings.get("static") == null) {
 }
 
 if(settings.get('settings.nvProxy') == null) {
-    settings.set('settings.nvProxy', '');
+    settings.set('settings.nvProxy', 'http://kt-browser.com/Singapore.pac');
 }
 
 if(settings.get('settings.homePage') == null) {
