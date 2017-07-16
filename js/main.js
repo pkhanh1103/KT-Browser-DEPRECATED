@@ -88,7 +88,7 @@ $(document).ready(function() {
     globalShortcut.register('CmdOrCtrl+Shift+T', () => {
         if (remote.getCurrentWindow().isFocused())
             Toast_Material({
-                content: "Not yet complete!",
+                content: "Not yet complete",
                 updown: "bottom",
                 position: "center",
                 align: "center"
@@ -166,23 +166,30 @@ $(document).ready(function() {
         registerFiltering(remote.getCurrentWindow().webContents.session)
     }
     setInterval(function() {
-        remote.getCurrentWindow().webContents.session.setProxy({
-            pacScript: settings.get("settings.nvProxy")
-        }, function() {});
+        if (settings.get('static.VPN')) {
+            remote.getCurrentWindow().webContents.session.setProxy({
+                pacScript: settings.get("settings.nvProxy")
+            }, function() {});
+        } else {
+            remote.getCurrentWindow().webContents.session.setProxy({
+                pacScript: ""
+            }, function() {});
+        }
+
     }, 1000);
-    
+
     var tab = new Tab(),
-    instance = $('#instances').browser({
-        tab: tab,
-        url: settings.get("settings.homePage", "kt-browser://newtab")
-    })
-addTab(instance, tab);
+        instance = $('#instances').browser({
+            tab: tab,
+            url: settings.get("settings.homePage", "kt-browser://newtab")
+        })
+    addTab(instance, tab);
 
     $('.maindiv').msgBox({
         title: 'Warning',
         message: 'This is the alpha version of KT Browser 7.0. Keep in mind that this release is not feature-complete yet and there are many bugs and errors to watch out.',
         buttons: [{
-            text: 'I understand!',
+            text: 'I understand',
             callback: function() {
                 $('p').fadeIn()
             }
@@ -256,12 +263,59 @@ window.getNightMode = function() {
     return settings.get('static.NightMode');
 }
 
+window.getVPN = function() {
+    return settings.get('static.VPN');
+}
+
+window.getVPNLocation = function() {
+    switch (settings.get('settings.nvProxy')) {
+        case "http://kt-browser.com/Singapore.pac":
+            return 'Singapore'
+            break
+        case "http://kt-browser.com/Frankfurt.pac":
+            return 'Frankfurt'
+            break
+        case "http://kt-browser.com/HongKong.pac":
+            return 'Hong Kong'
+            break
+        case "http://kt-browser.com/LondonUK.pac":
+            return 'London - UK'
+            break
+        case "http://kt-browser.com/LosAngelesUS.pac":
+            return 'Los Angeles - US'
+            break
+        case "http://kt-browser.com/NewYorkUS.pac":
+            return 'New York - US'
+            break
+        case "http://kt-browser.com/Romania.pac":
+            return 'Romania'
+            break
+        case "http://kt-browser.com/SanFranciscoUS.pac":
+            return 'San Francisco - US'
+            break
+        case "http://kt-browser.com/Sydney.pac":
+            return 'Sydney'
+            break
+        case "http://kt-browser.com/WashingtonUS.pac":
+            return 'Washington - US'
+            break
+    }
+}
+
+window.checkVPN = function() {
+    return settings.get('static.VPN');
+}
+
 window.getSearchEngine = function() {
     return settings.get('settings.SearchEngine');
 }
 
 function setNightMode(value) {
     settings.set('static.NightMode', value);
+}
+
+window.setVPN = function(value) {
+    settings.set('static.VPN', value);
 }
 
 function getSettings(setting, defaultvalue) {

@@ -6,7 +6,7 @@
     margin-top: 45px;
     right: 16px;
     margin-left: 5px;
-    border-radius: 0px;
+    border-radius: 5px;
     background-color: black;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -39,6 +39,11 @@
     font-size: 20px;
     margin-left: 18px;
     opacity: 0.8;
+}
+
+.menu-spec {
+    padding-top: 1px;
+    background-color: #E0E0E0;
 }
 
 .menu-item {

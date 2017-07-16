@@ -328,14 +328,6 @@
             display: none;
         }
 
-        .bottom-bar {
-            width: 100%;
-            height: 40px;
-            position: absolute;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
         input[type=submit] {
             display: none;
         }
@@ -402,32 +394,6 @@
             margin: 12px 50%;
             margin-right: 0;
             float: left;
-        }
-
-        .color a {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            margin-left: 2px;
-            margin-right: 2px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .color1 {
-            background-color: #4285f4;
-        }
-
-        .color2 {
-            background-color: #34a853;
-        }
-
-        .color3 {
-            background-color: #F57F17;
-        }
-
-        .color4 {
-            background-color: #ea4335;
         }
 
         .conditions {
@@ -499,15 +465,6 @@
       alt="" /></a>
 
     </div>
-
-    <div class="bottom-bar">
-
-        <div class="color">
-            <a onclick="color1()" class="color1"></a>
-            <a onclick="color2()" class="color2"></a>
-            <a onclick="color3()" class="color3"></a>
-            <a onclick="color4()" class="color4"></a>
-        </div>
         <script>
             function doSearch() {
                 switch(getSearchEngine()) {
@@ -534,22 +491,6 @@
                         document.getElementById('searchForm').action = 'https://www.yandex.com/search'
                         break;
                 }
-            }
-
-            function color1() {
-                document.body.style.backgroundColor = "#4285f4";
-            }
-
-            function color2() {
-                document.body.style.backgroundColor = "#34a853";
-            }
-
-            function color3() {
-                document.body.style.backgroundColor = "#F57F17";
-            }
-
-            function color4() {
-                document.body.style.backgroundColor = "#ea4335";
             }
         </script>
         <script src="js/materialdesign/ripple.js"></script>

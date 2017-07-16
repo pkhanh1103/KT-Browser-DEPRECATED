@@ -58,7 +58,7 @@ function handleRequest (details, callback) {
         cancel: true,
         requestHeaders: details.requestHeaders
       })
-      console.log("Blocked ADS!")
+      console.log("Blocked ADS")
       return
     }
   }

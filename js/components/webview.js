@@ -93,6 +93,8 @@
         })
 
         t.updateURLBarIcon = function() {
+            settings.tab.instance.bar.rdBtn.show()
+            settings.tab.instance.bar.searchInput.css("width", "calc(100% - 120px)")
             if(t.webview.getURL().startsWith("http://")) {
                 settings.tab.instance.bar.searchIcon.html('http')
             }
@@ -101,21 +103,31 @@
             }
             if(t.webview.getURL().startsWith("kt-browser://")) {
                 settings.tab.instance.bar.searchIcon.html('public')
+                settings.tab.instance.bar.rdBtn.hide()
+                settings.tab.instance.bar.searchInput.css("width", "calc(100% - 88px)")
             }
             if(t.webview.getURL().startsWith("kt-browser://newtab")) {
                 settings.tab.instance.bar.searchIcon.html('search')
             }
             if(t.webview.getURL().startsWith("file://")) {
                 settings.tab.instance.bar.searchIcon.html('storage')
+                settings.tab.instance.bar.rdBtn.hide()
+                settings.tab.instance.bar.searchInput.css("width", "calc(100% - 88px)")
             }
             if(t.webview.getURL().includes(`reader/index.html?url=`)) {
                 settings.tab.instance.bar.searchIcon.html('remove_red_eye')
+                settings.tab.instance.bar.rdBtn.hide()
+                settings.tab.instance.bar.searchInput.css("width", "calc(100% - 88px)")
             }
             if(t.webview.getURL().startsWith("data:text")) {
                 settings.tab.instance.bar.searchIcon.html('description')
+                settings.tab.instance.bar.rdBtn.hide()
+                settings.tab.instance.bar.searchInput.css("width", "calc(100% - 88px)")
             }
             if(t.webview.getURL().startsWith("data:image")) {
                 settings.tab.instance.bar.searchIcon.html('image')
+                settings.tab.instance.bar.rdBtn.hide()
+                settings.tab.instance.bar.searchInput.css("width", "calc(100% - 88px)")
             }
             if(t.isPrivacy) {
                 settings.tab.instance.bar.searchIcon.html('vpn_lock')

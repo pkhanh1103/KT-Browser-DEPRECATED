@@ -24,7 +24,8 @@ if(process.platform == 'win32') {
 
 if(!settings.get("static") == null) {
     settings.set('static', {
-        NightMode: false
+        NightMode: false,
+        VPN: false
     })
 }
 
@@ -82,6 +83,10 @@ if(settings.get('settings.closeOnLastTab') == null) {
 
 if(settings.get('static.NightMode') == null) {
     settings.set('static.NightMode', false);
+}
+
+if(settings.get('static.VPN') == null) {
+    settings.set('static.VPN', false);
 }
 
 if(!settings.get("settings.hardalc")) {

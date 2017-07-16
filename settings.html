@@ -290,10 +290,10 @@
                     <input class="mdl-textfield__input" type="text" style="cursor: text;" id="homePage" value="">
                 </div>
                 <h4 style="margin-top: 0px; margin-bottom: 0px;"></h4>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick='homePage.value = "kt-browser://newtab"'>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick='homePage.value = "kt-browser://newtab"'>
                     Default Start Page
                  </button>
-                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick='homePage.value = ""'>
+                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick='homePage.value = ""'>
                     Blank Page
                  </button>
             </div>
@@ -313,13 +313,12 @@
             </div>
             <div class="pad">
                 <h5>VPN</h5>
-                <p><a>Free VPN, available exclusively on KT Browser.</a></p>
+                <p><a>Select VPN location.</a></p>
                 <div class="mdl-selectfield mdl-js-selectfield">
                     <select id="VPNSelector" class="mdl-selectfield__select" readonly>
-                        <option value="1" selected>Don't use VPN</option>
-                        <option value="2">Singapore</option>
+                        <option value="2" selected>Singapore</option>
                         <option value="3">Frankfurt</option>
-                        <option value="4">Hồng Kông</option>
+                        <option value="4">Hong Kong</option>
                         <option value="5">London - UK</option>
                         <option value="6">Los Angeles - US</option>
                         <option value="7">New York - US</option>
@@ -362,7 +361,7 @@
 
                 </label>
                 <br></br>
-                <button class="mdl-button mdl-js-button">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Edit Ad Blocking Filter Lists
                  </button>
                  <br></br>
@@ -630,9 +629,6 @@
                     homePage.value = "kt-browser://newtab"
                 }
                 switch(VPNSelector.value) {
-                    case "1":
-                        proxyValue = ''
-                        break
                     case "2":
                         proxyValue = 'http://kt-browser.com/Singapore.pac'
                         break
