@@ -19,6 +19,29 @@ var historyPath = app.getPath('userData') + '/User Data/History';
 var userdataPath = app.getPath('userData') + '/User Data';
 
 $(document).ready(function() {
+    setInterval(function() {
+        if (colorBrightness($(document.body).css('background-color')) < 150) {
+            for (var i = 0; i < tabCollection.length; i++) {
+                tabCollection[i].Title.css('color', '#fff')
+                tabCollection[i].Preloader.attr('color', '#fff')
+                tabCollection[i].closeBtn.css('color', '#fff')
+            }
+        } else {
+            for (var i = 0; i < tabCollection.length; i++) {
+                tabCollection[i].Title.css('color', '#444')
+                tabCollection[i].Preloader.attr('color', '#3F51B5')
+                tabCollection[i].closeBtn.css('color', '#000')
+            }
+        }
+    }, 200);
+
+    var tab = new Tab(),
+        instance = $('#instances').browser({
+            tab: tab,
+            url: settings.get("settings.homePage", "kt-browser://newtab")
+        })
+    addTab(instance, tab);
+
     globalShortcut.register('CmdOrCtrl+T', () => {
         if (remote.getCurrentWindow().isFocused())
             var tab = new Tab(),
@@ -95,7 +118,6 @@ $(document).ready(function() {
             });
     });
 
-
     document.addEventListener("contextmenu", function(e, params) {
         e.preventDefault();
         e.stopPropagation();
@@ -147,21 +169,7 @@ $(document).ready(function() {
             node = node.parentNode;
         }
     });
-    setInterval(function() {
-        if (colorBrightness($(document.body).css('background-color')) < 150) {
-            for (var i = 0; i < tabCollection.length; i++) {
-                tabCollection[i].Title.css('color', '#fff')
-                tabCollection[i].Preloader.attr('color', '#fff')
-                tabCollection[i].closeBtn.css('color', '#fff')
-            }
-        } else {
-            for (var i = 0; i < tabCollection.length; i++) {
-                tabCollection[i].Title.css('color', '#444')
-                tabCollection[i].Preloader.attr('color', '#3F51B5')
-                tabCollection[i].closeBtn.css('color', '#000')
-            }
-        }
-    }, 200);
+
     if (settings.get('settings.blockads')) {
         registerFiltering(remote.getCurrentWindow().webContents.session)
     }
@@ -177,13 +185,6 @@ $(document).ready(function() {
         }
 
     }, 1000);
-
-    var tab = new Tab(),
-        instance = $('#instances').browser({
-            tab: tab,
-            url: settings.get("settings.homePage", "kt-browser://newtab")
-        })
-    addTab(instance, tab);
 
     $('.maindiv').msgBox({
         title: 'Warning',
