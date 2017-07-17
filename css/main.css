@@ -67,3 +67,9 @@ body {
     margin-right: 84px;
     background-size: 10px 10px;
 }
+
+.windowbutton-feedback {
+    background-image: url(../img/WindowButtons/bugreport.png);
+    margin-right: 84px;
+    background-size: 10px 10px;
+}

@@ -44,6 +44,7 @@
 .menu-spec {
     padding-top: 1px;
     background-color: #E0E0E0;
+    opacity: 0.75;
 }
 
 .menu-item {

@@ -43,6 +43,11 @@
         $('.ripple-icon').mousedown(function() {
             makeRippleIconButton($(this))
         })
+
+        $('.btn-icon').mouseenter(function() {
+            makeRippleIconButton($(this).parent())
+        })
+
         this.backBtn.click(function() {
             if(webview.canGoBack()) {
                 webview.goBack();

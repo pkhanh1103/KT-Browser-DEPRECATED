@@ -123,6 +123,10 @@ function makeRippleIconButton(item) {
     Ripple.makeRipple(item, item.width() / 2, item.height() / 2, 14, 14, iconRippleTime, 0);
 }
 
+function makeRippleIconButtonHover(item) {
+    Ripple.makeRippleHover(item, item.width() / 2, item.height() / 2, 14, 14, iconRippleTime, 0);
+}
+
 function hexToRgb(hex) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function(m, r, g, b) {
