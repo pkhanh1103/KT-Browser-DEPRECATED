@@ -45,7 +45,7 @@
         })
 
         $('.btn-icon').mouseenter(function() {
-            makeRippleIconButton($(this).parent())
+            makeRippleIconButtonHover($(this).parent())
         })
 
         this.backBtn.click(function() {

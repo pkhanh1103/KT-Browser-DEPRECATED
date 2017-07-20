@@ -28,7 +28,7 @@ var Ripple = class Ripple {
                 duration: time,
                 queue: false,
                 complete: function () {
-
+                    
                 }
             })
         })
@@ -47,28 +47,43 @@ var Ripple = class Ripple {
     }
 
     static makeRippleHover(element, xpos, ypos, height, width, time, fadeoutopacity) {
-        var $rippleElement = $('<span class="ripple-hover-effect" />'),
+        var $rippleElement = $('<span class="ripple-effect" />'),
             $buttonElement = element,
             btnOffset = $buttonElement.offset(),
             xPos = xpos,
             yPos = ypos,
             size = 0,
             animateSize = parseInt(Math.max(width, height) * Math.PI);
-        $rippleElement.css({
+        $rippleElement
+            .css({
+                opacity: 0,
                 top: yPos,
                 left: xPos,
-                width: size,
-                height: size,
+                width: animateSize,
+                height: animateSize,
                 backgroundColor: $buttonElement.attr("data-ripple-color")
-        })
-        $rippleElement.animate({
-                opacity: 0.15
+            })
+            .appendTo($buttonElement)
+            .animate({
+                opacity: 0.1
             }, {
                 duration: time,
                 queue: false,
                 complete: function () {
+                    
                 }
             })
+        $(element).mouseup(function () {
+            $rippleElement.animate({
+                opacity: fadeoutopacity
+            }, {
+                duration: time,
+                queue: false,
+                complete: function () {
+
+                }
+            })
+        })
         $(element).on('mouseout', function () {
             $rippleElement.animate({
                 opacity: fadeoutopacity
