@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery.msgBox.min.css">
+    <script src="material.min.js"></script>
+    <link rel="stylesheet" href="material.indigo-blue.min.css" />
     <link href="css/material-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="js/materialdesign/css/materialdesign.css" type="text/css" />
     <link href="css/ripple.css" rel="stylesheet" type="text/css" />
@@ -40,14 +40,21 @@
         <div class="titlebar" id="titlebar">
             <div class="draggable">
             </div>
-            <div data-tooltip-text="Close" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
-            <div data-tooltip-text="Maximize" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
-            <div data-tooltip-text="Minimize" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
+            <div class="windowbutton windowbutton-close"></div>
+            <div class="windowbutton windowbutton-minimize"></div>
             <div class="border5"></div>
         </div>
         </script>
         <div class="instances" id="instances" style="position: relative; top: 0; margin-left: 10px; margin-top: 5px;">
-            This feature is not yet ready for use.
+            <p style="margin-bottom: 0px;" id="Status"></p>
+            <p style="margin-bottom: 0px;" id="Filename"></p>
+            <p style="margin-bottom: 0px;" id="DownloadSpeed"></p>
+            <p style="margin-bottom: 0px;" id="DownloadETA"></p>
+            <p style="margin-bottom: 10px;" id="DownloadLink"></p>
+            <div style="margin-bottom: 10px;" id="ProgressBar" class="mdl-progress mdl-js-progress"></div>
+            <button id="stop" style="margin-right: 10px;" class="mdl-button mdl-js-button mdl-button--raised" onclick="stop.innerText = 'STOPPING DOWNLOAD...'; document.getElementById('stop').disabled = true; document.getElementById('pauseandresume').disabled = true;">Stop download</button>
+            <button id="pauseandresume" style="margin-right: 10px;" class="mdl-button mdl-js-button mdl-button--raised" onclick="if(pauseandresume.innerText == 'PAUSE DOWNLOAD'){pauseandresume.innerText = 'RESUME DOWNLOAD'} else {pauseandresume.innerText = 'PAUSE DOWNLOAD'}">Pause download</button>
+            <button id="openfolder" class="mdl-button mdl-js-button mdl-button--raised" onclick="openfolder.innerText = 'OPENING FOLDER'" disabled>Open folder</button>
         </div>
         <div>
             <script>
@@ -57,8 +64,6 @@
                 }
             </script>
             <script src="js/jquery/jquery-3.1.0.min.js"></script>
-            <script src="js/jquery/jquery-ui.min.js"></script>
-            <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
             <script>
                 if (window.module) module = window.module;
             </script>
@@ -78,34 +83,12 @@
             <script src="js/materialdesign/materialdesign.js"></script>
             <script src="js/utils.js"></script>
             <script>
-                const {
-                    remote,
-                    ipcMain,
-                    clipboard
-                } = require('electron')
-                const {
-                    Menu,
-                    MenuItem,
-                    globalShortcut
-                } = remote
-                const {
-                    app
-                } = require('electron').remote;
-                var getPixels = require("get-pixels")
-                var fs = require('fs');
-                var IsThere = require("is-there");
-                var dir = require('node-dir');
-                var os = require('os');
+                const {remote} = require('electron')
+                const {app} = require('electron').remote;
                 $('.windowbutton-close').click(function () {
                     remote.getCurrentWindow().close();
                 });
-                $('.windowbutton-maximize').click(function () {
-                    if (remote.getCurrentWindow().isMaximized()) {
-                        remote.getCurrentWindow().unmaximize();
-                    } else {
-                        remote.getCurrentWindow().maximize();
-                    }
-                });
+                $('.windowbutton-minimize').css('margin-right', '32px')
                 $('.windowbutton-minimize').click(function () {
                     remote.getCurrentWindow().minimize();
                 });

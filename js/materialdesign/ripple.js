@@ -65,7 +65,7 @@ var Ripple = class Ripple {
             })
             .appendTo($buttonElement)
             .animate({
-                opacity: 0.1
+                opacity: 0.2
             }, {
                 duration: time,
                 queue: false,

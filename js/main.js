@@ -17,6 +17,7 @@ var IsThere = require("is-there");
 var fileToStart = remote.getGlobal("startArgs").data[2]
 var historyPath = app.getPath('userData') + '/User Data/History';
 var userdataPath = app.getPath('userData') + '/User Data';
+var Downloader = require('mt-files-downloader');
 
 $(document).ready(function() {
     setInterval(function() {
