@@ -110,15 +110,13 @@
         });
 
         t.nightmode.click(function(e) {
-            settings.tab.instance.webview.webview.executeJavaScript('isNightMode()', true, function(result) {
-                if (result == true) {
-                    settings.tab.instance.webview.webview.executeJavaScript('setNightMode(false)', false);
-                    settings.tab.instance.webview.webview.reload();
-                } else {
-                    settings.tab.instance.webview.webview.executeJavaScript('setNightMode(true)', false);
-                    settings.tab.instance.webview.webview.executeJavaScript('NightMode()', false);
-                }
-            })
+            if (require('electron-settings').get('static.NightMode')) {
+                require('electron-settings').set('static.NightMode', false)
+                settings.tab.instance.webview.webview.reload()
+            } else {
+                require('electron-settings').set('static.NightMode', true)
+                settings.tab.instance.webview.applyNightMode()
+            }
         });
 
         t.info.click(function(e) {

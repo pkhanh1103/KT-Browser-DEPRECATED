@@ -13,7 +13,10 @@
         t.menu = menu.menu({
             tab: settings.tab
         })
-
+        const remote = require('electron').remote;
+        var window = remote.getCurrentWindow();
+        var colorshaded;
+        
         checkFiles()
         settings.tab.tabWindow = browser
 
@@ -36,7 +39,9 @@
                             if (settings.tab.Color != data.background) {
                                 settings.tab.Color = data.background
                                 settings.tab.Tab.css('background-color', data.background)
-                                t.webview.webview.executeJavaScript('setTitleBarColor("' + shadeColor2(data.background, -0.2) + '")', false);
+                                colorshaded = shadeColor2(data.background, -0.2)
+                                window.webContents.executeJavaScript('titlebar.style.background="' + colorshaded + '"', true);
+	                            window.webContents.executeJavaScript("setColor('" + colorshaded + "')", true);
                                 t.bar.css('background-color', data.background)
                                 changeForeground(data.foreground, data.foreground == 'white' ? '#fff' : '#444')
                             }

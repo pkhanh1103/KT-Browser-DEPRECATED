@@ -38,7 +38,7 @@
                                      .val());
                              }
                          } else {
-                             switch (getSearchEngine()) {
+                             switch (require('electron-settings').get('settings.SearchEngine')) {
                              case "1":
                                  webview.loadURL("http://www.google.com/search?q=" + $(t)
                                      .val());

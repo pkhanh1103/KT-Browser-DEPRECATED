@@ -308,14 +308,6 @@ window.checkVPN = function() {
     return settings.get('static.VPN');
 }
 
-window.getSearchEngine = function() {
-    return settings.get('settings.SearchEngine');
-}
-
-function setNightMode(value) {
-    settings.set('static.NightMode', value);
-}
-
 window.setVPN = function(value) {
     settings.set('static.VPN', value);
 }

@@ -228,22 +228,22 @@ function createWindow() {
                     }
                     })
                     itemWindow.webContents.executeJavaScript('stop.innerText', true, function(result) {
-                                                if (item.getState() !== 'completed')
-                            {
-                        if (result == "STOPPING DOWNLOAD...") {
-                            item.pause()
-                            setTimeout(function() {
-                                item.cancel()
-                            }, 1500);
-                            itemWindow.close()
-                        }
+                        if (item.getState() !== 'completed')
+                        {
+                            if (result == "STOPPING DOWNLOAD...") {
+                                item.pause()
+                                setTimeout(function() {
+                                    item.cancel()
+                                }, 1500);
+                                itemWindow.close()
                             }
+                        }
                     })
                     itemWindow.webContents.executeJavaScript('openfolder.innerText', true, function(result) {
                             if (result == "OPENING FOLDER") {
                                 //FIXME
                                 itemWindow.webContents.executeJavaScript('openfolder.innerText = "OPEN FOLDER"')
-                                shell.showItemInFolder(item.getSavePath())
+                                //shell.showItemInFolder(item.getSavePath())
                                 console.log(item.getSavePath())
                             }
                     })

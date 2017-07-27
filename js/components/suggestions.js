@@ -225,7 +225,7 @@
                                          var s = $('<li data-ripple-color="#444" class="suggestions-li ripple internet" link=""></li>')
                                              .appendTo($(tGlobal.suggestionsUl));
                                          s.click(function (e) {
-                                             switch (getSearchEngine()) {
+                                             switch (require('electron-settings').get('settings.SearchEngine')) {
                                              case "1":
                                                  webview.loadURL("http://www.google.com.vn/search?q=" + $(this)
                                                      .attr('link'));
