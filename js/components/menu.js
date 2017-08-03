@@ -14,6 +14,7 @@
         t.newWindow = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         t.private = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         $('<li class="menu-spec">').appendTo(t.menuItems)
+
         if (process.platform == 'win32') {
             t.fullscreen = $('<li class="menu-item ripple">').appendTo(t.menuItems)
             t.fullscreen.append('<i class="material-icons">fullscreen</i>')
@@ -99,16 +100,17 @@
             }
             settings.tab.instance.webview.updateURLBarIcon()
         });
-        t.fullscreen.click(function(e) {
-            settings.tab.instance.webview.webview.executeJavaScript('isfullscreen()', true, function(result) {
-                if (result == true) {
-                    settings.tab.instance.webview.webview.executeJavaScript('setfullscreen(false)', false);
-                } else {
-                    settings.tab.instance.webview.webview.executeJavaScript('setfullscreen(true)', false);
-                }
-            })
-        });
-
+        if (process.platform == 'win32') {
+            t.fullscreen.click(function(e) {
+                settings.tab.instance.webview.webview.executeJavaScript('isfullscreen()', true, function(result) {
+                    if (result == true) {
+                        settings.tab.instance.webview.webview.executeJavaScript('setfullscreen(false)', false);
+                    } else {
+                        settings.tab.instance.webview.webview.executeJavaScript('setfullscreen(true)', false);
+                    }
+                })
+            });
+        }
         t.nightmode.click(function(e) {
             if (require('electron-settings').get('static.NightMode')) {
                 require('electron-settings').set('static.NightMode', false)
