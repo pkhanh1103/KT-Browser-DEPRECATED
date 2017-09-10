@@ -10,7 +10,7 @@
             opacity: 0,
             display: 'none'
         })
-        t.menuItems = $('<ul class="menu-items" style="z-index: 9999;background-color: #fff;">').appendTo($(t))
+        t.menuItems = $('<ul class="menu-items" style="z-index: 999;background-color: #fff;">').appendTo($(t))
         t.newWindow = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         t.private = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         $('<li class="menu-spec">').appendTo(t.menuItems)
@@ -248,7 +248,7 @@
                 top: 8
             }, {
                 queue: false,
-                duration: 100
+                duration: 200
             });
         }
 
@@ -262,7 +262,7 @@
                 complete: function() {
                     $(t).css('display', 'none');
                 },
-                duration: 100
+                duration: 200
             });
             t.toggled = false;
         }

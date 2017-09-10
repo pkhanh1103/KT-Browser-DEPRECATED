@@ -12,12 +12,10 @@ const {
 } = require('electron').remote;
 var fs = require('fs');
 const settings = require('electron-settings');
-const isDev = require('electron-is-dev');
-var IsThere = require("is-there");
 var fileToStart = remote.getGlobal("startArgs").data[2]
 var historyPath = app.getPath('userData') + '/User Data/History';
 var userdataPath = app.getPath('userData') + '/User Data';
-var Downloader = require('mt-files-downloader');
+//var Downloader = require('mt-files-downloader');
 
 $(document).ready(function() {
     setInterval(function() {
@@ -171,9 +169,6 @@ $(document).ready(function() {
         }
     });
 
-    if (settings.get('settings.blockads')) {
-        registerFiltering(remote.getCurrentWindow().webContents.session)
-    }
     setInterval(function() {
         if (settings.get('static.VPN')) {
             remote.getCurrentWindow().webContents.session.setProxy({
@@ -198,6 +193,10 @@ $(document).ready(function() {
         }],
         blend: !0
     });
+
+    if (settings.get('settings.blockads')) {
+        registerFiltering(remote.getCurrentWindow().webContents.session)
+    }
 })
 window.onresize = function(event) {
     calcSizes(false, false);
@@ -225,7 +224,7 @@ function showApp(url) {
         frame: false
     })
 
-    if (isDev) {
+    if (require('electron-is-dev')) {
         mainWindow.webContents.openDevTools()
     }
 
@@ -245,7 +244,7 @@ function showWebApp(url) {
         }
     })
 
-    if (isDev) {
+    if (require('electron-is-dev')) {
         mainWindow.webContents.openDevTools()
     }
     mainWindow.loadURL('kt-browser://window')
@@ -253,10 +252,10 @@ function showWebApp(url) {
 }
 
 function checkFiles() {
-    if (!IsThere(userdataPath)) {
+    if (!require("is-there")(userdataPath)) {
         fs.mkdir(userdataPath);
     }
-    if (!IsThere(historyPath)) {
+    if (!require("is-there")(historyPath)) {
         fs.writeFile(historyPath, '{"history":[]}');
     }
 }

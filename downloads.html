@@ -68,7 +68,7 @@
                 if (window.module) module = window.module;
             </script>
             <script>
-                Array.prototype.forEach || (Array.prototype.forEach = function (r, t) {
+                Array.prototype.forEach || (Array.prototype.forEach = function(r, t) {
                     var o, n;
                     if (null === this) throw new TypeError(" this is null or not defined");
                     var e = Object(this),
@@ -83,13 +83,17 @@
             <script src="js/materialdesign/materialdesign.js"></script>
             <script src="js/utils.js"></script>
             <script>
-                const {remote} = require('electron')
-                const {app} = require('electron').remote;
-                $('.windowbutton-close').click(function () {
+                const {
+                    remote
+                } = require('electron')
+                const {
+                    app
+                } = require('electron').remote;
+                $('.windowbutton-close').click(function() {
                     remote.getCurrentWindow().close();
                 });
                 $('.windowbutton-minimize').css('margin-right', '32px')
-                $('.windowbutton-minimize').click(function () {
+                $('.windowbutton-minimize').click(function() {
                     remote.getCurrentWindow().minimize();
                 });
             </script>

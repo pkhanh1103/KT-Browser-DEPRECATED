@@ -333,160 +333,6 @@
             -webkit-animation-name: fadeOutDown;
             animation-name: fadeOutDown;
         }
-
-
-
-
-        .tooltip {
-            background: rgba(80, 80, 80, .9);
-            color: #fff;
-            z-index: 999999;
-            position: absolute;
-            padding: 8px;
-            font-size: 12px;
-            border-radius: 2px;
-        }
-        /** Scale animation ****************/
-
-        .tooltip.animation-scale {
-            -webkit-animation-name: scaleTooltip;
-            -webkit-animation-duration: .2s;
-            -webkit-animation-timing-function: ease;
-            animation-name: scaleTooltip;
-            animation-duration: .2s;
-            animation-timing-function: ease;
-        }
-
-        @-webkit-keyframes scaleTooltip {
-            from {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-            to {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-            }
-        }
-
-        @keyframes scaleTooltip {
-            from {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-            to {
-                -webkit-transform: scale(1);
-                transform: scale(1);
-            }
-        }
-        /**** Fade animation ****************/
-
-        .tooltip.animation-fade {
-            -webkit-animation-name: fadeTooltip;
-            -webkit-animation-duration: .2s;
-            -webkit-animation-timing-function: ease;
-            animation-name: fadeTooltip;
-            animation-duration: .2s;
-            animation-timoutg-function: ease;
-        }
-
-        @-webkit-keyframes fadeTooltip {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeTooltip {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        /****  Slide animation   *************/
-
-        .tooltip.animation-slide {
-            -webkit-animation-name: slideTooltip;
-            -webkit-animation-duration: .2s;
-            -webkit-animation-timing-function: linear;
-            animation-name: slideTooltip;
-            animation-duration: .2s;
-            animation-timing-function: linear;
-        }
-
-        @-webkit-keyframes slideTooltip {
-            from {
-                -webkit-transform: translateY(-20%);
-                transform: translateY(-20%);
-                opacity: 0.2;
-            }
-            to {
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-                opacity: 0.2;
-            }
-        }
-
-        @keyframes slideTooltip {
-            from {
-                -webkit-transform: translateY(-20%);
-                transform: translateY(-20%);
-                opacity: 1;
-            }
-            to {
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .tooltip .tooltip-arrow {
-            position: absolute;
-            border: 0px solid rgba(0, 0, 0, .9);
-        }
-
-        .tooltip-arrow.bottomtotop {
-            border-top-color: transparent;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            top: -16px;
-        }
-
-        .tooltip-arrow.toptobottom {
-            border-bottom-color: transparent;
-            border-left-color: transparent;
-            border-right-color: transparent;
-            bottom: -16px;
-        }
-
-        .tooltip-arrow.righttoleft {
-            border-left-color: transparent;
-            border-bottom-color: transparent;
-            border-top-color: transparent;
-            left: -16px;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .tooltip-arrow.lefttoright {
-            border-right-color: transparent;
-            border-bottom-color: transparent;
-            border-top-color: transparent;
-            right: -16px;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .tooltip-arrow.center {
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-        }
     </style>
 </head>
 
@@ -496,13 +342,13 @@
         <div class="titlebar" id="titlebar">
             <div class="draggable">
             </div>
-            <div data-tooltip-text="Close" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
-            <div data-tooltip-text="Maximize" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
-            <div data-tooltip-text="Minimize" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
-            <div data-tooltip-text="Apps" data-tooltip-position="bottom" class="windowbutton windowbutton-extensions"></div>
+            <div title="Close" class="ripple windowbutton windowbutton-close"></div>
+            <div title="Maximize" class="windowbutton windowbutton-maximize"></div>
+            <div title="Minimize" class="windowbutton windowbutton-minimize"></div>
+            <div title="Apps" class="windowbutton windowbutton-extensions"></div>
             <div class="tabbar" id="tabbar">
                 <div class="addTabBtn" id="addTab">
-                    <i class="material-icons" style="font-size: 22px; margin-top: 3px; margin-left: 5px;" data-tooltip-text="New tab (Ctrl + T)" data-tooltip-position="bottom">add</i>
+                    <i class="material-icons" style="font-size: 22px; margin-top: 3px; margin-left: 5px;" title="New tab (Ctrl + T)">add</i>
                 </div>
             </div>
             <div class="border5"></div>
@@ -510,23 +356,24 @@
         </script>
         <div class="instances" id="instances" style="position: relative; top: 0;">
         </div>
+        <!--Cena-->
+        <!--<webview id="cena" class="webview" style="position: absolute; float:right; z-index: 9999; opacity: 1; display: block; top: 64px; width: 230px; height: 300px; right: 30px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);" partition="cena" src="about:blank"></webview>-->
         <div>
             <script>
-                if(typeof module === 'object') {
+                if (typeof module === 'object') {
                     window.module = module;
                     module = undefined;
                 }
             </script>
             <script src="js/jquery/jquery-3.1.0.min.js"></script>
             <script src="js/jquery/jquery-ui.min.js"></script>
-            <script src="js/jquery/autoTooltip.plugin.jQuery.min.js"></script>
             <script>
-                if(window.module) module = window.module;
+                if (window.module) module = window.module;
             </script>
             <script>
                 $(document)
                     .on("click", ".toast_material", function() {
-                        if($('.toast_open')
+                        if ($('.toast_open')
                             .length) {
                             $('.toast_material')
                                 .removeClass("fadeInUp");
@@ -540,7 +387,7 @@
                     });
 
                 function isset(variable) {
-                    if(typeof variable !== "undefined" && variable !== null) {
+                    if (typeof variable !== "undefined" && variable !== null) {
                         return true;
                     } else {
                         return false;
@@ -548,10 +395,10 @@
                 }
 
                 function Toast_Material(options) {
-                    if(isset(options.position)) {
-                        if(options.position == "right" || options.position == "left") {
+                    if (isset(options.position)) {
+                        if (options.position == "right" || options.position == "left") {
                             var positionStyle = options.position + ":16px";
-                        } else if(options.position == "center") {
+                        } else if (options.position == "center") {
                             var positionStyle = "";
                             $(document)
                                 .ready(function() {
@@ -569,32 +416,32 @@
                     } else {
                         var positionStyle = "left : 16px";
                     }
-                    if(isset(options.align)) {
+                    if (isset(options.align)) {
                         var alignStyle = options.align;
-                        if(alignStyle == "right") {
+                        if (alignStyle == "right") {
                             var directionStyle = "rtl";
-                        } else if(alignStyle == "left") {
+                        } else if (alignStyle == "left") {
                             var directionStyle = "ltr";
-                        } else if(alignStyle == "center") {
+                        } else if (alignStyle == "center") {
                             var directionStyle = "ltr";
                         }
                     } else {
                         var alignStyle = "left";
                         var directionStyle = "ltr";
                     }
-                    if(isset(options.content)) {
+                    if (isset(options.content)) {
                         var contentText = options.content;
                     } else {
                         var contentText = "";
                     }
-                    if(isset(options.updown)) {
+                    if (isset(options.updown)) {
                         var heightStyle = options.updown + ":15px;";
                     } else {
                         var heightStyle = "bottom : 15px";
                     }
-                    if($('.toast_material')
+                    if ($('.toast_material')
                         .length) {
-                        if($('.toast_open')
+                        if ($('.toast_open')
                             .length) {
                             $('.toast_material')
                                 .addClass("animated fadeOutDown");
@@ -629,11 +476,11 @@
             <script>
                 Array.prototype.forEach || (Array.prototype.forEach = function(r, t) {
                     var o, n;
-                    if(null === this) throw new TypeError(" this is null or not defined");
+                    if (null === this) throw new TypeError(" this is null or not defined");
                     var e = Object(this),
                         i = e.length >>> 0;
-                    if("function" != typeof r) throw new TypeError(r + " is not a function");
-                    for(arguments.length > 1 && (o = t), n = 0; i > n;) {
+                    if ("function" != typeof r) throw new TypeError(r + " is not a function");
+                    for (arguments.length > 1 && (o = t), n = 0; i > n;) {
                         var a;
                         n in e && (a = e[n], r.call(o, a, n, e)), n++
                     }
@@ -709,21 +556,14 @@
             </script>
             <script>
                 function getSelectedTab() {
-                    for(var i = 0; i < parent.tabCollection.length; i++) {
-                        if(parent.tabCollection[i].selected) {
+                    for (var i = 0; i < parent.tabCollection.length; i++) {
+                        if (parent.tabCollection[i].selected) {
                             return parent.tabCollection[i];
                         }
                     }
                 }
                 $(document)
                     .ready(function() {
-                        $(".windowbutton")
-                            .tooltip();
-                        $(".material-icons")
-                            .tooltip();
-                        $(".closeBtn")
-                            .tooltip();
-
                         var scroll = false;
                         var launcherMaxHeight = 396;
                         var launcherMinHeight = 296;
@@ -731,11 +571,11 @@
                         // Mousewheel event handler to detect whether user has scrolled over the container
                         $('.apps')
                             .bind('mousewheel', function(e) {
-                                if(e.originalEvent.wheelDelta / 120 > 0) {
+                                if (e.originalEvent.wheelDelta / 120 > 0) {
                                     // Scrolling up
                                 } else {
                                     // Scrolling down
-                                    if(!scroll) {
+                                    if (!scroll) {
                                         $(".second-set")
                                             .show();
                                         $('.apps')
@@ -755,7 +595,7 @@
                             .scroll(function() {
                                 var pos = $(this)
                                     .scrollTop();
-                                if(pos == 0) {
+                                if (pos == 0) {
                                     scroll = false;
                                     $('.apps')
                                         .css({
@@ -813,13 +653,11 @@
                                 maxHeight: $(window)
                                     .height() - $('.apps')
                                     .offset()
-                                    .top
                             });
                     });
             </script>
-            <script src="js/modules/cena.js"></script>
             <script src="js/adblock/filtering.js"></script>
-            
+
             <div class="app-launcher" style="display: none;">
                 <div class="apps">
                     <ul class="first-set">

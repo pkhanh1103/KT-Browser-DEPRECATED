@@ -276,13 +276,13 @@
             <div class="draggable">
                 <label style="float: left; color: #424242; margin-top: 3px; margin-left: 20px;">Settings</label>
             </div>
-            <div data-tooltip-text="Close" data-tooltip-position="bottom" class="ripple windowbutton windowbutton-close"></div>
-            <div data-tooltip-text="Maximize" data-tooltip-position="bottom" class="windowbutton windowbutton-maximize"></div>
-            <div data-tooltip-text="Minimize" data-tooltip-position="bottom" class="windowbutton windowbutton-minimize"></div>
+            <div title="Close" class="ripple windowbutton windowbutton-close"></div>
+            <div title="Maximize" class="windowbutton windowbutton-maximize"></div>
+            <div title="Minimize" class="windowbutton windowbutton-minimize"></div>
             <div class="border5"></div>
         </div>
         </script>
-        <div class="instances" id="instances" style="position: static; top: 0px; margin-left: 30px; width: auto;">
+        <div class="instances" id="instances" style="position: static; top: 0px; padding-left: 30px; width: auto;">
             <div class="pad">
                 <h5>On startup</h5>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -293,7 +293,7 @@
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick='homePage.value = "kt-browser://newtab"'>
                     Default Start Page
                  </button>
-                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick='homePage.value = ""'>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick='homePage.value = ""'>
                     Blank Page
                  </button>
             </div>
@@ -334,7 +334,12 @@
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="ChangeColorByPage">
                         <span class="mdl-switch__label">Colored tabs</span>
                         <input type="checkbox" id="ChangeColorByPage" class="mdl-switch__input">
-                    </label>
+                </label>
+                <br></br>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled onclick=''>
+                    Custom color
+                 </button>
+                <br></br>
             </div>
             <div class="pad">
                 <h5>Contents</h5>
@@ -364,7 +369,7 @@
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
                     Edit Ad Blocking Filter Lists
                  </button>
-                 <br></br>
+                <br></br>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="blockUnsafeWeb">
                         <span class="mdl-switch__label">Block phishing and dangerous sites (Cyradar)</span>
                         <input type="checkbox" id="blockUnsafeWeb" class="mdl-switch__input">    
@@ -391,7 +396,7 @@
                 <h5>Advanced</h5>
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="hardalc">
                         <span class="mdl-switch__label">Use hardware acceleration when available</span>
-                        <input type="checkbox" id="hardalc" class="mdl-switch__input">    
+                        <input type="checkbox" id="hardalc" class="mdl-switch__input">
                 </label>
             </div>
             <br></br>
@@ -403,7 +408,7 @@
             } = require('electron')
             const settings = require('electron-settings');
 
-            switch(settings.get("settings.nvProxy")) {
+            switch (settings.get("settings.nvProxy")) {
                 case 'http://kt-browser.com/Singapore.pac':
                     $('#VPNSelector')
                         .val("2")
@@ -447,7 +452,7 @@
             }
             $('#SESelector').val(settings.get("settings.SearchEngine"))
             homePage.value = settings.get("settings.homePage")
-            if((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
+            if ((settings.get("settings.homePage") == "") || (settings.get("settings.homePage") == "undefined")) {
                 homePage.value = "kt-browser://newtab"
             }
             hardalc.checked = settings.get("settings.hardalc")
@@ -498,8 +503,8 @@
                     }, e.prototype.enable = e.prototype.enable, e.prototype.change = function(e) {
                         e && (this.select_.value = e), this.updateClasses_()
                     }, e.prototype.change = e.prototype.change, e.prototype.init = function() {
-                        if(this.element_ && (this.label_ = this.element_.querySelector("." + this.CssClasses_.LABEL), this.select_ = this.element_.querySelector("." + this.CssClasses_.SELECT), this.select_)) {
-                            if(this.boundUpdateClassesHandler = this.updateClasses_.bind(this), this.boundFocusHandler =
+                        if (this.element_ && (this.label_ = this.element_.querySelector("." + this.CssClasses_.LABEL), this.select_ = this.element_.querySelector("." + this.CssClasses_.SELECT), this.select_)) {
+                            if (this.boundUpdateClassesHandler = this.updateClasses_.bind(this), this.boundFocusHandler =
                                 this.onFocus_.bind(this), this.boundBlurHandler = this.onBlur_.bind(this), this.boundResetHandler =
                                 this.onReset_.bind(this), this.select_.addEventListener("change", this.boundUpdateClassesHandler), this.select_.addEventListener("focus", this.boundFocusHandler), this.select_.addEventListener(
                                     "blur", this.boundBlurHandler), this.select_.addEventListener("reset", this.boundResetHandler), "function" == typeof MaterialMenu) {
@@ -507,7 +512,7 @@
                                     t = "plc-" + (new Date)
                                     .getTime(),
                                     s = document.createElement("div");
-                                if(s.id = t, s.classList.add("mdl-selectfield__placeholder"), s.innerHTML =
+                                if (s.id = t, s.classList.add("mdl-selectfield__placeholder"), s.innerHTML =
                                     '<i class="material-icons" tabindex="-1">arrow_drop_down</i>', s.addEventListener(
                                         "click",
                                         function() {
@@ -522,7 +527,7 @@
                                             (this.scrollTop === this.scrollHeight - this.offsetHeight && e.wheelDelta <
                                                 0 || 0 === this.scrollTop && e.wheelDelta > 0) && e.preventDefault()
                                         });
-                                    for(var l = 0; l < this.options_.length; l++) {
+                                    for (var l = 0; l < this.options_.length; l++) {
                                         var n = this.options_[l],
                                             a = ((n.textContent || "")
                                                 .toUpperCase()
@@ -565,7 +570,7 @@
                         compareTop = partial === true ? _bottom : _top,
                         compareBottom = partial === true ? _top : _bottom;
 
-                    return((compareBottom <= viewBottom) && (compareTop >= viewTop));
+                    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
 
                 };
 
@@ -577,7 +582,7 @@
 
             allMods.each(function(i, el) {
                 var el = $(el);
-                if(el.visible(true)) {
+                if (el.visible(true)) {
                     el.addClass("already-visible");
                 }
             });
@@ -589,7 +594,7 @@
 
                 allMods.each(function(i, el) {
                     var el = $(el);
-                    if(el.visible(true)) {
+                    if (el.visible(true)) {
 
                         el.addClass("come-in");
 
@@ -601,23 +606,23 @@
     </div>
     <div>
         <script>
-            if(typeof module === 'object') {
+            if (typeof module === 'object') {
                 window.module = module;
                 module = undefined;
             }
         </script>
         <script src="js/jquery/jquery-ui.min.js"></script>
         <script>
-            if(window.module) module = window.module;
+            if (window.module) module = window.module;
         </script>
         <script>
             Array.prototype.forEach || (Array.prototype.forEach = function(r, t) {
                 var o, n;
-                if(null === this) throw new TypeError(" this is null or not defined");
+                if (null === this) throw new TypeError(" this is null or not defined");
                 var e = Object(this),
                     i = e.length >>> 0;
-                if("function" != typeof r) throw new TypeError(r + " is not a function");
-                for(arguments.length > 1 && (o = t), n = 0; i > n;) {
+                if ("function" != typeof r) throw new TypeError(r + " is not a function");
+                for (arguments.length > 1 && (o = t), n = 0; i > n;) {
                     var a;
                     n in e && (a = e[n], r.call(o, a, n, e)), n++
                 }
@@ -625,10 +630,10 @@
         </script>
         <script>
             window.onbeforeunload = function() {
-                if((homePage.value == "") || (homePage.value == "undefined")) {
+                if ((homePage.value == "") || (homePage.value == "undefined")) {
                     homePage.value = "kt-browser://newtab"
                 }
-                switch(VPNSelector.value) {
+                switch (VPNSelector.value) {
                     case "2":
                         proxyValue = 'http://kt-browser.com/Singapore.pac'
                         break
@@ -675,13 +680,13 @@
                     DNT: DNT.checked,
                     blockUnsafeWeb: blockUnsafeWeb.checked
                 })
-    }
-    
+            }
+
             $('.windowbutton-close').click(function() {
                 remote.getCurrentWindow().close();
             });
             $('.windowbutton-maximize').click(function() {
-                if(remote.getCurrentWindow().isMaximized()) {
+                if (remote.getCurrentWindow().isMaximized()) {
                     remote.getCurrentWindow().unmaximize();
                 } else {
                     remote.getCurrentWindow().maximize();

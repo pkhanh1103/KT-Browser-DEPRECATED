@@ -2,9 +2,9 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
     return Ripple.makeRipple(item, x, y, width, height, rippleTime, 0)
 }
 
-(function ($) {
+(function($) {
 
-    $.fn.checkbox = function (options = {
+    $.fn.checkbox = function(options = {
         rippleTime: 300
     }) {
         var t = this
@@ -32,7 +32,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
             marginLeft: 0
         });
 
-        setInterval(function () {
+        setInterval(function() {
             if (lastState != t.checked) {
                 lastState = t.checked
                 if (t.checked) {
@@ -98,7 +98,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
             lastState = false
 
         }
-        mdSwitch.mousedown(function (e) {
+        mdSwitch.mousedown(function(e) {
             if (!t.checked) {
                 check()
                 doRippleIcon($(t), 9, 8, 17, 17, options.rippleTime)
@@ -119,7 +119,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
     }
 
     //preloader
-    $.fn.preloader = function () {
+    $.fn.preloader = function() {
         var t = this
         $(t).html('\
         <div class="md-preloader">\
@@ -131,7 +131,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
         var loader = $(t).find('.md-preloader')
         var circular = $(t).find('.svg')
         var path = $(t).find('.preloader-circle')
-        setInterval(function () {
+        setInterval(function() {
             var color = $(t).attr('color')
             var thickness = $(t).attr('thickness')
 
@@ -149,7 +149,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
     }
 
     //switch
-    $.fn.switch = function (options = {
+    $.fn.switch = function(options = {
         rippleTime: 300
     }) {
         var t = this
@@ -166,7 +166,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
         var ellipse = $('<div class="ellipse">').appendTo(switchContainer)
 
         var lastState
-        setInterval(function () {
+        setInterval(function() {
             if (lastState != t.switched) {
                 lastState = t.switched
                 if (t.switched) {
@@ -231,7 +231,7 @@ function doRippleIcon(item, x, y, width, height, rippleTime) {
             lastState = false
         }
 
-        mdSwitch.mousedown(function () {
+        mdSwitch.mousedown(function() {
             if (!t.switched) {
                 var ripple = doRippleIcon($(t), 7, 9, 17, 17, options.rippleTime)
                 $(ripple).animate({

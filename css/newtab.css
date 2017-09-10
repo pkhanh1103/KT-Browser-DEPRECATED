@@ -12,6 +12,106 @@
     font-family: Roboto-Light;
     src: url(../fonts/Roboto-Light.ttf);
 }
+.noselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+html,
+body {
+    height: 100%;
+    font-size: 15px;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #FaFaFa;
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    overflow: auto !important;
+}
+
+.banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.url {
+    margin-top: 40px;
+    min-width: 300px;
+    max-width: 512px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.md-input {
+    height: 50px;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+.md-input .hint {
+    position: absolute;
+    font-size: 15px;
+    left: 6px;
+    top: 8px;
+    opacity: 0.6;
+    transition: all 0.2s;
+    color: #444;
+}
+
+.md-input-animate-hint {
+    font-size: 13px !important;
+    top: -10px !important;
+}
+
+.md-input .text {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    color: #444;
+    padding-left: 6px;
+    font-size: 15px;
+    background-color: transparent;
+}
+
+.md-input .divider1 {
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    background-color: #000;
+    opacity: 0.2;
+    border-radius: 2px;
+}
+
+.md-input .divider2 {
+    width: 0%;
+    height: 3px;
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #2196F3;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.md-input-animate-divider {
+    width: 100% !important;
+}
 
 .bookmarks {
     list-style: none;

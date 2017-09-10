@@ -19,26 +19,25 @@ var Ripple = class Ripple {
             .animate({
                 width: animateSize,
                 height: animateSize,
-            }, time, 'linear', function () {
-            });
-        $(element).mouseup(function () {
+            }, time, 'linear', function() {});
+        $(element).mouseup(function() {
             $rippleElement.animate({
                 opacity: fadeoutopacity
             }, {
                 duration: time,
                 queue: false,
-                complete: function () {
-                    
+                complete: function() {
+
                 }
             })
         })
-        $(element).on('mouseout', function () {
+        $(element).on('mouseout', function() {
             $rippleElement.animate({
                 opacity: fadeoutopacity
             }, {
                 duration: time,
                 queue: false,
-                complete: function () {
+                complete: function() {
                     $rippleElement.remove();
                 }
             })
@@ -69,28 +68,28 @@ var Ripple = class Ripple {
             }, {
                 duration: time,
                 queue: false,
-                complete: function () {
-                    
+                complete: function() {
+
                 }
             })
-        $(element).mouseup(function () {
+        $(element).mouseup(function() {
             $rippleElement.animate({
                 opacity: fadeoutopacity
             }, {
                 duration: time,
                 queue: false,
-                complete: function () {
+                complete: function() {
 
                 }
             })
         })
-        $(element).on('mouseout', function () {
+        $(element).on('mouseout', function() {
             $rippleElement.animate({
                 opacity: fadeoutopacity
             }, {
                 duration: time,
                 queue: false,
-                complete: function () {
+                complete: function() {
                     $rippleElement.remove();
                 }
             })

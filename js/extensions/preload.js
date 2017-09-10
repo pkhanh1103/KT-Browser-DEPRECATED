@@ -27,6 +27,10 @@ global.getSearchEngine = function() {
     return settings.get('settings.SearchEngine');
 }
 
+global.isNightMode = function() {
+    return settings.get('static.NightMode');
+}
+
 global.saveHistory = function (json) {
 	fs.writeFile(historyPath, json, function (err) {
 		if (err) {

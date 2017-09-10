@@ -8,7 +8,6 @@ const {
 } = require('electron')
 const path = require('path')
 var fs = require('fs');
-const isDev = require('electron-is-dev');
 const BrowserWindow = electron.BrowserWindow
 const settings = require('electron-settings');
 var Downloader = require('mt-files-downloader');
@@ -108,20 +107,6 @@ process.env.GOOGLE_API_KEY = 'AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM'
 process.env.GOOGLE_DEFAULT_CLIENT_ID = '413772536636.apps.googleusercontent.com'
 process.env.GOOGLE_DEFAULT_CLIENT_SECRET = '0ZChLK6AxeA3Isu96MkwqDR4'
 
-let pluginName
-switch (process.platform) {
-    case 'win32':
-        pluginName = 'pepflashplayer.dll'
-        break
-    case 'darwin':
-        pluginName = 'PepperFlashPlayer.plugin'
-        break
-    case 'linux':
-        pluginName = 'libpepflashplayer.so'
-        break
-}
-app.commandLine.appendSwitch('ppapi-flash-path', path.join(__dirname, pluginName))
-
 let mainWindow
 
 function createWindow() {
@@ -167,7 +152,7 @@ function createWindow() {
     });
 
     mainWindow.loadURL(`file://${__dirname}/index.html`)
-    if (isDev) {
+    if (require('electron-is-dev')) {
         mainWindow.webContents.openDevTools()
     }
 
@@ -215,21 +200,19 @@ function createWindow() {
                 }
                 setInterval(function() {
                     itemWindow.webContents.executeJavaScript('pauseandresume.innerText', true, function(result) {
-                        if (item.getState() !== 'completed')
-                            {
-                        if (result == "RESUME DOWNLOAD" && item.isPaused() == false) {
-                            item.pause()
-                        }
-                        if (result == "PAUSE DOWNLOAD") {
-                            if (item.isPaused()) {
-                                item.resume()
+                        if (item.getState() !== 'completed') {
+                            if (result == "RESUME DOWNLOAD" && item.isPaused() == false) {
+                                item.pause()
+                            }
+                            if (result == "PAUSE DOWNLOAD") {
+                                if (item.isPaused()) {
+                                    item.resume()
+                                }
                             }
                         }
-                    }
                     })
                     itemWindow.webContents.executeJavaScript('stop.innerText', true, function(result) {
-                        if (item.getState() !== 'completed')
-                        {
+                        if (item.getState() !== 'completed') {
                             if (result == "STOPPING DOWNLOAD...") {
                                 item.pause()
                                 setTimeout(function() {
@@ -240,12 +223,12 @@ function createWindow() {
                         }
                     })
                     itemWindow.webContents.executeJavaScript('openfolder.innerText', true, function(result) {
-                            if (result == "OPENING FOLDER") {
-                                //FIXME
-                                itemWindow.webContents.executeJavaScript('openfolder.innerText = "OPEN FOLDER"')
-                                //shell.showItemInFolder(item.getSavePath())
-                                console.log(item.getSavePath())
-                            }
+                        if (result == "OPENING FOLDER") {
+                            //FIXME
+                            itemWindow.webContents.executeJavaScript('openfolder.innerText = "OPEN FOLDER"')
+                            //shell.showItemInFolder(item.getSavePath())
+                            console.log(item.getSavePath())
+                        }
                     })
                 }, 100);
                 item.on('updated', (event, state) => {

@@ -1,5 +1,5 @@
-(function ($) {
-    $.fn.browser = function (params) {
+(function($) {
+    $.fn.browser = function(params) {
         var settings = $.extend({
                 url: "",
                 tab: null
@@ -16,11 +16,11 @@
         const remote = require('electron').remote;
         var window = remote.getCurrentWindow();
         var colorshaded;
-        
+
         checkFiles()
         settings.tab.tabWindow = browser
 
-        $(settings.tab).on('ready', function (e, tab) {
+        $(settings.tab).on('ready', function(e, tab) {
             settings.tab = tab
             t.webview = content.webview({
                 tab: settings.tab,
@@ -33,15 +33,15 @@
 
             if (getSettings("settings.colorByPage", true)) {
                 t.colors = new Colors(t.webview.webview)
-                setInterval(function () {
+                setInterval(function() {
                     if (settings.tab.selected) {
-                        t.colors.getColor(function (data) {
+                        t.colors.getColor(function(data) {
                             if (settings.tab.Color != data.background) {
                                 settings.tab.Color = data.background
                                 settings.tab.Tab.css('background-color', data.background)
                                 colorshaded = shadeColor2(data.background, -0.2)
                                 window.webContents.executeJavaScript('titlebar.style.background="' + colorshaded + '"', true);
-	                            window.webContents.executeJavaScript("setColor('" + colorshaded + "')", true);
+                                window.webContents.executeJavaScript("setColor('" + colorshaded + "')", true);
                                 t.bar.css('background-color', data.background)
                                 changeForeground(data.foreground, data.foreground == 'white' ? '#fff' : '#444')
                             }

@@ -11,7 +11,7 @@ var borderColor = 'rgba(0,0,0,0.1)';
 
 function addTab(instance, tab) {
     tab.Tab = $('<div class="tab" id="#tab"></div>').appendTo('#tabbar');
-    tab.closeBtn = $("<div class='closeBtn' data-tooltip-text='Close tab (Ctrl + W)' data-tooltip-position='bottom' ><i class='material-icons' style='font-size: 18px;'>close</i></div>").appendTo(tab.Tab);
+    tab.closeBtn = $("<div class='closeBtn'><i class='material-icons' style='font-size: 18px;'>close</i></div>").appendTo(tab.Tab);
     tab.Title = $("<div class='tabTitle'>New tab</div>").appendTo(tab.Tab);
     tab.Favicon = $("<div></div>").appendTo(tab.Tab);
     tab.Foreground = 'black';

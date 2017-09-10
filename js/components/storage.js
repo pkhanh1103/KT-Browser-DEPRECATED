@@ -21,7 +21,7 @@ class Storage {
             }
             today = mm + '-' + dd + '-' + yyyy
 
-            fs.readFile(historyPath, function (err, data) {
+            fs.readFile(historyPath, function(err, data) {
                 if (err) throw err
                 var json = data.toString()
                 //replace weird characters in utf-8
@@ -51,7 +51,7 @@ class Storage {
                     }
                     var jsonStr = JSON.stringify(obj)
                     json = jsonStr
-                    fs.writeFile(historyPath, json, function (err) {
+                    fs.writeFile(historyPath, json, function(err) {
                         if (err) {
                             return true
                         }
@@ -64,7 +64,7 @@ class Storage {
     saveBookmark(title, url) {
         if (title != null && url != null) {
             var array;
-            fs.readFile(bookmarkPath, function (err, data) {
+            fs.readFile(bookmarkPath, function(err, data) {
                 if (err) throw err
                 var json = data.toString()
                 json = json.replace("\ufeff", "")
@@ -85,7 +85,7 @@ class Storage {
                     }
                     var jsonStr = JSON.stringify(obj)
                     json = jsonStr
-                    fs.writeFile(bookmarkPath, json, function (err) {
+                    fs.writeFile(bookmarkPath, json, function(err) {
                         if (err) {
                             return true
                         }

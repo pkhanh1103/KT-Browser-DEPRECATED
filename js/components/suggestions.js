@@ -1,11 +1,11 @@
- $.fn.suggestions = function (params) {
+ $.fn.suggestions = function(params) {
      var settings = $.extend({
-             searchInput: null
-             , tab: null
-         }, params)
-         , tGlobal = this
-         , webview = settings.tab.instance.webview.webview
-         , t = this
+             searchInput: null,
+             tab: null
+         }, params),
+         tGlobal = this,
+         webview = settings.tab.instance.webview.webview,
+         t = this
 
      this.suggestionsUl = $('<ul class="suggestions-ul">')
          .appendTo($(this))
@@ -16,7 +16,7 @@
              t.hide();
      });
 
-     settings.searchInput.on("input", function (e) {
+     settings.searchInput.on("input", function(e) {
 
          var key = event.keyCode || event.charCode;
 
@@ -29,9 +29,9 @@
                  $(t)
                      .css('display', 'block');
                  $.ajax({
-                     type: "GET"
-                     , url: historyPath
-                     , success: function (data) {
+                     type: "GET",
+                     url: historyPath,
+                     success: function(data) {
                          var json = data.toString();
 
                          json = json.replace("﻿", "");
@@ -67,10 +67,10 @@
 
                              if (links.length > 0) {
 
-                                 var oldLink = links.sort(function (a, b) {
+                                 var oldLink = links.sort(function(a, b) {
                                      return a.length - b.length;
                                  })[0];
-                                 var newLink = links.sort(function (a, b) {
+                                 var newLink = links.sort(function(a, b) {
                                      return a.length - b.length;
                                  })[0];
 
@@ -78,7 +78,7 @@
                                  if (oldLink != newLink) {
                                      links.push(newLink);
                                  }
-                                 links.sort(function (a, b) {
+                                 links.sort(function(a, b) {
                                      return b.length - a.length;
                                  });
                                  for (var i = 0; i < links.length; i++) {
@@ -95,7 +95,7 @@
                                      }
                                  }
                                  var uniqueLinks = [];
-                                 $.each(links, function (i, el) {
+                                 $.each(links, function(i, el) {
                                      if ($.inArray(el, uniqueLinks) === -1) uniqueLinks.push(el)
                                  });
                                  if (uniqueLinks.length > 3) {
@@ -113,11 +113,11 @@
                                      .length < finalLength) {
                                      var s = $('<li data-ripple-color="#444" class="suggestions-li ripple history" link=""></li>')
                                          .prependTo($(tGlobal.suggestionsUl));
-                                     s.click(function (e) {
+                                     s.click(function(e) {
                                          webview.loadURL('http://' + $(this)
                                              .attr('link'));
                                      });
-                                     s.mousedown(function (e) {
+                                     s.mousedown(function(e) {
                                          var relX = e.pageX - $(this)
                                              .offset()
                                              .left;
@@ -128,7 +128,7 @@
                                              .width(), $(this)
                                              .height(), 800, 0);
                                      });
-                                     s.mouseover(function () {
+                                     s.mouseover(function() {
                                          $(t)
                                              .find('.suggestions-li')
                                              .removeClass("selected");
@@ -149,7 +149,7 @@
                                  }
                                  $(t)
                                      .find('.history')
-                                     .each(function (i) {
+                                     .each(function(i) {
                                          $(this)
                                              .html(uniqueLinks[i]);
                                          $(this)
@@ -163,7 +163,7 @@
                              } else {
                                  $(t)
                                      .find('.history')
-                                     .each(function (i) {
+                                     .each(function(i) {
                                          $(this)
                                              .remove();
                                      });
@@ -172,7 +172,7 @@
                          } else {
                              $(t)
                                  .find('.history')
-                                 .each(function (i) {
+                                 .each(function(i) {
                                      $(this)
                                          .remove();
                                  });
@@ -183,15 +183,15 @@
                          t1.first()
                              .addClass("selected");
 
-                     }
-                     , complete: function () {
+                     },
+                     complete: function() {
                          $(t)
                              .css('display', 'block');
                          if (inputText != "" || inputText != null || typeof inputText !== "undefined") {
                              $.ajax({
-                                 type: "GET"
-                                 , url: "http://google.com/complete/search?client=firefox&q=" + inputText
-                                 , success: function (data) {
+                                 type: "GET",
+                                 url: "http://google.com/complete/search?client=firefox&q=" + inputText,
+                                 success: function(data) {
                                      var obj = JSON.parse(data);
                                      var links = [];
                                      for (var i = 0; i < obj[1].length; i++) {
@@ -203,10 +203,10 @@
 
                                      }
                                      var uniqueLinks = [];
-                                     $.each(links, function (i, el) {
+                                     $.each(links, function(i, el) {
                                          if ($.inArray(el, uniqueLinks) === -1) uniqueLinks.push(el);
                                      });
-                                     uniqueLinks.sort(function (a, b) {
+                                     uniqueLinks.sort(function(a, b) {
                                          return a.length - b.length;
                                      });
                                      if (uniqueLinks.length > 3) {
@@ -224,36 +224,36 @@
                                          .length < finalLength) {
                                          var s = $('<li data-ripple-color="#444" class="suggestions-li ripple internet" link=""></li>')
                                              .appendTo($(tGlobal.suggestionsUl));
-                                         s.click(function (e) {
+                                         s.click(function(e) {
                                              switch (require('electron-settings').get('settings.SearchEngine')) {
-                                             case "1":
-                                                 webview.loadURL("http://www.google.com.vn/search?q=" + $(this)
-                                                     .attr('link'));
-                                                 break;
-                                             case "2":
-                                                 webview.loadURL("http://coccoc.com/search#query=" + $(this)
-                                                     .attr('link'));
-                                                 break;
-                                             case "3":
-                                                 webview.loadURL("https://duckduckgo.com/?q=" + $(this)
-                                                     .attr('link'));
-                                                 break;
-                                             case "4":
-                                                 webview.loadURL("https://www.bing.com/search?q=" + $(this)
-                                                     .attr('link'));
-                                                 break;
-                                             case "5":
-                                                 webview.loadURL("https://search.yahoo.com/search?p=" + $(this)
-                                                     .attr('link'));
-                                                 break;
-                                             case "6":
-                                                 webview.loadURL("https://www.yandex.com/search/?text=" + $(this)
-                                                     .attr('link'));
-                                                 break;
+                                                 case "1":
+                                                     webview.loadURL("http://www.google.com.vn/search?q=" + $(this)
+                                                         .attr('link'));
+                                                     break;
+                                                 case "2":
+                                                     webview.loadURL("http://coccoc.com/search#query=" + $(this)
+                                                         .attr('link'));
+                                                     break;
+                                                 case "3":
+                                                     webview.loadURL("https://duckduckgo.com/?q=" + $(this)
+                                                         .attr('link'));
+                                                     break;
+                                                 case "4":
+                                                     webview.loadURL("https://www.bing.com/search?q=" + $(this)
+                                                         .attr('link'));
+                                                     break;
+                                                 case "5":
+                                                     webview.loadURL("https://search.yahoo.com/search?p=" + $(this)
+                                                         .attr('link'));
+                                                     break;
+                                                 case "6":
+                                                     webview.loadURL("https://www.yandex.com/search/?text=" + $(this)
+                                                         .attr('link'));
+                                                     break;
                                              }
 
                                          });
-                                         s.mousedown(function (e) {
+                                         s.mousedown(function(e) {
                                              var relX = e.pageX - $(this)
                                                  .offset()
                                                  .left;
@@ -264,7 +264,7 @@
                                                  .width(), $(this)
                                                  .height(), 600, 0);
                                          });
-                                         s.mouseover(function () {
+                                         s.mouseover(function() {
                                              $(t)
                                                  .find('.suggestions-li')
                                                  .removeClass("selected");
@@ -284,7 +284,7 @@
                                      }
                                      $(t)
                                          .find('.internet')
-                                         .each(function (i) {
+                                         .each(function(i) {
                                              $(this)
                                                  .html(uniqueLinks[i]);
                                              $(this)
@@ -301,7 +301,7 @@
 
      });
      var canSuggest = false;
-     settings.searchInput[0].onkeydown = function () {
+     settings.searchInput[0].onkeydown = function() {
          var key = event.keyCode || event.charCode;
          //blacklist: backspace, enter, ctrl, alt, shift, tab, caps lock, delete, space
          if (key != 8 && key != 13 && key != 17 && key != 18 && key != 16 && key != 9 && key != 20 && key != 46 && key != 32) {
@@ -309,7 +309,7 @@
          }
      }
 
-     settings.searchInput.keydown(function (e) {
+     settings.searchInput.keydown(function(e) {
          var selected = $(t)
              .find(".selected")
          if (e.keyCode == 38) {
@@ -357,20 +357,20 @@
          }
 
      });
-     setInterval(function () {
+     setInterval(function() {
          if (settings.searchInput.val() == "" || settings.searchInput.val() == null) {
              $(t)
                  .css('display', 'none')
              $(t)
                  .find('.suggestions-li')
-                 .each(function (i) {
+                 .each(function(i) {
                      $(this)
                          .remove()
                  });
          }
      }, 1);
      $(window)
-         .click(function () {
+         .click(function() {
              $(t)
                  .css('display', 'none');
          })

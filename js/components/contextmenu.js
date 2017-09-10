@@ -10,7 +10,7 @@ class ContextMenu {
         this.menu = new Menu()
         this.prepareContextMenu()
 
-        $(webview).ready(function () {
+        $(webview).ready(function() {
             webview.getWebContents().on('context-menu', (e, params) => {
                 e.preventDefault()
 
@@ -24,7 +24,7 @@ class ContextMenu {
                     t.selectAllMenuItem.visible = false
                     t.imageToSave = ''
                     t.linkToOpen = ''
-                    
+
                     if (params.mediaType == 'image') {
                         t.imageToSave = params.srcURL
                     }
@@ -101,9 +101,8 @@ class ContextMenu {
                     t.refreshMenuItem.visible = false
                     t.printMenuItem.visible = false
                 }
-                
-                if (!params.selectionText == "" && params.selectionText.length < 100)
-                {
+
+                if (!params.selectionText == "" && params.selectionText.length < 100) {
                     t.TTSMenuItem.visible = true
                 } else {
                     t.TTSMenuItem.visible = false
@@ -113,7 +112,7 @@ class ContextMenu {
 
                 t.xToInspect = params.x
                 t.yToInspect = params.y
-                                    
+
                 t.menu.popup(remote.getCurrentWindow())
             }, true)
         })
@@ -125,15 +124,15 @@ class ContextMenu {
         t.TTSMenuItem = new MenuItem({
             label: 'Read text...',
             click() {
-                require('google-tts-api')(t.selectionText, 'vi', 1).then(function (url) {
-                    console.log(url);
-                    var audio = new Audio();
-                    audio.src = url;
-                    audio.play();
-                })
-                .catch(function (err) {
-                    console.error(err.stack);
-                });
+                require('google-tts-api')(t.selectionText, 'vi', 1).then(function(url) {
+                        console.log(url);
+                        var audio = new Audio();
+                        audio.src = url;
+                        audio.play();
+                    })
+                    .catch(function(err) {
+                        console.error(err.stack);
+                    });
             }
         })
         t.backMenuItem = new MenuItem({
