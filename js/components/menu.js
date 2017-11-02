@@ -24,7 +24,6 @@
 
         t.history = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         t.bookmarks = $('<li class="menu-item ripple">').appendTo(t.menuItems)
-        t.downloads = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         $('<li class="menu-spec">').appendTo(t.menuItems)
         t.nightmode = $('<li class="menu-item ripple">').appendTo(t.menuItems)
         t.vpn = $('<li class="menu-item ripple">').appendTo(t.menuItems)
@@ -42,9 +41,6 @@
 
         t.bookmarks.append('<i class="material-icons">collections_bookmark</i>')
         t.bookmarks.append('<p class="menu-text">Bookmarks</p>')
-
-        t.downloads.append('<i class="material-icons">file_download</i>')
-        t.downloads.append('<p class="menu-text">Downloads</p>')
 
         t.newWindow.append('<i class="material-icons">desktop_windows</i>')
         t.newWindow.append('<p class="menu-text">New window</p>')
@@ -138,16 +134,7 @@
                 align: "center"
             });
         });
-        t.downloads.click(function(e) {
-            const BrowserWindow = remote.BrowserWindow;
 
-            var mainWindow = new BrowserWindow({
-                title: 'Downloads',
-                frame: false
-            })
-            mainWindow.loadURL(`file://${__dirname}/downloads.html`)
-
-        });
         t.settings.click(function(e) {
             const BrowserWindow = remote.BrowserWindow;
 
