@@ -17,20 +17,24 @@
     "url": "git://github.com/KTTECHTeam/KT-Browser.git"
   },
   "license": "MIT",
-  "dependencies": {
-    "abp-filter-parser": "latest",
+  "devDependencies": {
     "asar": "latest",
     "electron": "latest",
     "electron-connect": "latest",
-    "electron-is-dev": "latest",
     "electron-packager": "latest",
+    "electron-rebuild": "latest",
+    "node-dir": "latest"
+  },
+  "dependencies": {
+    "abp-filter-parser": "latest",
+    "electron-is-dev": "latest",
     "electron-settings": "latest",
     "electron-window-state": "latest",
     "get-pixels": "latest",
     "google-tts-api": "latest",
     "is-there": "latest",
-    "mt-files-downloader": "latest",
     "node-dir": "latest",
-    "request": "latest"
+    "request": "latest",
+    "mt-files-downloader": "latest"
   }
 }
