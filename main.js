@@ -102,10 +102,22 @@ app.commandLine.appendSwitch('enable-speech-input', '')
 app.commandLine.appendSwitch('enable-fast-unload', '')
 app.commandLine.appendSwitch('smooth-scrolling', 'enabled')
 app.commandLine.appendSwitch('touch-events', 'enabled')
+app.commandLine.appendSwitch('enable-npapi', '');
 
 process.env.GOOGLE_API_KEY = 'AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM'
 process.env.GOOGLE_DEFAULT_CLIENT_ID = '413772536636.apps.googleusercontent.com'
 process.env.GOOGLE_DEFAULT_CLIENT_SECRET = '0ZChLK6AxeA3Isu96MkwqDR4'
+
+var ppapi_flash_path = null;
+if(process.platform  == 'win32'){
+  ppapi_flash_path = path.join(__dirname, 'pepflashplayer.dll');
+} else if (process.platform == 'linux') {
+  ppapi_flash_path = path.join(__dirname, 'libpepflashplayer.so');
+} else if (process.platform == 'darwin') {
+  ppapi_flash_path = path.join(__dirname, 'PepperFlashPlayer.plugin');
+}
+
+app.commandLine.appendSwitch('ppapi-flash-path', ppapi_flash_path);
 
 let mainWindow
 
