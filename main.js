@@ -83,6 +83,10 @@ if (settings.get('settings.closeOnLastTab') == null) {
     settings.set('settings.closeOnLastTab', true);
 }
 
+if (settings.get('settings.gpu') == null) {
+    settings.set('settings.gpu', true);
+}
+
 if (settings.get('static.NightMode') == null) {
     settings.set('static.NightMode', false);
 }
@@ -96,12 +100,19 @@ if (!settings.get("settings.hardalc")) {
     app.disableHardwareAcceleration();
 }
 
-app.commandLine.appendSwitch('enable-pdf-material-ui', '')
-app.commandLine.appendSwitch('enable-media-stream', '')
-app.commandLine.appendSwitch('enable-speech-input', '')
-app.commandLine.appendSwitch('enable-fast-unload', '')
-app.commandLine.appendSwitch('smooth-scrolling', 'enabled')
-app.commandLine.appendSwitch('touch-events', 'enabled')
+if (settings.get('settings.gpu')) {
+    app.commandLine.appendSwitch('ignore-gpu-blacklist', '');
+    app.commandLine.appendSwitch('enable-gpu-rasterization', '');
+    app.commandLine.appendSwitch('enable-zero-copy', '');
+    app.commandLine.appendSwitch('use-gl', 'angle');
+}
+
+app.commandLine.appendSwitch('enable-pdf-material-ui', '');
+app.commandLine.appendSwitch('enable-media-stream', '');
+app.commandLine.appendSwitch('enable-speech-input', '');
+app.commandLine.appendSwitch('enable-fast-unload', '');
+app.commandLine.appendSwitch('smooth-scrolling', 'enabled');
+app.commandLine.appendSwitch('touch-events', 'enabled');
 app.commandLine.appendSwitch('enable-npapi', '');
 
 process.env.GOOGLE_API_KEY = 'AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM'
