@@ -54,6 +54,9 @@ See `package.json` for more compile commands.
 * Contributions are always welcome
 * If you want a feature and can code, feel free to fork and add the change yourself and make a pull request
 
+## Original authors
+Eryk Rakowski (Sential)
+
 ## License
 
 ```
