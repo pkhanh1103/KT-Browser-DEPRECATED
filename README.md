@@ -7,6 +7,9 @@
 [![devDependencies Status](https://david-dm.org/KTTECHTeam/KT-Browser/dev-status.svg)](https://david-dm.org/KTTECHTeam/KT-Browser?type=dev)
 
 [![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
+
+* * *
 
 # KT Browser
 
